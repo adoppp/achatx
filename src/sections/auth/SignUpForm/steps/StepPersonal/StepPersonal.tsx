@@ -19,10 +19,11 @@ export const StepPersonal: FC<StepFormProps> = ({
     canGoNext,
     onChange,
 }) => {
+    const StepIcon = step === 1 && stepIcons[step];
     return (
-        <div className={cn('signup__container')}>
+        <>
             <div className={cn('signup__description')}>
-                <div className={cn('signup__description--icon')}>{stepIcons[step]}</div>
+                <div className={cn('signup__description--icon', 'personal__icon')}>{StepIcon}</div>
                 <h2 className={cn('signup__description--title')}>Type your name and email</h2>
                 <p className={cn('signup__description--description')}>
                     All users can see your name and email
@@ -53,6 +54,6 @@ export const StepPersonal: FC<StepFormProps> = ({
                     Next step
                 </Button>
             </div>
-        </div>
+        </>
     );
 };

@@ -32,6 +32,12 @@ export type BaseStepProps = {
     canGoNext: () => boolean;
 };
 
+export type VerifyStepProps = BaseStepProps & {
+    isResended: boolean;
+    timeLeft: number;
+    resendEmail: () => void;
+}
+
 export type BaseStepFormProps = BaseStepProps & {
     formState: FormState;
     onChange: (field: FieldTypes) => (value: string) => void;
@@ -44,7 +50,6 @@ export type StepFormProps = BaseStepFormProps & {
 export type StepPasswordProps = BaseStepFormProps & {
     passwdErrors: IsPasswordValid;
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-    isLoading: boolean;
 };
 
 export type StepMeta = {

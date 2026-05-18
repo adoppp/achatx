@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { sendEmailVerification } from 'firebase/auth';
 import { FirebaseError } from 'firebase/app';
 
@@ -11,8 +11,10 @@ import type {
     FormState,
     IsPasswordValid,
 } from '@/sections/auth/SignUpForm/SignUpForm.types';
-import { signUpAuth } from '@/services/auth.service';
+import { signUpAuth, verifyByEmail } from '@/services/auth.service';
 import { useModalContext } from '@/components/Modal/ModalProvider';
+import { firebaseErrorMap } from '@/firebase/error.config';
+import { auth } from '@/firebase';
 
 const initialFormState: FormState = {
     username: '',
@@ -39,7 +41,10 @@ export const useSignUpForm = () => {
     const [passwdErrors, setPasswdErrors] = useState<IsPasswordValid>(initialIsPasswordValid);
     const [step, setStep] = useState<Step>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { openModal } = useModalContext();
+    const [timeLeft, setTimeLeft] = useState<number>(5);
+    const [isResended, setIsResended] = useState<boolean>(false);
+    const { openModal, closeModal } = useModalContext();
+    const currentUser = auth.currentUser;
     const maxStep = STEPS.length;
     const ActiveStepComponent = stepComponents[step];
 
@@ -79,8 +84,6 @@ export const useSignUpForm = () => {
 
             return next;
         });
-
-        console.log(passwdErrors);
     };
 
     const validatePassword = (password: string): IsPasswordValid => {
@@ -126,42 +129,75 @@ export const useSignUpForm = () => {
         const isValid = Object.values(passwdErrors).every(Boolean);
         const isErrors = Object.values(errorState).some((value) => value !== null);
 
-        openModal({
-            type: 'error',
-            modalProps: { title: 'error', message: 'Some error' },
-        });
-        // setIsLoading(true);
-        // if (isValid && !isErrors) {
-        //     try {
-        //         setIsLoading(true);
+        if (isValid && !isErrors) {
+            try {
+                setIsLoading(true);
 
-        //         const user = await signUpAuth(formState);
+                const user = await signUpAuth(formState);
 
-        //         await sendEmailVerification(user, {
-        //             url: 'http://localhost:5173/auth/signin',
-        //         });
+                await verifyByEmail(user);
 
-        //         setIsLoading(false);
+                setIsLoading(false);
 
-        //         _next();
-        //     } catch (error: unknown) {
-        //         setIsLoading(false);
+                _next();
+            } catch (error: unknown) {
+                setIsLoading(false);
 
-        //         if (error instanceof FirebaseError) {
-        //             setGlobalError({
-        //                 // title: `${error.name}: ${error.code}`,
-        //                 title:  `${error.name}`,
-        //                 message: error.message,
-        //             });
-        //         } else if (error instanceof Error) {
-        //             setGlobalError({ title: 'Unexcepted error', message: error.message });
-        //         }
+                if (error instanceof FirebaseError) {
+                    openModal({
+                        type: 'error',
+                        modalProps: { title: 'Authentication Error', message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default, button: { label: 'Ok', onClick: closeModal } },
+                    });
+                } else if (error instanceof Error) {
+                    openModal({
+                        type: 'error',
+                        modalProps: { title: 'Unexpected error', message: error.message, button: { label: 'Ok', onClick: closeModal } },
+                    });
+                }
 
-        //     } finally {
-        //         setIsLoading(false);
-        //     }
-        // }
+            } finally {
+                setIsLoading(false);
+            }
+        }
     };
+
+    const resendEmail = async () => {
+        if (isResended || !currentUser) return;
+
+        try {
+            setIsLoading(true);
+
+            await verifyByEmail(currentUser);
+
+            setIsResended(true);
+        } catch (error: unknown) {
+            if (error instanceof FirebaseError) {
+                openModal({
+                    type: 'error',
+                    modalProps: { title: 'Authentication Error', message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default, button: { label: 'Ok', onClick: closeModal } },
+                });
+            } else if (error instanceof Error) {
+                openModal({
+                    type: 'error',
+                    modalProps: { title: 'Unexpected error', message: error.message, button: { label: 'Ok', onClick: closeModal } },
+                });
+            }
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        if (timeLeft <= 0) return;
+        if (step !== 3 ) return;
+        if (isResended) return;
+
+        const timer = setInterval(() => {
+            setTimeLeft(prev => prev - 1)
+        }, 1000);
+
+        return () => clearInterval(timer);
+    }, [timeLeft, isResended, step]);
 
     return {
         formState,
@@ -170,6 +206,9 @@ export const useSignUpForm = () => {
         isLoading,
         step,
         maxStep,
+        timeLeft,
+        isResended,
+        resendEmail,
         ActiveStepComponent,
         canGoNext,
         _prev,

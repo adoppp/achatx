@@ -1,10 +1,14 @@
+import type { ModalActionProps } from '@/components/Modal/Modal.types';
+import { type User } from 'firebase/auth';
 import { auth, firestore } from '@/firebase';
 
-import type { User } from '@/types/global.types';
-import { createUserWithEmailAndPassword, onAuthStateChanged, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, updateProfile, type UserCredential, type UserInfo } from 'firebase/auth';
 import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import type { SerializedUser } from '@/types/global.types';
 
-export const subscribeAuth = (cb: (user: User | null) => void) => {
+const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
+
+export const subscribeAuth = (cb: (user: SerializedUser | null) => void) => {
     return onAuthStateChanged(auth, (firebaseUser) => {
         if (!firebaseUser) {
             cb(null);
@@ -46,4 +50,10 @@ export const signUpAuth = async ({
     });
 
     return userCredentials.user;
+};
+
+export const verifyByEmail = async (user: User) => {
+    await sendEmailVerification(user, {
+        url: `${FRONTEND_URL}/auth/signin`
+    });
 };

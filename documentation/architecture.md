@@ -327,3 +327,10 @@ users ↔ chats (members array)
 chats → messages (subcollection)
 chats → reads (subcollection)
 ```
+
+
+*user for test*
+| name | email | password | is verified |
+|------|-------|----------|-------------|
+|test2|faviver735@dardr.com|1Kl$rtx9|+|
+|test3|gapacax509@dardr.com|1Kl$rtx9|-|

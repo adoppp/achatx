@@ -3,32 +3,31 @@ import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import type { BaseStepProps } from '@/sections/auth/SignUpForm/SignUpForm.types';
+import type { VerifyStepProps } from '@/sections/auth/SignUpForm/SignUpForm.types';
 import { Button } from '@/ui/Button/Button';
 import { stepIcons } from '@/sections/auth/SignUpForm/SignUpForm.config';
 
 const cn = classNames.bind(styles);
 
-export const StepVerify: FC<BaseStepProps> = ({ step, maxStep, _next, _prev, canGoNext }) => {
+export const StepVerify: FC<VerifyStepProps> = ({ step, resendEmail, isResended, timeLeft }) => {
+    const StepIcon = step === 3 && stepIcons[step];
+    const disabled = timeLeft > 0;
+
     return (
-        <div className={cn('signup__container')}>
+        <>
             <div className={cn('signup__description')}>
-                <div className={cn('signup__description--icon')}>{stepIcons[step]}</div>
-                <h2 className={cn('signup__description--title')}>Type your name and email</h2>
+                <div className={cn('signup__description--icon')}>{StepIcon}</div>
+                <h2 className={cn('signup__description--title')}>Verify your email</h2>
                 <p className={cn('signup__description--description')}>
-                    All users can see your name and email
+                    We have send verification link to your email
                 </p>
             </div>
 
-            <div>
-                <p>Check your email for verification link</p>
-            </div>
-
-            <div className={cn('signup__button')}>
-                <Button onClick={_next} disabled={step === maxStep || !canGoNext()}>
-                    Resend
+            <div className={cn('signup__button', 'verify__button')}>
+                <Button onClick={resendEmail} disabled={disabled || isResended}>
+                    Resend {timeLeft === 0 ? '' : timeLeft} 
                 </Button>
             </div>
-        </div>
+        </>
     );
 };

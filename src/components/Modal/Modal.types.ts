@@ -8,6 +8,10 @@ export interface ModalProps {
     icon?: ReactNode;
     title: string;
     message: string;
+    button?: {
+        label: string;
+        onClick: () => void;
+    }
 }
 
 export interface ModalState {

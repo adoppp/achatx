@@ -1,4 +1,4 @@
-export interface User {
+export interface SerializedUser {
     id: string;
     username: string;
     email: string | null;

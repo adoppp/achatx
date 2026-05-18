@@ -21,11 +21,15 @@ export const ErrorModal: FC = () => {
             <span className={cn('error__icon')}>{IconClose}</span>
             <h2 className={cn('error__title')}>{modalContext.modal.modalProps?.title}</h2>
             <p className={cn('error__message')}>{modalContext.modal.modalProps?.message}</p>
-            <div className={cn('error__button')}>
-                <Button variant="error" onClick={modalContext.closeModal}>
-                    Ok
-                </Button>
-            </div>
+            {
+                modalContext.modal.modalProps?.button && (
+                    <div className={cn('error__button')}>
+                        <Button variant="error" onClick={modalContext.modal.modalProps?.button?.onClick}>
+                            {modalContext.modal.modalProps?.button?.label}
+                        </Button>
+                    </div>
+                )
+            }
         </>
     );
 };

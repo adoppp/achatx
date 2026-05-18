@@ -12,7 +12,7 @@ Component
    ↓
 useModalContext()
    ↓
-open({...})
+openModal({...})
    ↓
 ModalProvider updates modal state
    ↓
@@ -57,11 +57,11 @@ Current implementation:
 ```
 
 **Modal Context API**
-- open()
+- openModal()
 
 Opens modal and injects modal payload.
 ```ts
-open({
+openModal({
     type: 'error',
     modalProps: {
         title: 'Error',
@@ -70,12 +70,12 @@ open({
 });
 ```
 
-- close()
+- closeModal()
 
 Closes active modal.
 
 ```ts
-close();
+closeModal();
 ```
 
 **Current Modal Types**
@@ -122,7 +122,7 @@ const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     try {
         await signUpAuth(formState);
     } catch (error) {
-        modalContext?.open({
+        openModal({
             type: 'error',
             modalProps: {
                 title: 'Firebase Error',
@@ -154,7 +154,7 @@ type ModalType = 'error' | 'success' | null;
 
 4. Open modal
 ```ts
-modalContext?.open({
+openModal({
     type: 'success',
 });
 ```

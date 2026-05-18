@@ -11,8 +11,8 @@ const ModalContext = createContext<ModalContextType | null>(null);
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [modal, setModal] = useState<ModalState>({ type: null });
 
-    const openModal = (modal: ModalActionProps): void => {
-        setModal(modal);
+    const openModal = (propsModal: ModalActionProps): void => {
+        setModal(propsModal);
     };
 
     const closeModal = (): void => {

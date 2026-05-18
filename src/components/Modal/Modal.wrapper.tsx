@@ -20,7 +20,7 @@ export const ModalWrapper: FC = () => {
         <ModalRoot>
             <div className={cn('modal')}>
                 <div className={cn('modal__box')}>
-                    <button onClick={close} className={cn('modal__close')}>
+                    <button onClick={closeModal} className={cn('modal__close')}>
                         {IconClose}
                     </button>
                     {modalType === 'error' && <ErrorModal />}

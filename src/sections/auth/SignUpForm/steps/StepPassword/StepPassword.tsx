@@ -28,7 +28,6 @@ export const StepPassword: FC<StepPasswordProps> = ({
     passwdErrors,
     step,
     maxStep,
-    isLoading,
     _prev,
     canGoNext,
     onChange,
@@ -36,6 +35,8 @@ export const StepPassword: FC<StepPasswordProps> = ({
 }) => {
     const formId = useId();
     const hasErrors = Object.values(passwdErrors).some((value) => value === false);
+    const stepIconPassword = stepIcons[step];
+
     const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
         const typedKey = key as keyof IsPasswordValid;
 
@@ -52,15 +53,9 @@ export const StepPassword: FC<StepPasswordProps> = ({
     });
 
     return (
-        <div className={cn('signup__container')}>
-            {isLoading ? (
-                <div className={cn('signup__loader')}>
-                    <Loader />
-                </div>
-            ) : (
-                <>
-                    <div className={cn('signup__description')}>
-                        <div className={cn('signup__description--icon')}>{stepIcons[step]}</div>
+        <>
+            <div className={cn('signup__description')}>
+                        <div className={cn('signup__description--icon')}></div>
                         <h2 className={cn('signup__description--title')}>Create a password</h2>
                         <p className={cn('signup__description--description')}>
                             Choose a strong password to secure your account
@@ -91,8 +86,6 @@ export const StepPassword: FC<StepPasswordProps> = ({
                             Submit
                         </Button>
                     </div>
-                </>
-            )}
-        </div>
+        </>
     );
 };
