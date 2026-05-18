@@ -22,7 +22,6 @@ export interface ModalActionProps {
 
 export interface ModalContextType {
     modal: ModalState;
-    isOpen: boolean;
-    open: (modal: ModalActionProps) => void;
-    close: () => void;
+    openModal: (modal: ModalActionProps) => void;
+    closeModal: () => void;
 }

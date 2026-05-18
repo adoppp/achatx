@@ -11,8 +11,8 @@ import { ErrorModal } from '@/components/Modal/modals/ErrorModal/ErrorModal';
 const cn = classNames.bind(styles);
 
 export const ModalWrapper: FC = () => {
-    const modalContext = useModalContext();
-    const modalType = modalContext?.modal.type;
+    const { modal, closeModal } = useModalContext();
+    const modalType = modal.type;
 
     if (modalType === null) return;
 
@@ -20,7 +20,7 @@ export const ModalWrapper: FC = () => {
         <ModalRoot>
             <div className={cn('modal')}>
                 <div className={cn('modal__box')}>
-                    <button onClick={modalContext?.close} className={cn('modal__close')}>
+                    <button onClick={close} className={cn('modal__close')}>
                         {IconClose}
                     </button>
                     {modalType === 'error' && <ErrorModal />}

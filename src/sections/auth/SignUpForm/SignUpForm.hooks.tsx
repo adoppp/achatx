@@ -39,14 +39,7 @@ export const useSignUpForm = () => {
     const [passwdErrors, setPasswdErrors] = useState<IsPasswordValid>(initialIsPasswordValid);
     const [step, setStep] = useState<Step>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [globalError, setGlobalError] = useState<{
-        title: string | null;
-        message: string | null;
-    }>({
-        title: null,
-        message: null,
-    });
-    const modalContext = useModalContext();
+    const { openModal } = useModalContext();
     const maxStep = STEPS.length;
     const ActiveStepComponent = stepComponents[step];
 
@@ -71,8 +64,6 @@ export const useSignUpForm = () => {
 
         return true;
     };
-
-    const resetError = () => setGlobalError({ title: null, message: null });
 
     const handleOnChange = (field: FieldTypes) => (value: string) => {
         setFormState((prev) => {
@@ -135,8 +126,7 @@ export const useSignUpForm = () => {
         const isValid = Object.values(passwdErrors).every(Boolean);
         const isErrors = Object.values(errorState).some((value) => value !== null);
 
-        setGlobalError({ title: 'error', message: 'Some error' });
-        modalContext?.open({
+        openModal({
             type: 'error',
             modalProps: { title: 'error', message: 'Some error' },
         });
@@ -180,8 +170,6 @@ export const useSignUpForm = () => {
         isLoading,
         step,
         maxStep,
-        globalError,
-        resetError,
         ActiveStepComponent,
         canGoNext,
         _prev,

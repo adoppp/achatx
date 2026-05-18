@@ -10,25 +10,21 @@ const ModalContext = createContext<ModalContextType | null>(null);
 
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [modal, setModal] = useState<ModalState>({ type: null });
-    const [isOpen, setIsOpen] = useState<boolean>(false);
 
-    const open = (modal: ModalActionProps): void => {
+    const openModal = (modal: ModalActionProps): void => {
         setModal(modal);
-        setIsOpen(true);
     };
 
-    const close = (): void => {
+    const closeModal = (): void => {
         setModal({ type: null });
-        setIsOpen(false);
     };
 
     return (
         <ModalContext.Provider
             value={{
                 modal: modal,
-                isOpen,
-                open,
-                close,
+                openModal,
+                closeModal,
             }}
         >
             {children}
@@ -36,8 +32,10 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     );
 };
 
-export const useModalContext = (): ModalContextType | null => {
+export const useModalContext = (): ModalContextType => {
     const context = useContext(ModalContext);
-    if (!context) console.log('You use modal features outside modal provider');
+    if (!context) {
+        throw new Error('useModalContext must be used inside ModalProvider');
+    }
     return context;
 };

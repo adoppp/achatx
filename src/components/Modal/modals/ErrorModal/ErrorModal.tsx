@@ -22,7 +22,7 @@ export const ErrorModal: FC = () => {
             <h2 className={cn('error__title')}>{modalContext.modal.modalProps?.title}</h2>
             <p className={cn('error__message')}>{modalContext.modal.modalProps?.message}</p>
             <div className={cn('error__button')}>
-                <Button variant="error" onClick={modalContext.close}>
+                <Button variant="error" onClick={modalContext.closeModal}>
                     Ok
                 </Button>
             </div>
