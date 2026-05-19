@@ -39,7 +39,7 @@ export const useSignUpForm = () => {
     const [formState, setFormState] = useState<FormState>(initialFormState);
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorsState);
     const [passwdErrors, setPasswdErrors] = useState<IsPasswordValid>(initialIsPasswordValid);
-    const [step, setStep] = useState<Step>(3);
+    const [step, setStep] = useState<Step>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isLoadingResend, setIsLoadingResend] = useState<boolean>(false);
     const [timeLeft, setTimeLeft] = useState<number>(30);
