@@ -33,7 +33,7 @@ export const StepPassword: FC<StepPasswordProps> = ({
     onSubmit,
 }) => {
     const formId = useId();
-    const isPasswordValid = Object.values(passwdErrors).some(Boolean);
+    const isPasswordValid = Object.values(passwdErrors).every(Boolean);
 
     const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
         const typedKey = key as keyof IsPasswordValid;
