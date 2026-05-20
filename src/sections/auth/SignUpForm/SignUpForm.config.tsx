@@ -1,4 +1,4 @@
-import { IconArrowLeft, IconEmail, IconLockAnimated, IconUser } from '@/assets/svg';
+import { IconAnimatedEmail, IconLockAnimated, IconUser } from '@/assets/svg';
 import { Step } from './Step/Step';
 
 // Component (body of the step), icon, progressTitle and progressDescription for progressbar, title of step, description of step
@@ -35,7 +35,7 @@ export const stepsData = {
             progressTitle: 'Verify',
         },
         header: {
-            icon: <IconEmail />,
+            icon: <IconAnimatedEmail />,
             title: 'Verify your email',
             description: 'We have send verification link to your email'
         }

@@ -238,6 +238,116 @@ export const IconEmail = () => {
     </svg>
 };
 
+export const IconAnimatedEmail = () => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+        >
+            <style>
+                {`
+                    @keyframes envelope-float {
+                        0% {
+                            transform:
+                                translateY(0px)
+                                rotate(0deg);
+                        }
+
+                        /* subtle lift */
+
+                        18% {
+                            transform:
+                                translateY(-1.5px)
+                                rotate(-0.6deg);
+                        }
+
+                        /* tiny drift */
+
+                        32% {
+                            transform:
+                                translateY(-2px)
+                                rotate(0.4deg);
+                        }
+
+                        /* settle */
+
+                        48% {
+                            transform:
+                                translateY(0px)
+                                rotate(0deg);
+                        }
+
+                        /* idle */
+
+                        100% {
+                            transform:
+                                translateY(0px)
+                                rotate(0deg);
+                        }
+                    }
+
+                    @keyframes flap-soft-open {
+                        0% {
+                            transform: translateY(0px);
+                        }
+
+                        /* flap opens */
+
+                        10% {
+                            transform: translateY(-1.2px);
+                        }
+
+                        /* closes */
+
+                        20% {
+                            transform: translateY(0px);
+                        }
+
+                        100% {
+                            transform: translateY(0px);
+                        }
+                    }
+                `}
+            </style>
+
+            <g
+                style={{
+                    animation:
+                        'envelope-float 3.2s cubic-bezier(0.34, 1.56, 0.64, 1) infinite',
+                    transformOrigin: 'center center',
+                }}
+            >
+                <path
+                    d="M17 20.5H7C4 20.5 2 19 2 15.5V8.5C2 5 4 3.5 7 3.5H17C20 3.5 22 5 22 8.5V15.5C22 19 20 20.5 17 20.5Z"
+                    strokeWidth="1.5"
+                    strokeMiterlimit="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                />
+
+                <g
+                    style={{
+                        animation:
+                            'flap-soft-open 3.2s ease-in-out infinite',
+                        transformOrigin: '12px 10px',
+                    }}
+                >
+                    <path
+                        d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9"
+                        strokeWidth="1.5"
+                        strokeMiterlimit="10"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </g>
+            </g>
+        </svg>
+    );
+};
+
 export const IconClose = () => {
     return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
         <path d="M1 1L15.2418 15.0418" stroke-linecap="round" stroke-linejoin="round" />
