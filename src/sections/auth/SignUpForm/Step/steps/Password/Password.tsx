@@ -4,13 +4,10 @@ import classNames from 'classnames/bind';
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { IconCheckMark, IconClose } from '@/assets/svg';
-import type {
-    IsPasswordValid,
-} from '@/sections/auth/SignUpForm/SignUpForm.types';
+import type { IsPasswordValid } from '@/sections/auth/SignUpForm/SignUpForm.types';
 import { Button } from '@/ui/Button/Button';
 import { InputPassword } from '@/ui/InputPassword/InputPassword';
-import { StepIconHandler } from '../../StepIconHandler';
-import type { StepPasswordProps } from '../../Step.types';
+import type { StepPasswordProps } from '@/sections/auth/SignUpForm/Step/Step.types';
 
 const passwordErrorMessages: Record<keyof IsPasswordValid, string> = {
     isEightCharacters: 'At least 8 characters',
@@ -38,8 +35,8 @@ export const Password: FC<StepPasswordProps> = ({
 
     const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
         const typedKey = key as keyof IsPasswordValid;
-        console.log(key)
-        console.log(isValid)
+        console.log(key);
+        console.log(isValid);
 
         return (
             <li key={key} className={cn('password__item', isValid && 'password__item--valid')}>
@@ -71,11 +68,7 @@ export const Password: FC<StepPasswordProps> = ({
                 <Button variant="secondary" onClick={_prev} disabled={step === 1}>
                     Previous
                 </Button>
-                <Button
-                    form={formId}
-                    type="submit"
-                    disabled={step === maxStep || !canGoNext()}
-                >
+                <Button form={formId} type="submit" disabled={step === maxStep || !canGoNext()}>
                     Submit
                 </Button>
             </div>

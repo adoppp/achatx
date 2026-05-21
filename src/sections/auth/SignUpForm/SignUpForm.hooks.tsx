@@ -2,19 +2,17 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { FirebaseError } from 'firebase/app';
 
 import { emailRegex } from '@/constants/regex';
-// import { STEPS, stepComponents, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
 import type {
     ErrorFields,
     ErrorState,
     FieldTypes,
     FormState,
 } from '@/sections/auth/SignUpForm/SignUpForm.types';
+import { auth } from '@/firebase';
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
 import { useModalContext } from '@/components/Modal/ModalProvider';
 import { firebaseErrorMap } from '@/firebase/error.config';
-import { auth } from '@/firebase';
-import { STEPS, stepsData, type Step } from './SignUpForm.config';
-import { Step as StepComponent } from './Step/Step';
+import { STEPS, stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
 
 const initialFormState: FormState = {
     username: '',
@@ -31,7 +29,7 @@ const initialErrorsState: ErrorState = {
         isOneLowercase: false,
         isOneNumber: false,
         isOneSpecialSymbol: false,
-    }
+    },
 };
 
 export const useSignUpForm = () => {
@@ -47,7 +45,6 @@ export const useSignUpForm = () => {
     const currentUser = auth.currentUser;
     const maxStep = STEPS.length;
     const ActiveStepComponent = stepsData[step].component;
-    const StepHeader = <StepComponent.Header step={step} isActive={!isPasswordValid} />;
 
     const _prev = () => setStep((s) => Math.max(1, s - 1) as Step);
 
@@ -106,15 +103,13 @@ export const useSignUpForm = () => {
                 return null;
 
             case 'password':
-                const passwordValidation = {
+                return {
                     isEightCharacters: value.length >= 8,
                     isOneUppercase: /[A-Z]/.test(value),
                     isOneLowercase: /[a-z]/.test(value),
                     isOneNumber: /[0-9]/.test(value),
                     isOneSpecialSymbol: /[^A-Za-z0-9]/.test(value),
-                }
-
-                return passwordValidation;
+                };
 
             default:
                 return null;
@@ -125,7 +120,9 @@ export const useSignUpForm = () => {
         event.preventDefault();
 
         const isValid = Object.values(errorState.password).every(Boolean);
-        const isErrors = Object.values(errorState).some((value) => typeof value === 'string' ? true : false);
+        const isErrors = Object.values(errorState).some((value) =>
+            typeof value === 'string' ? true : false,
+        );
 
         if (isValid && !isErrors) {
             try {
@@ -142,15 +139,22 @@ export const useSignUpForm = () => {
                 if (error instanceof FirebaseError) {
                     openModal({
                         type: 'error',
-                        modalProps: { title: 'Authentication Error', message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default, button: { label: 'Ok', onClick: closeModal } },
+                        modalProps: {
+                            title: 'Authentication Error',
+                            message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
+                            button: { label: 'Ok', onClick: closeModal },
+                        },
                     });
                 } else if (error instanceof Error) {
                     openModal({
                         type: 'error',
-                        modalProps: { title: 'Unexpected error', message: error.message, button: { label: 'Ok', onClick: closeModal } },
+                        modalProps: {
+                            title: 'Unexpected error',
+                            message: error.message,
+                            button: { label: 'Ok', onClick: closeModal },
+                        },
                     });
                 }
-
             } finally {
                 setIsLoading(false);
             }
@@ -170,12 +174,20 @@ export const useSignUpForm = () => {
             if (error instanceof FirebaseError) {
                 openModal({
                     type: 'error',
-                    modalProps: { title: 'Authentication Error', message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default, button: { label: 'Ok', onClick: closeModal } },
+                    modalProps: {
+                        title: 'Authentication Error',
+                        message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
+                        button: { label: 'Ok', onClick: closeModal },
+                    },
                 });
             } else if (error instanceof Error) {
                 openModal({
                     type: 'error',
-                    modalProps: { title: 'Unexpected error', message: error.message, button: { label: 'Ok', onClick: closeModal } },
+                    modalProps: {
+                        title: 'Unexpected error',
+                        message: error.message,
+                        button: { label: 'Ok', onClick: closeModal },
+                    },
                 });
             }
 
@@ -187,11 +199,11 @@ export const useSignUpForm = () => {
 
     useEffect(() => {
         if (timeLeft <= 0) return;
-        if (step !== 3 ) return;
+        if (step !== 3) return;
         if (isResended) return;
 
         const timer = setInterval(() => {
-            setTimeLeft(prev => prev - 1)
+            setTimeLeft((prev) => prev - 1);
         }, 1000);
 
         return () => clearInterval(timer);
@@ -207,7 +219,7 @@ export const useSignUpForm = () => {
         isResended,
         isLoadingResend,
         ActiveStepComponent,
-        StepHeader,
+        isPasswordValid,
         resendEmail,
         canGoNext,
         _prev,

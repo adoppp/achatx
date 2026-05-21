@@ -27,7 +27,7 @@ export const Input: FC<InputProps> = ({
     autoComplete = 'off',
     customClass,
 }) => {
-    const inputId = id || useId();
+    const generatedInputId = useId();
     const hasError = !!error;
 
     return (
@@ -40,7 +40,10 @@ export const Input: FC<InputProps> = ({
             )}
         >
             {label && (
-                <label htmlFor={inputId} className={cn('input__label', customClass?.label)}>
+                <label
+                    htmlFor={id ?? generatedInputId}
+                    className={cn('input__label', customClass?.label)}
+                >
                     {label}
                 </label>
             )}
@@ -53,7 +56,7 @@ export const Input: FC<InputProps> = ({
                 )}
 
                 <input
-                    id={inputId}
+                    id={id ?? generatedInputId}
                     type={type}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}

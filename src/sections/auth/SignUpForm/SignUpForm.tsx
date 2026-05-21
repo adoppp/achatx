@@ -1,11 +1,11 @@
-import classNames from 'classnames/bind';
 import type { FC } from 'react';
+import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
-import { Progress } from './Progress/Progress';
-import { useSignUpForm } from './SignUpForm.hooks';
-import { Loader } from '@/components/Loader/Loader';
-import { Step, StepWrapper } from './Step/Step';
+
+import { Progress } from '@/sections/auth/SignUpForm/Progress/Progress';
+import { useSignUpForm } from '@/sections/auth/SignUpForm/SignUpForm.hooks';
+import { Step } from '@/sections/auth/SignUpForm/Step/Step';
 
 const cn = classNames.bind(styles);
 
@@ -20,7 +20,7 @@ export const SignUpForm: FC = () => {
         timeLeft,
         isLoadingResend,
         ActiveStepComponent,
-        StepHeader,
+        isPasswordValid,
         resendEmail,
         canGoNext,
         _prev,
@@ -34,23 +34,24 @@ export const SignUpForm: FC = () => {
             <div className={cn('signup__content')}>
                 <Progress step={step} />
 
-                <StepWrapper header={StepHeader} isLoading={isLoading}>
+                <Step isLoading={isLoading}>
+                    <Step.Header step={step} isActive={isPasswordValid} />
                     <ActiveStepComponent
-                            formState={formState}
-                            errorState={errorState}
-                            step={step}
-                            maxStep={maxStep}
-                            isResended={isResended}
-                            timeLeft={timeLeft}
-                            isLoadingResend={isLoadingResend}
-                            resendEmail={resendEmail}
-                            _next={_next}
-                            _prev={_prev}
-                            canGoNext={canGoNext}
-                            onChange={handleOnChange}
-                            onSubmit={handleSubmit}
-                        />
-                </StepWrapper>
+                        formState={formState}
+                        errorState={errorState}
+                        step={step}
+                        maxStep={maxStep}
+                        isResended={isResended}
+                        timeLeft={timeLeft}
+                        isLoadingResend={isLoadingResend}
+                        resendEmail={resendEmail}
+                        _next={_next}
+                        _prev={_prev}
+                        canGoNext={canGoNext}
+                        onChange={handleOnChange}
+                        onSubmit={handleSubmit}
+                    />
+                </Step>
             </div>
         </div>
     );

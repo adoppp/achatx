@@ -67,7 +67,9 @@
 
             &-1 svg {
                 transform-origin: top center;
-                animation: iconAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), personalIcon 2.5s ease-in-out 0.6s infinite;
+                animation:
+                    iconAppear 0.6s cubic-bezier(0.34, 1.56, 0.64, 1),
+                    personalIcon 2.5s ease-in-out 0.6s infinite;
             }
         }
 
@@ -216,7 +218,6 @@
         }
     }
 }
-
 
 .password {
     &__list {

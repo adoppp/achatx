@@ -1,9 +1,9 @@
-import type { FC } from "react";
-import { stepsData, type Step } from "../SignUpForm.config";
+import type { FC } from 'react';
+import { stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
 
 interface StepIconHandlerProps {
-    step: Step,
-    isActive?: boolean
+    step: Step;
+    isActive?: boolean;
 }
 
 // handels icons with props
@@ -14,5 +14,5 @@ export const StepIconHandler: FC<StepIconHandlerProps> = ({ step, isActive = fal
 
         default:
             return stepsData[step].header.icon;
-    };
+    }
 };

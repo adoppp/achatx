@@ -1,6 +1,11 @@
-import type { FormEvent } from "react";
-import type { Step } from "../SignUpForm.config";
-import type { ErrorState, FieldTypes, FormState } from "../SignUpForm.types";
+import type { FormEvent } from 'react';
+
+import type { Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import type {
+    ErrorState,
+    FieldTypes,
+    FormState,
+} from '@/sections/auth/SignUpForm/SignUpForm.types';
 
 // Base step props
 export type BaseStepProps = {
@@ -29,4 +34,4 @@ export type VerifyStepProps = BaseStepProps & {
     timeLeft: number;
     isLoadingResend: boolean;
     resendEmail: () => void;
-}
+};

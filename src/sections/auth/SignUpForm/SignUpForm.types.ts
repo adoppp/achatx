@@ -9,7 +9,7 @@ export type FieldTypes = keyof FormState;
 export interface ErrorState {
     username: string | null;
     email: string | null;
-    password: IsPasswordValid
+    password: IsPasswordValid;
 }
 
 export interface IsPasswordValid {
@@ -21,4 +21,3 @@ export interface IsPasswordValid {
 }
 
 export type ErrorFields = keyof ErrorState;
-

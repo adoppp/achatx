@@ -46,6 +46,8 @@
 
         padding: var(--py) var(--px);
 
+        color: var(--text-primary);
+
         &::placeholder {
             color: var(--text-secondary);
         }

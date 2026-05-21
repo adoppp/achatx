@@ -5,8 +5,7 @@ import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { Input } from '@/ui/Input/Input';
 import { Button } from '@/ui/Button/Button';
-import { StepIconHandler } from '../../StepIconHandler';
-import type { BaseStepFormProps } from '../../Step.types';
+import type { BaseStepFormProps } from '@/sections/auth/SignUpForm/Step/Step.types';
 
 const cn = classNames.bind(styles);
 
@@ -19,7 +18,6 @@ export const Personal: FC<BaseStepFormProps> = ({
     canGoNext,
     onChange,
 }) => {
-
     return (
         <>
             <div className={cn('signup__content')}>

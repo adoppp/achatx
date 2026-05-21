@@ -1,5 +1,5 @@
 import { IconAnimatedEmail, IconLockAnimated, IconUser } from '@/assets/svg';
-import { Step } from './Step/Step';
+import { Step } from '@/sections/auth/SignUpForm/Step/Step';
 
 // Component (body of the step), icon, progressTitle and progressDescription for progressbar, title of step, description of step
 export const stepsData = {
@@ -11,8 +11,8 @@ export const stepsData = {
         header: {
             icon: <IconUser />,
             title: 'Type your name and email',
-            description: 'All users can see your name and email'
-        }
+            description: 'All users can see your name and email',
+        },
     },
 
     2: {
@@ -21,12 +21,10 @@ export const stepsData = {
             progressTitle: 'Password',
         },
         header: {
-            icon: (isOpen: boolean) => (
-                <IconLockAnimated isOpen={isOpen} />
-            ),
+            icon: (isOpen: boolean) => <IconLockAnimated isOpen={isOpen} />,
             title: 'Create a password',
-            description: 'Choose a strong password to secure your account'
-        }
+            description: 'Choose a strong password to secure your account',
+        },
     },
 
     3: {
@@ -37,8 +35,8 @@ export const stepsData = {
         header: {
             icon: <IconAnimatedEmail />,
             title: 'Verify your email',
-            description: 'We have send verification link to your email'
-        }
+            description: 'We have send verification link to your email',
+        },
     },
 } as const;
 

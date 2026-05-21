@@ -1,9 +1,10 @@
-import classNames from 'classnames/bind';
 import type { FC } from 'react';
+import classNames from 'classnames/bind';
+
+import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { IconCheckMark } from '@/assets/svg';
 import { stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
-import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 interface ProgressProps {
     step: Step;
@@ -18,7 +19,6 @@ export const Progress: FC<ProgressProps> = ({ step }) => {
         const isActive = step === numericId;
         const isDone = step > numericId;
 
-
         return (
             <li
                 key={id}
@@ -30,7 +30,7 @@ export const Progress: FC<ProgressProps> = ({ step }) => {
             >
                 <span className={cn('signup__progress--box')}>
                     <span className={cn('signup__progress--number')}>{id}</span>
-                    <IconCheckMark/>
+                    <IconCheckMark />
                 </span>
 
                 <span className={cn('signup__progress--title')}>{data.progress.progressTitle}</span>

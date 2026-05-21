@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import styles from '@/ui/Button/Button.module.scss';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     variant?: 'primary' | 'secondary' | 'error';
     size?: 's' | 'm' | 'l';
     customClassName?: string;

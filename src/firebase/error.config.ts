@@ -22,12 +22,10 @@ export const firebaseErrorMap: Record<string, string> = {
     'auth/missing-password': 'Password is required',
 
     // Account
-    'auth/requires-recent-login':
-        'Please sign in again to continue',
+    'auth/requires-recent-login': 'Please sign in again to continue',
     'auth/account-exists-with-different-credential':
         'Account already exists with different sign-in method',
-    'auth/credential-already-in-use':
-        'Credential is already associated with another account',
+    'auth/credential-already-in-use': 'Credential is already associated with another account',
 
     // Verification
     'auth/expired-action-code': 'Action code has expired',
@@ -48,14 +46,11 @@ export const firebaseErrorMap: Record<string, string> = {
     'auth/invalid-verification-id': 'Invalid verification ID',
 
     // Multi-factor
-    'auth/multi-factor-auth-required':
-        'Multi-factor authentication required',
-    'auth/maximum-second-factor-count-exceeded':
-        'Maximum second factor count exceeded',
+    'auth/multi-factor-auth-required': 'Multi-factor authentication required',
+    'auth/maximum-second-factor-count-exceeded': 'Maximum second factor count exceeded',
 
     // Provider
-    'auth/provider-already-linked':
-        'Provider already linked',
+    'auth/provider-already-linked': 'Provider already linked',
     'auth/no-such-provider': 'Provider not found',
 
     // Token / session

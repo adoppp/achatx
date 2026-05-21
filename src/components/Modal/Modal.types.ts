@@ -11,7 +11,7 @@ export interface ModalProps {
     button?: {
         label: string;
         onClick: () => void;
-    }
+    };
 }
 
 export interface ModalState {

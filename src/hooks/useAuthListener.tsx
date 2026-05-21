@@ -12,7 +12,7 @@ export const useAuthListener = () => {
 
         const unsub = subscribeAuth((user) => {
             if (user) {
-                console.log(user)
+                console.log(user);
                 dispatch(setUser(user));
             } else {
                 dispatch(setGuest());

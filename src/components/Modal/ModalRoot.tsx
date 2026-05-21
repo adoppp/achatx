@@ -12,14 +12,18 @@ export const ModalRoot: FC<ModalRootProps> = ({ rootElementId = 'modal-root', ch
     useEffect(() => {
         let element = document.getElementById(rootElementId) as HTMLDivElement | null;
 
-        if (!element) {
-            element = document.createElement('div');
-            element.setAttribute('id', rootElementId);
+        const createElement = () => {
+            if (!element) {
+                element = document.createElement('div');
+                element.setAttribute('id', rootElementId);
 
-            document.body.appendChild(element);
-        }
+                document.body.appendChild(element);
+            }
 
-        setRootElement(element);
+            setRootElement(element);
+        };
+
+        createElement();
 
         return () => {
             if (element && element.childNodes.length === 0) {
