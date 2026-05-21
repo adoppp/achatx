@@ -38,7 +38,7 @@
         opacity: 0.5;
     }
 
-    &:disabled[data-loading]  {
+    &:disabled[data-loading] {
         cursor: wait;
     }
 }
@@ -96,11 +96,11 @@
     }
 
     & .content svg {
-        stroke: #fff;
+        color: #fff;
     }
 
     &::after {
-        content: "";
+        content: '';
         position: absolute;
         inset: 0;
 
@@ -145,7 +145,7 @@
         box-shadow: 0 2px 12px 8px var(--accent-fog);
 
         & .content svg {
-            stroke: var(--accent-hover);
+            color: var(--accent-hover);
         }
     }
 
@@ -157,7 +157,7 @@
             inset 0 0 6px 3px var(--accent-fog);
 
         & .content svg {
-            stroke: var(--accent-active);
+            color: var(--accent-active);
         }
     }
 
@@ -172,7 +172,75 @@
     }
 
     & .content svg {
-        stroke: var(--accent-fog);
+        color: var(--accent-fog);
+    }
+}
+
+.error {
+    position: relative;
+
+    background-color: $error;
+    color: #fff;
+
+    overflow: hidden;
+
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+
+    &:hover:not(:disabled) {
+        background-color: $error-hover;
+
+        box-shadow: 0 2px 12px 4px $error-fog;
+    }
+
+    &:active:not(:disabled) {
+        background-color: $error-active;
+        box-shadow: 0 1px 8px 2px $error-fog;
+    }
+
+    &:disabled {
+        color: #fff;
+    }
+
+    & .loader::after {
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-top-color: #fff;
+    }
+
+    & .content svg {
+        color: #fff;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+
+        background: linear-gradient(
+            0deg,
+            transparent 20%,
+            rgba(255, 255, 255, 0.5) 50%,
+            transparent 80%
+        );
+        background-size: 100% 200%;
+        background-position: 0 0;
+
+        filter: blur(8px);
+        opacity: 0.9;
+
+        pointer-events: none;
+        transition: $transition-smooth;
+    }
+
+    &:hover:not(:disabled)::after {
+        opacity: 0.6;
+
+        background-position: 0 100%;
+    }
+
+    &:active:not(:disabled)::after {
+        opacity: 0.4;
+
+        background-position: 0 50%;
     }
 }
 

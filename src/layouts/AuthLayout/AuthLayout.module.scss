@@ -1,0 +1,35 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.auth {
+    height: 100dvh;
+
+    &__header {
+        border-bottom: 1px solid var(--accent-fog);
+        margin-bottom: 32px;
+
+        &--container {
+            @include container();
+
+            position: relative;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding-block: 24px;
+        }
+
+        &--title {
+            @include heading(h1);
+
+            color: var(--text-primary);
+        }
+    }
+
+    &__section-container {
+        @include container();
+    }
+}

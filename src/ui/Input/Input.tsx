@@ -21,14 +21,13 @@ export const Input: FC<InputProps> = ({
 
     leftIcon,
     rightIcon,
-    onClickleft,
-    onClickright,
+    onClickLeft,
+    onClickRight,
 
     autoComplete = 'off',
-    customClass
+    customClass,
 }) => {
-
-    const inputId = id || useId();
+    const generatedInputId = useId();
     const hasError = !!error;
 
     return (
@@ -41,19 +40,27 @@ export const Input: FC<InputProps> = ({
             )}
         >
             {label && (
-                <label htmlFor={inputId} className={cn('input__label', customClass?.label)}>
+                <label
+                    htmlFor={id ?? generatedInputId}
+                    className={cn('input__label', customClass?.label)}
+                >
                     {label}
                 </label>
             )}
 
-            <div className={cn('input__container')} >
-                {leftIcon && <button className={cn('icon__left')} onClick={onClickleft}>{leftIcon}</button>}
+            <div className={cn('input__container')}>
+                {leftIcon && (
+                    <button type="button" className={cn('icon__left')} onClick={onClickLeft}>
+                        {leftIcon}
+                    </button>
+                )}
 
                 <input
-                    id={inputId}
+                    id={id ?? generatedInputId}
                     type={type}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
+                    onBlur={(e) => onChange(e.target.value)}
                     placeholder={placeholder}
                     disabled={disabled}
                     autoComplete={autoComplete}
@@ -61,7 +68,11 @@ export const Input: FC<InputProps> = ({
                     className={cn('input__element', customClass?.input)}
                 />
 
-                {rightIcon && <button className={cn('icon__right')} onClick={onClickright}>{rightIcon}</button>}
+                {rightIcon && (
+                    <button type="button" className={cn('icon__right')} onClick={onClickRight}>
+                        {rightIcon}
+                    </button>
+                )}
             </div>
 
             {hasError && <span className={cn('input__error', customClass?.error)}>{error}</span>}

@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 
 import styles from '@/ui/Button/Button.module.scss';
 
-interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary';
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+    variant?: 'primary' | 'secondary' | 'error';
     size?: 's' | 'm' | 'l';
     customClassName?: string;
 
@@ -32,12 +32,7 @@ export const Button: FC<ButtonProps> = ({
 
     return (
         <button
-            className={cn(
-                'default', 
-                variant, 
-                `button--${size}`, 
-                customClassName
-            )}
+            className={cn('default', variant, `button--${size}`, customClassName)}
             data-loading={isLoading || undefined}
             disabled={isButtonDisabled}
             {...props}

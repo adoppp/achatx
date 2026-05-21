@@ -1,6 +1,7 @@
 # UI Components API
 
 1. [Button](#button)
+2. [Input](#input)
 
 ## Button
 This button has 2 variants, 3 sizes. It handles loading and disabled states. Supports left/right SVG icons. Extends native <button> props.

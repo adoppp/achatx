@@ -3,7 +3,7 @@
 @use '@/styles/variables' as *;
 
 .input {
-    --py: 6px; 
+    --py: 6px;
     --px: 10px;
 
     display: flex;
@@ -20,7 +20,7 @@
 
         border: 1px solid var(--accent-fog);
         border-radius: $border-radius;
-        background: var(--bg-primary);
+        background: transparent;
 
         transition: $transition-smooth;
 
@@ -32,6 +32,10 @@
         &:focus-within {
             border-color: var(--accent-active);
             box-shadow: 0 0 8px 2px var(--accent-active);
+
+            & + .input__error {
+                opacity: 1;
+            }
         }
     }
 
@@ -41,6 +45,8 @@
         background: transparent;
 
         padding: var(--py) var(--px);
+
+        color: var(--text-primary);
 
         &::placeholder {
             color: var(--text-secondary);
@@ -54,14 +60,17 @@
 
     &__error {
         color: $error;
+        opacity: 0.7;
+
+        transition: $transition-smooth;
     }
 }
 
 .input--s {
-    --py: 4px; 
+    --py: 4px;
     --px: 8px;
-    
-    & .input__label, 
+
+    & .input__label,
     & .input__element {
         @include ui(sm);
     }
@@ -72,7 +81,7 @@
 }
 
 .input--m {
-    & .input__label, 
+    & .input__label,
     & .input__element {
         @include ui(base);
     }
@@ -83,10 +92,10 @@
 }
 
 .input--l {
-    --py: 8px; 
+    --py: 8px;
     --px: 14px;
-    
-    & .input__label, 
+
+    & .input__label,
     & .input__element {
         @include ui(md);
     }
@@ -121,7 +130,7 @@
     cursor: pointer;
 
     stroke: var(--accent-fog);
-    
+
     width: 24px;
     height: 24px;
 

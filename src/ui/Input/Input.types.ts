@@ -1,4 +1,4 @@
-import type { InputHTMLAttributes, ReactNode, MouseEvent } from "react";
+import type { InputHTMLAttributes, ReactNode, MouseEvent } from 'react';
 
 export interface InputProps {
     id?: string;
@@ -16,8 +16,8 @@ export interface InputProps {
 
     leftIcon?: ReactNode;
     rightIcon?: ReactNode;
-    onClickleft?: (e: MouseEvent<HTMLButtonElement>) => void;
-    onClickright?: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClickLeft?: (e: MouseEvent<HTMLButtonElement>) => void;
+    onClickRight?: (e: MouseEvent<HTMLButtonElement>) => void;
 
     autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete'];
     customClass?: {
@@ -26,4 +26,4 @@ export interface InputProps {
         input?: string;
         error?: string;
     };
-};
+}

@@ -1,8 +1,10 @@
-export interface User {
+export interface SerializedUser {
     id: string;
     username: string;
+    email: string | null;
+    phone: string | null;
     lastSeen: number;
-};
+}
 
 export interface Chat {
     id: string;
@@ -18,7 +20,7 @@ export interface Chat {
     type: 'private' | 'group';
 
     createdAt: number;
-};
+}
 
 export interface Message {
     id: string;
@@ -27,7 +29,7 @@ export interface Message {
     type: 'text';
     senderId: string;
 
-    createdAt: number; 
+    createdAt: number;
     edited?: boolean;
     editedAt?: number;
-};
+}
