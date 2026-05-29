@@ -1,6 +1,5 @@
 import type { FormEvent } from 'react';
 
-import type { Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
 import type {
     ErrorState,
     FieldTypes,
@@ -9,10 +8,6 @@ import type {
 
 // Base step props
 export type BaseStepProps = {
-    step: Step;
-    maxStep: number;
-    _next: () => void;
-    _prev: () => void;
     canGoNext: () => boolean;
 };
 
@@ -26,12 +21,4 @@ export type BaseStepFormProps = BaseStepProps & {
 // Password props
 export type StepPasswordProps = BaseStepFormProps & {
     onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-};
-
-// Verify props
-export type VerifyStepProps = BaseStepProps & {
-    isResended: boolean;
-    timeLeft: number;
-    isLoadingResend: boolean;
-    resendEmail: () => void;
 };

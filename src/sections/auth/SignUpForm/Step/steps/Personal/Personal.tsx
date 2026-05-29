@@ -6,18 +6,18 @@ import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 import { Input } from '@/ui/Input/Input';
 import { Button } from '@/ui/Button/Button';
 import type { BaseStepFormProps } from '@/sections/auth/SignUpForm/Step/Step.types';
+import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 
 const cn = classNames.bind(styles);
 
 export const Personal: FC<BaseStepFormProps> = ({
     formState,
     errorState,
-    step,
-    maxStep,
-    _next,
     canGoNext,
     onChange,
 }) => {
+    const { step, maxStep, _next } = useSignUpFormContext();
+
     return (
         <>
             <div className={cn('signup__content')}>

@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
+import { SignUpFormProvider } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router';
 
@@ -47,6 +48,10 @@ export const authConfig: RouteObject[] = [
     },
     {
         path: 'signup',
-        element: <SignUpPage />,
+        element: (
+            <SignUpFormProvider>
+                <SignUpPage />
+            </SignUpFormProvider>
+        ),
     },
 ];

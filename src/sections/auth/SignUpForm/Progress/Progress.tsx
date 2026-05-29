@@ -4,17 +4,17 @@ import classNames from 'classnames/bind';
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { IconCheckMark } from '@/assets/svg';
-import { stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
-
-interface ProgressProps {
-    step: Step;
-}
+import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import { type StepType } from '@/sections/auth/SignUpForm/SignUpForm.types';
+import { useSignUpFormContext } from '../SignUpFormProvider';
 
 const cn = classNames.bind(styles);
 
-export const Progress: FC<ProgressProps> = ({ step }) => {
+export const Progress: FC = () => {
+    const { step } = useSignUpFormContext();
+    
     const items = Object.entries(stepsData).map(([id, data]) => {
-        const numericId = Number(id) as Step;
+        const numericId = Number(id) as StepType;
 
         const isActive = step === numericId;
         const isDone = step > numericId;

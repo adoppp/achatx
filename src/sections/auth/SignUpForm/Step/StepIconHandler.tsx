@@ -1,18 +1,27 @@
 import type { FC } from 'react';
-import { stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import type { StepType } from "@/sections/auth/SignUpForm/SignUpForm.types";
 
 interface StepIconHandlerProps {
-    step: Step;
+    step: StepType;
     isActive?: boolean;
 }
 
 // handels icons with props
 export const StepIconHandler: FC<StepIconHandlerProps> = ({ step, isActive = false }) => {
-    switch (step) {
-        case 2:
-            return stepsData[step].header.icon(isActive);
+    const Icon = stepsData[step].header?.icon;
 
-        default:
-            return stepsData[step].header.icon;
+    if (!Icon) {
+        return null;
     }
-};
+
+    if (step === 2) {
+        return (
+            <Icon
+                isClosed={isActive}
+            />
+        );
+    }
+
+    return <Icon />;
+}

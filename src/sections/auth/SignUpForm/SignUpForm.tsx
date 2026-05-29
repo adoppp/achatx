@@ -13,18 +13,10 @@ export const SignUpForm: FC = () => {
     const {
         formState,
         errorState,
-        step,
-        maxStep,
         isLoading,
-        isResended,
-        timeLeft,
-        isLoadingResend,
         ActiveStepComponent,
         isPasswordValid,
-        resendEmail,
         canGoNext,
-        _prev,
-        _next,
         handleOnChange,
         handleSubmit,
     } = useSignUpForm();
@@ -32,21 +24,13 @@ export const SignUpForm: FC = () => {
     return (
         <div className={cn('signup')}>
             <div className={cn('signup__content')}>
-                <Progress step={step} />
+                <Progress />
 
                 <Step isLoading={isLoading}>
-                    <Step.Header step={step} isActive={isPasswordValid} />
+                    <Step.Header isActive={isPasswordValid} />
                     <ActiveStepComponent
                         formState={formState}
                         errorState={errorState}
-                        step={step}
-                        maxStep={maxStep}
-                        isResended={isResended}
-                        timeLeft={timeLeft}
-                        isLoadingResend={isLoadingResend}
-                        resendEmail={resendEmail}
-                        _next={_next}
-                        _prev={_prev}
                         canGoNext={canGoNext}
                         onChange={handleOnChange}
                         onSubmit={handleSubmit}

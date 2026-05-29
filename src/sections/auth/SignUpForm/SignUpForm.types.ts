@@ -1,3 +1,7 @@
+import type { stepsData } from "@/sections/auth/SignUpForm/SignUpForm.config";
+
+export type StepType = keyof typeof stepsData;
+
 export interface FormState {
     username: string;
     email: string;

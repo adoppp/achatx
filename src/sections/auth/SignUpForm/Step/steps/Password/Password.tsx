@@ -8,6 +8,7 @@ import type { IsPasswordValid } from '@/sections/auth/SignUpForm/SignUpForm.type
 import { Button } from '@/ui/Button/Button';
 import { InputPassword } from '@/ui/InputPassword/InputPassword';
 import type { StepPasswordProps } from '@/sections/auth/SignUpForm/Step/Step.types';
+import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 
 const passwordErrorMessages: Record<keyof IsPasswordValid, string> = {
     isEightCharacters: 'At least 8 characters',
@@ -22,21 +23,17 @@ const cn = classNames.bind(styles);
 export const Password: FC<StepPasswordProps> = ({
     formState,
     errorState,
-    step,
-    maxStep,
-    _prev,
     canGoNext,
     onChange,
     onSubmit,
 }) => {
     const formId = useId();
+    const { step, maxStep, _prev } = useSignUpFormContext();
     const passwdErrors = errorState.password;
     const isPasswordValid = Object.values(passwdErrors).every(Boolean);
 
     const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
         const typedKey = key as keyof IsPasswordValid;
-        console.log(key);
-        console.log(isValid);
 
         return (
             <li key={key} className={cn('password__item', isValid && 'password__item--valid')}>

@@ -123,7 +123,7 @@ export const IconUser = () => {
     );
 };
 
-export const IconLockAnimated = ({ isOpen }: { isOpen: boolean }) => {
+export const IconLockAnimated = ({ isClosed }: { isClosed: boolean }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -190,17 +190,17 @@ export const IconLockAnimated = ({ isOpen }: { isOpen: boolean }) => {
                 style={{
                     transformOrigin: '18px 10px',
 
-                    transform: isOpen
-                        ? 'rotate(28deg) translateX(2px) translateY(-1px)'
-                        : 'rotate(0deg)',
+                    transform: isClosed
+                        ? 'rotate(0deg)'
+                        : 'rotate(28deg) translateX(2px) translateY(-1px)',
 
-                    transition: !isOpen
+                    transition: isClosed
                         ? 'transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1)'
                         : 'none',
 
-                    animation: isOpen
-                        ? 'hook-bounce 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite'
-                        : 'none',
+                    animation: isClosed
+                        ? 'none'
+                        :'hook-bounce 2.4s cubic-bezier(0.34, 1.56, 0.64, 1) infinite',
                 }}
             >
                 <path
@@ -223,7 +223,7 @@ export const IconLockAnimated = ({ isOpen }: { isOpen: boolean }) => {
                 cy="16"
                 r="1"
                 style={{
-                    opacity: isOpen ? 0.45 : 1,
+                    opacity: isClosed ? 1 : 0.45,
                     transition: 'opacity 0.25s ease',
                 }}
             />
@@ -234,7 +234,7 @@ export const IconLockAnimated = ({ isOpen }: { isOpen: boolean }) => {
                 width="18"
                 height="10"
                 rx="4"
-                opacity={isOpen ? 0.06 : 0}
+                opacity={isClosed ? 0 : 0.06}
                 style={{
                     transition: 'opacity 0.3s ease',
                 }}

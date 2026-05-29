@@ -8,11 +8,11 @@ import type {
     FieldTypes,
     FormState,
 } from '@/sections/auth/SignUpForm/SignUpForm.types';
-import { auth } from '@/firebase';
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
 import { useModalContext } from '@/components/Modal/ModalProvider';
 import { firebaseErrorMap } from '@/firebase/error.config';
-import { STEPS, stepsData, type Step } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import { useSignUpFormContext } from './SignUpFormProvider';
 
 const initialFormState: FormState = {
     username: '',
@@ -35,24 +35,11 @@ const initialErrorsState: ErrorState = {
 export const useSignUpForm = () => {
     const [formState, setFormState] = useState<FormState>(initialFormState);
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorsState);
-    const [step, setStep] = useState<Step>(1);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isLoadingResend, setIsLoadingResend] = useState<boolean>(false);
-    const [timeLeft, setTimeLeft] = useState<number>(30);
-    const [isResended, setIsResended] = useState<boolean>(false);
     const { openModal, closeModal } = useModalContext();
+    const { step, _next } = useSignUpFormContext();
     const isPasswordValid = Object.values(errorState.password).every(Boolean);
-    const currentUser = auth.currentUser;
-    const maxStep = STEPS.length;
     const ActiveStepComponent = stepsData[step].component;
-
-    const _prev = () => setStep((s) => Math.max(1, s - 1) as Step);
-
-    const _next = () => {
-        if (!canGoNext()) return;
-
-        setStep((s) => Math.min(maxStep, s + 1) as Step);
-    };
 
     const canGoNext = () => {
         if (step === 1) {
@@ -161,69 +148,13 @@ export const useSignUpForm = () => {
         }
     };
 
-    const resendEmail = async () => {
-        if (isResended || !currentUser) return;
-
-        try {
-            setIsLoadingResend(true);
-
-            await verifyByEmail(currentUser);
-
-            setIsResended(true);
-        } catch (error: unknown) {
-            if (error instanceof FirebaseError) {
-                openModal({
-                    type: 'error',
-                    modalProps: {
-                        title: 'Authentication Error',
-                        message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
-                        button: { label: 'Ok', onClick: closeModal },
-                    },
-                });
-            } else if (error instanceof Error) {
-                openModal({
-                    type: 'error',
-                    modalProps: {
-                        title: 'Unexpected error',
-                        message: error.message,
-                        button: { label: 'Ok', onClick: closeModal },
-                    },
-                });
-            }
-
-            setTimeLeft(30);
-        } finally {
-            setIsLoadingResend(false);
-        }
-    };
-
-    useEffect(() => {
-        if (timeLeft <= 0) return;
-        if (step !== 3) return;
-        if (isResended) return;
-
-        const timer = setInterval(() => {
-            setTimeLeft((prev) => prev - 1);
-        }, 1000);
-
-        return () => clearInterval(timer);
-    }, [timeLeft, isResended, step]);
-
     return {
         formState,
         errorState,
         isLoading,
-        step,
-        maxStep,
-        timeLeft,
-        isResended,
-        isLoadingResend,
         ActiveStepComponent,
         isPasswordValid,
-        resendEmail,
         canGoNext,
-        _prev,
-        _next,
         handleOnChange,
         handleSubmit,
     };
