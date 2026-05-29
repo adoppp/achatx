@@ -8,12 +8,12 @@ import { StepIconHandler } from '@/sections/auth/SignUpForm/Step/StepIconHandler
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 
 interface HeaderProps {
-    isActive: boolean;
+    isIconActive: boolean;
 }
 
 const cn = classNames.bind(styles);
 
-export const Header: FC<HeaderProps> = ({ isActive }) => {
+export const Header: FC<HeaderProps> = ({ isIconActive }) => {
     const { step } = useSignUpFormContext();
 
     return (
@@ -22,7 +22,7 @@ export const Header: FC<HeaderProps> = ({ isActive }) => {
                 stepsData[step].header && (
                 <div className={cn('signup__description')}>
                     <div className={cn('signup__description--icon', `signup__description--icon-${step}`)}>
-                        <StepIconHandler step={step} isActive={isActive} />    
+                        <StepIconHandler step={step} isActive={isIconActive} />    
                     </div>
                     <h2 className={cn('signup__description--title')}>{stepsData[step].header.title}</h2>
                     <p className={cn('signup__description--description')}>

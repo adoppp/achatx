@@ -27,7 +27,7 @@ export const SignUpForm: FC = () => {
                 <Progress />
 
                 <Step isLoading={isLoading}>
-                    <Step.Header isActive={isPasswordValid} />
+                    <Step.Header isIconActive={isPasswordValid} />
                     <ActiveStepComponent
                         formState={formState}
                         errorState={errorState}
