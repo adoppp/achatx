@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react';
+import { useState, type FormEvent } from 'react';
 import { FirebaseError } from 'firebase/app';
 
 import { emailRegex } from '@/constants/regex';
@@ -13,6 +13,7 @@ import { useModalContext } from '@/components/Modal/ModalProvider';
 import { firebaseErrorMap } from '@/firebase/error.config';
 import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
 import { useSignUpFormContext } from './SignUpFormProvider';
+import { useSignUpFormErrorHelper } from './SignUpForm.error.helper';
 
 const initialFormState: FormState = {
     username: '',
@@ -36,8 +37,8 @@ export const useSignUpForm = () => {
     const [formState, setFormState] = useState<FormState>(initialFormState);
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorsState);
     const [isLoading, setIsLoading] = useState<boolean>(false);
-    const { openModal, closeModal } = useModalContext();
     const { step, _next } = useSignUpFormContext();
+    const handleError = useSignUpFormErrorHelper();
     const isPasswordValid = Object.values(errorState.password).every(Boolean);
     const ActiveStepComponent = stepsData[step].component;
 
@@ -123,25 +124,7 @@ export const useSignUpForm = () => {
 
                 _next();
             } catch (error: unknown) {
-                if (error instanceof FirebaseError) {
-                    openModal({
-                        type: 'error',
-                        modalProps: {
-                            title: 'Authentication Error',
-                            message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
-                            button: { label: 'Ok', onClick: closeModal },
-                        },
-                    });
-                } else if (error instanceof Error) {
-                    openModal({
-                        type: 'error',
-                        modalProps: {
-                            title: 'Unexpected error',
-                            message: error.message,
-                            button: { label: 'Ok', onClick: closeModal },
-                        },
-                    });
-                }
+                handleError(error, 'Authentication Error')
             } finally {
                 setIsLoading(false);
             }

@@ -8,9 +8,7 @@ import { Button } from '@/ui/Button/Button';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { auth } from '@/firebase';
 import { verifyByEmail } from '@/services/auth.service';
-import { useModalContext } from '@/components/Modal/ModalProvider';
-import { FirebaseError } from 'firebase/app';
-import { firebaseErrorMap } from '@/firebase/error.config';
+import { useSignUpFormErrorHelper } from '../../../SignUpForm.error.helper';
 
 const cn = classNames.bind(styles);
 
@@ -18,8 +16,8 @@ export const Verify: FC = () => {
     const [isLoadingResend, setIsLoadingResend] = useState<boolean>(false);
     const [timeLeft, setTimeLeft] = useState<number>(30);
     const [isResended, setIsResended] = useState<boolean>(false);
-    const { openModal, closeModal } = useModalContext();
     const { step } = useSignUpFormContext();
+    const handleError = useSignUpFormErrorHelper();
     const currentUser = auth.currentUser;
     const disabled = timeLeft > 0;
 
@@ -33,25 +31,7 @@ export const Verify: FC = () => {
     
                 setIsResended(true);
             } catch (error: unknown) {
-                if (error instanceof FirebaseError) {
-                    openModal({
-                        type: 'error',
-                        modalProps: {
-                            title: 'Authentication Error',
-                            message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
-                            button: { label: 'Ok', onClick: closeModal },
-                        },
-                    });
-                } else if (error instanceof Error) {
-                    openModal({
-                        type: 'error',
-                        modalProps: {
-                            title: 'Unexpected error',
-                            message: error.message,
-                            button: { label: 'Ok', onClick: closeModal },
-                        },
-                    });
-                }
+                handleError(error, 'Authentication Error')
     
                 setTimeLeft(30);
             } finally {
