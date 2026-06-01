@@ -13,7 +13,7 @@ export const useSignUpFormErrorHelper = () => {
                     title: title,
                     message: firebaseErrorMap[error.code] ?? firebaseErrorMap.default,
                     button: { label: 'Ok', onClick: closeModal },
-                },
+                }, 
             });
         } else if (error instanceof Error) {
             openModal({
