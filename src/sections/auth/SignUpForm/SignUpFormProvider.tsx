@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, type FC, type ReactElement, type ReactNode } from "react";
+import { createContext, useContext, useState, type FC, type ReactNode } from "react";
 import type { StepType } from "@/sections/auth/SignUpForm/SignUpForm.types";
 import { STEPS } from "./SignUpForm.config";
 

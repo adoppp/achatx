@@ -1,5 +1,4 @@
 import { useState, type FormEvent } from 'react';
-import { FirebaseError } from 'firebase/app';
 
 import { emailRegex } from '@/constants/regex';
 import type {
@@ -9,8 +8,6 @@ import type {
     FormState,
 } from '@/sections/auth/SignUpForm/SignUpForm.types';
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
-import { useModalContext } from '@/components/Modal/ModalProvider';
-import { firebaseErrorMap } from '@/firebase/error.config';
 import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
 import { useSignUpFormContext } from './SignUpFormProvider';
 import { useSignUpFormErrorHelper } from './SignUpForm.error.helper';
