@@ -57,7 +57,7 @@ export const SignInForm: FC = () => {
                             isChecked={isRememberMe}
                             onChange={() => setIsRememberMe(!isRememberMe)}
                         />
-                        <NavLink to={'/auth/signin'} className={cn('signin__link')}>
+                        <NavLink to={'/auth/reset_password'} className={cn('signin__link')}>
                             Forgot password?
                         </NavLink>
                     </div>

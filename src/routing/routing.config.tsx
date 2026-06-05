@@ -14,6 +14,7 @@ const ChatsPage = lazy(() => import('@/pages/app/ChatsPage/ChatsPage'));
 const SignInPage = lazy(() => import('@/pages/auth/SignInPage/SignInPage'));
 const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage/SignUpPage'));
 const ProfilePage = lazy(() => import('@/pages/app/settings/ProfilePage/ProfilePage'));
+const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'));
 
 export const appConfig: RouteObject[] = [
     {
@@ -54,4 +55,8 @@ export const authConfig: RouteObject[] = [
             </SignUpFormProvider>
         ),
     },
+    {
+        path: 'reset_password',
+        element: <ResetPasswordPage />
+    }
 ];

@@ -7,6 +7,7 @@ import { useModalContext } from '@/components/Modal/ModalProvider';
 import { ModalRoot } from '@/components/Modal/ModalRoot';
 import { IconClose } from '@/assets/svg';
 import { ErrorModal } from '@/components/Modal/modals/ErrorModal/ErrorModal';
+import { SuccessModal } from './modals/SuccessModal/SuccessModal';
 
 const cn = classNames.bind(styles);
 
@@ -24,6 +25,7 @@ export const ModalWrapper: FC = () => {
                         <IconClose />
                     </button>
                     {modalType === 'error' && <ErrorModal />}
+                    {modalType === 'success' && <SuccessModal />}
                 </div>
             </div>
         </ModalRoot>

@@ -332,7 +332,5 @@ chats → reads (subcollection)
 *user for test*
 | name | email | password | is verified |
 |------|-------|----------|-------------|
-|test2|faviver735@dardr.com|1Kl$rtx9|+|
-|test3|mebel54446@getasail.com|1Kl$rtx9|+|
-|test5|xeheya7715@dardr.com|1Kl$rtx9|+|
 |testUser|xales35100@bncinema.com|1234FFgn$123|+|
+|verifyUser|mowegi4986@brixozu.com|1234FFgn$1232|+|

@@ -97,6 +97,7 @@
 
     & .content svg {
         color: #fff;
+        stroke: #fff;
     }
 
     &::after {
@@ -146,6 +147,7 @@
 
         & .content svg {
             color: var(--accent-hover);
+            stroke: var(--accent-hover);
         }
     }
 
@@ -158,6 +160,7 @@
 
         & .content svg {
             color: var(--accent-active);
+            stroke: var(--accent-active);
         }
     }
 
@@ -173,6 +176,7 @@
 
     & .content svg {
         color: var(--accent-fog);
+        stroke: var(--accent-fog);
     }
 }
 

@@ -1,9 +1,11 @@
 import {
     browserLocalPersistence,
     browserSessionPersistence,
+    confirmPasswordReset,
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     sendEmailVerification,
+    sendPasswordResetEmail,
     setPersistence,
     signInWithEmailAndPassword,
     updateProfile,
@@ -69,5 +71,14 @@ export const signInAuth = async (email: string, password: string, rememberMe: bo
 export const verifyByEmail = async (user: User): Promise<void> => {
     await sendEmailVerification(user, {
         url: `${FRONTEND_URL}/auth/signin`,
+        handleCodeInApp: true
     });
 };
+
+export const resetPassword = async (email: string) => {
+    await sendPasswordResetEmail(auth, email, { url: `${FRONTEND_URL}/auth/signin`, handleCodeInApp: true })
+}
+
+export const confirmReset = async (code: string, newPassword: string) => {
+    await confirmPasswordReset(auth, code, newPassword);
+}

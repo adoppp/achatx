@@ -13,6 +13,7 @@ export const AuthLayout: FC = () => {
 
     if (path.trim().includes('auth/signup')) title = 'Sign Up';
     if (path.trim().includes('auth/signin')) title = 'Sign In';
+    if (path.trim().includes('auth/reset_password')) title = 'Reset password';
 
     return (
         <div className={cn('auth')}>
