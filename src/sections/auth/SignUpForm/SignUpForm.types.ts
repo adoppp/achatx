@@ -1,4 +1,5 @@
 import type { stepsData } from "@/sections/auth/SignUpForm/SignUpForm.config";
+import type { IsPasswordValid } from "../auth.types";
 
 export type StepType = keyof typeof stepsData;
 
@@ -16,14 +17,6 @@ export interface ErrorState {
     email: string | null;
     password: IsPasswordValid;
     confirmPassword: string | null;
-}
-
-export interface IsPasswordValid {
-    isEnoughCharacters: boolean;
-    isOneUppercase: boolean;
-    isOneLowercase: boolean;
-    isOneNumber: boolean;
-    isOneSpecialSymbol: boolean;
 }
 
 export type ErrorFields = keyof ErrorState;

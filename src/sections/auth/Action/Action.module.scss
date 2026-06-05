@@ -1,0 +1,29 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.action {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__wrapper {
+        @include glassBg();
+
+        max-width: 420px;
+        min-width: 280px;
+        width: 100%;
+
+        padding: 24px 16px;
+        border-radius: $border-radius;
+    }
+
+    &__title {
+        @include heading(h2);
+
+        color: var(--text-primary);
+    }
+
+    &__content {}
+}

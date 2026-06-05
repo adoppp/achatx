@@ -76,7 +76,7 @@ export const verifyByEmail = async (user: User): Promise<void> => {
 };
 
 export const resetPassword = async (email: string) => {
-    await sendPasswordResetEmail(auth, email, { url: `${FRONTEND_URL}/auth/signin`, handleCodeInApp: true })
+    await sendPasswordResetEmail(auth, email, { url: `${FRONTEND_URL}/auth/action` })
 }
 
 export const confirmReset = async (code: string, newPassword: string) => {

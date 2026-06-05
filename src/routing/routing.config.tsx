@@ -15,6 +15,7 @@ const SignInPage = lazy(() => import('@/pages/auth/SignInPage/SignInPage'));
 const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage/SignUpPage'));
 const ProfilePage = lazy(() => import('@/pages/app/settings/ProfilePage/ProfilePage'));
 const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'));
+const ActionPage = lazy(() => import('@/pages/auth/ActionPage/ActionPage'));
 
 export const appConfig: RouteObject[] = [
     {
@@ -58,5 +59,9 @@ export const authConfig: RouteObject[] = [
     {
         path: 'reset_password',
         element: <ResetPasswordPage />
+    },
+    {
+        path: 'action',
+        element: <ActionPage />
     }
 ];
