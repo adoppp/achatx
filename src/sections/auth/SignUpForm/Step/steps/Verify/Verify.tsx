@@ -8,7 +8,8 @@ import { Button } from '@/ui/Button/Button';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { auth } from '@/firebase';
 import { verifyByEmail } from '@/services/auth.service';
-import { useSignUpFormErrorHelper } from '../../../SignUpForm.error.helper';
+import { useAuthErrorHelper } from '../../../../authError.helper';
+import { useModalContext } from '@/components/Modal/ModalProvider';
 
 const cn = classNames.bind(styles);
 
@@ -17,7 +18,8 @@ export const Verify: FC = () => {
     const [timeLeft, setTimeLeft] = useState<number>(30);
     const [isResended, setIsResended] = useState<boolean>(false);
     const { step } = useSignUpFormContext();
-    const handleError = useSignUpFormErrorHelper();
+    const { openModal, closeModal } = useModalContext();
+    const handleError = useAuthErrorHelper({ openModal, closeModal });
     const currentUser = auth.currentUser;
     const disabled = timeLeft > 0;
 

@@ -1,7 +1,11 @@
 import {
+    browserLocalPersistence,
+    browserSessionPersistence,
     createUserWithEmailAndPassword,
     onAuthStateChanged,
     sendEmailVerification,
+    setPersistence,
+    signInWithEmailAndPassword,
     updateProfile,
     type User,
 } from 'firebase/auth';
@@ -56,7 +60,13 @@ export const signUpAuth = async ({
     return userCredentials.user;
 };
 
-export const verifyByEmail = async (user: User) => {
+export const signInAuth = async (email: string, password: string, rememberMe: boolean = false): Promise<void> => {
+    await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
+
+    await signInWithEmailAndPassword(auth, email, password);
+}
+
+export const verifyByEmail = async (user: User): Promise<void> => {
     await sendEmailVerification(user, {
         url: `${FRONTEND_URL}/auth/signin`,
     });

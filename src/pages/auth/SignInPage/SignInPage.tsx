@@ -1,7 +1,8 @@
+import { SignInForm } from '@/sections/auth/SignInForm/SignInForm';
 import { type FC } from 'react';
 
 const SignInPage: FC = () => {
-    return <div>SignInPage</div>;
+    return <SignInForm />;
 };
 
 export default SignInPage;

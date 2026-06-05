@@ -34,7 +34,7 @@
     &__section-container {
         @include container();
         position: relative;
-        padding-top: 32px;
+        padding-block: 32px;
     }
 
     &__section-bg {

@@ -1,3 +1,6 @@
+@use '@/styles/typography' as *;
+@use '@/styles/variables' as *;
+
 @mixin container() {
     max-width: 1280px;
 
@@ -15,6 +18,27 @@
         background: rgba(55, 55, 55, 0.48);
         backdrop-filter: blur(7.5px);
         -webkit-backdrop-filter: blur(7.5px);
+    }
+}
+
+@mixin link() {
+    @include ui();
+
+    color: var(--accent-base);
+    text-decoration: underline;
+
+    transform: scale(1);
+
+    transition: $transition-smooth;
+
+    &:hover {
+       color: var(--accent-hover); 
+       transform: scale(1.01);
+    }
+
+    &:active {
+        color: var(--accent-active);
+        transform: scale(0.989);
     }
 }
 

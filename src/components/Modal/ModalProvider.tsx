@@ -13,10 +13,12 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const openModal = (propsModal: ModalActionProps): void => {
         setModal(propsModal);
+        document.body.style = 'overflow: hidden;'
     };
 
     const closeModal = (): void => {
         setModal({ type: null });
+        document.body.style = ''
     };
 
     return (

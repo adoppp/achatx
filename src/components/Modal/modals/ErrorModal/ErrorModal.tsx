@@ -27,7 +27,7 @@ export const ErrorModal: FC = () => {
                 <div className={cn('error__button')}>
                     <Button
                         variant="error"
-                        onClick={modalContext.modal.modalProps?.button?.onClick}
+                        onClick={modalContext.modal.modalProps.button.onClick}
                     >
                         {modalContext.modal.modalProps?.button?.label}
                     </Button>

@@ -1,0 +1,85 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.signin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__container {
+        @include glassBg();
+
+        min-width: 280px;
+        max-width: 420px;
+        width: 100%;
+
+        padding: 24px 16px;
+        border-radius: $border-radius;    
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 24px;
+
+        &-box {
+            background-color: var(--accent-base);
+            border-radius: $border-radius;
+            
+            width: fit-content;
+
+            padding: 4px 8px;
+        }
+
+        &-logo {
+            width: 40px;
+            height: 40px;
+        }
+
+        &-title {
+            @include heading(h2);
+            text-align: center;
+            color: var(--text-primary);
+        }
+    }
+
+    &__inputs-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    &__user-helpers {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-top: 16px;
+    }
+
+    &__link {
+        @include link();
+    }
+
+    &__button {
+        width: 100%;
+
+        margin-top: 40px;
+    }
+
+    &__register {
+        @include text(xs);
+
+        color: var(--text-secondary);
+
+        margin-top: 12px;
+        text-align: center;
+
+        & .signin__link {
+            @include text(xs);
+        }
+    }
+}

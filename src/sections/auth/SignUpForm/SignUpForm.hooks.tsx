@@ -10,7 +10,8 @@ import type {
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
 import { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
 import { useSignUpFormContext } from './SignUpFormProvider';
-import { useSignUpFormErrorHelper } from './SignUpForm.error.helper';
+import { useAuthErrorHelper } from '../authError.helper';
+import { useModalContext } from '@/components/Modal/ModalProvider';
 
 const initialFormState: FormState = {
     username: '',
@@ -37,7 +38,8 @@ export const useSignUpForm = () => {
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorsState);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const { step, _next } = useSignUpFormContext();
-    const handleError = useSignUpFormErrorHelper();
+    const { openModal, closeModal } = useModalContext();
+    const handleError = useAuthErrorHelper({ openModal, closeModal });
     const isPasswordValid = Object.values(errorState.password).every(Boolean);
     const ActiveStepComponent = stepsData[step].component;
 
@@ -99,7 +101,7 @@ export const useSignUpForm = () => {
                 };
 
             case 'confirmPassword':
-                if (state[field].trim() !== state.password.trim()) return 'The password does not match';
+                if (value !== state.password.trim()) return 'The password does not match';
                 return null;
 
             default:

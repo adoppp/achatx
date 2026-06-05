@@ -8,14 +8,24 @@
 
     --border-color: #c7cacd;
 
-    // base source
-    --accent: 67, 135, 243;
+    /* Accent palette */
+    --accent-50: #eef5ff;
+    --accent-100: #d9e8ff;
+    --accent-200: #b8d4ff;
+    --accent-300: #8fb8ff;
+    --accent-400: #6398ff;
+    --accent-500: #3282ff; /* rgb(50,130,255) */
+    --accent-600: #1d6eff;
+    --accent-700: #1458d9;
+    --accent-800: #1148b0;
+    --accent-900: #103d91;
 
-    // derived
-    --accent-base: rgba(var(--accent));
-    --accent-hover: rgba(var(--accent), 0.9);
-    --accent-active: rgba(var(--accent), 0.75);
-    --accent-fog: rgba(var(--accent), 0.15);
+    /* Semantic tokens */
+    --accent-base: var(--accent-500);
+    --accent-hover: var(--accent-600);
+    --accent-active: var(--accent-400);
+
+    --accent-fog: rgb(from var(--accent-500) r g b / 0.2);
 }
 
 :root[data-theme='dark'] {
@@ -27,23 +37,59 @@
 
     --border-color: #2c3034;
 
-    --accent-fog: rgba(var(--accent), 0.25);
+    --accent-fog: rgb(from var(--accent-500) r g b / 0.35);
 }
 
 :root[data-accent='lavender'] {
-    --accent: 167, 139, 250;
+    --accent-50: #f5f3ff;
+    --accent-100: #ede9fe;
+    --accent-200: #ddd6fe;
+    --accent-300: #c4b5fd;
+    --accent-400: #a78bfa;
+    --accent-500: #8b5cf6;
+    --accent-600: #7c3aed;
+    --accent-700: #6d28d9;
+    --accent-800: #5b21b6;
+    --accent-900: #4c1d95;
 }
 
 :root[data-accent='red'] {
-    --accent: 200, 70, 70;
+    --accent-50: #fef2f2;
+    --accent-100: #fee2e2;
+    --accent-200: #fecaca;
+    --accent-300: #fca5a5;
+    --accent-400: #f87171;
+    --accent-500: #c84646;
+    --accent-600: #b91c1c;
+    --accent-700: #991b1b;
+    --accent-800: #7f1d1d;
+    --accent-900: #651616;
 }
 
 :root[data-accent='purple'] {
-    --accent: 140, 110, 241;
+    --accent-50: #f5f3ff;
+    --accent-100: #ede9fe;
+    --accent-200: #ddd6fe;
+    --accent-300: #c4b5fd;
+    --accent-400: #a78bfa;
+    --accent-500: #8c6ef1;
+    --accent-600: #7c3aed;
+    --accent-700: #6d28d9;
+    --accent-800: #5b21b6;
+    --accent-900: #4c1d95;
 }
 
 :root[data-accent='green'] {
-    --accent: 72, 209, 93;
+    --accent-50: #f0fdf4;
+    --accent-100: #dcfce7;
+    --accent-200: #bbf7d0;
+    --accent-300: #86efac;
+    --accent-400: #4ade80;
+    --accent-500: #48d15d;
+    --accent-600: #16a34a;
+    --accent-700: #15803d;
+    --accent-800: #166534;
+    --accent-900: #14532d;
 }
 
 body {

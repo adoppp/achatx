@@ -1,0 +1,81 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.checkbox {
+    &__container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        min-height: 24px;
+        width: fit-content;
+
+        & input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+    }
+
+    &__label {
+        @include ui();
+
+        color: var(--text-primary);
+
+        &-left {
+            padding-left: 30px
+        }
+    }
+
+    &__checkmark {
+        @include glassBg();
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 24px;
+        width: 24px;
+        border: 1px solid var(--accent-fog);
+        border-radius: 8px;
+
+        transition: $transition-smooth;
+
+        .checkbox__container:hover input ~ & {
+            background-color: var(--accent-fog);
+        }
+
+
+        .checkbox__container input:checked ~ & {
+            background-color: var(--accent-base);
+        }
+
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .checkbox__container input:checked ~ &:after {
+            display: block;
+        }
+
+        .checkbox__container &:after {
+            left: 7px;
+            top: 3px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        &-right {
+            left: 96px;
+        }
+    }
+}
