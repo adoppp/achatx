@@ -9,15 +9,17 @@ import { Personal } from '@/sections/auth/SignUpForm/Step/steps/Personal/Persona
 import { Password } from '@/sections/auth/SignUpForm/Step/steps/Password/Password';
 import { Verify } from '@/sections/auth/SignUpForm/Step/steps/Verify/Verify';
 import { Header } from '@/sections/auth/SignUpForm/Step/steps/Header/Header';
+import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 
 interface StepProps {
-    isLoading: boolean;
     children: ReactNode;
 }
 
 const cn = classNames.bind(styles);
 
-export const StepWrapper: FC<StepProps> = ({ isLoading, children }) => {    
+export const StepWrapper: FC<StepProps> = ({ children }) => {    
+    const { isLoading } = useSignUpFormContext();
+
     return (
         <div className={cn('signup__container')}>
             {isLoading ? (

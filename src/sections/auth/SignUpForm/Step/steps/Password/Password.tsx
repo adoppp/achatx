@@ -1,66 +1,43 @@
-import { useId, type FC, type ReactNode } from 'react';
+import { type FC } from 'react';
 import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import { IconCheckMark, IconClose } from '@/assets/svg';
-import type { IsPasswordValid } from '@/sections/auth/SignUpForm/SignUpForm.types';
 import { Button } from '@/ui/Button/Button';
 import { InputPassword } from '@/ui/InputPassword/InputPassword';
-import type { StepPasswordProps } from '@/sections/auth/SignUpForm/Step/Step.types';
-import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
-
-const passwordErrorMessages: Record<keyof IsPasswordValid, string> = {
-    isEnoughCharacters: 'At least 12 characters',
-    isOneUppercase: 'At least one uppercase letter',
-    isOneLowercase: 'At least one lowercase letter',
-    isOneNumber: 'At least one number',
-    isOneSpecialSymbol: 'At least one special symbol',
-};
+import { usePassword } from '@/sections/auth/SignUpForm/Step/steps/Password/Password.hooks';
 
 const cn = classNames.bind(styles);
 
-export const Password: FC<StepPasswordProps> = ({
-    formState,
-    errorState,
-    canGoNext,
-    onChange,
-    onSubmit,
-}) => {
-    const formId = useId();
-    const { step, maxStep, _prev } = useSignUpFormContext();
-    const passwdErrors = errorState.password;
-    const isPasswordValid = Object.values(passwdErrors).every(Boolean);
-
-    const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
-        const typedKey = key as keyof IsPasswordValid;
-
-        return (
-            <li key={key} className={cn('password__item', isValid && 'password__item--valid')}>
-                <span className={cn('password__item--icon')}>
-                    {isValid ? <IconCheckMark /> : <IconClose />}
-                </span>
-                <span className={cn('password__item--rule')}>
-                    {passwordErrorMessages[typedKey]}
-                </span>
-            </li>
-        );
-    });
+export const Password: FC = () => {
+    const { 
+        step, 
+        maxStep, 
+        formState, 
+        errorState, 
+        formId, 
+        isPasswordValid, 
+        items, 
+        _prev, 
+        canGoNext, 
+        handleOnChange, 
+        handleSubmit 
+    } = usePassword();
 
     return (
         <>
             <div className={cn('signup__content')}>
-                <form className={cn('signup__form')} id={formId} onSubmit={onSubmit}>
+                <form className={cn('signup__form')} id={formId} onSubmit={handleSubmit}>
                     <InputPassword
                         label="Password"
                         value={formState.password}
-                        onChange={onChange('password')}
+                        onChange={handleOnChange('password')}
                         error={isPasswordValid ? null : 'Invalid password'}
                     />
                     <InputPassword
                         label="Confirm your password"
                         value={formState.confirmPassword}
-                        onChange={onChange('confirmPassword')}
+                        onChange={handleOnChange('confirmPassword')}
                         error={errorState.confirmPassword}
                     />
                 </form>
@@ -78,3 +55,4 @@ export const Password: FC<StepPasswordProps> = ({
         </>
     );
 };
+

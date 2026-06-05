@@ -1,11 +1,12 @@
+import { FirebaseError } from "firebase/app";
+
 import type { ModalActionProps } from "@/components/Modal/Modal.types";
 import { firebaseErrorMap } from "@/firebase/error.config";
-import { FirebaseError } from "firebase/app";
 
 interface AuthErrorHelper {
     openModal: (props: ModalActionProps) => void;
     closeModal: () => void
-}
+};
 
 export const useAuthErrorHelper = ({ openModal, closeModal }: AuthErrorHelper) => {    
     return (error: unknown, title = 'Unexpected error') => {
@@ -28,5 +29,5 @@ export const useAuthErrorHelper = ({ openModal, closeModal }: AuthErrorHelper) =
                 },
             });
         }
-    }
+    };
 };

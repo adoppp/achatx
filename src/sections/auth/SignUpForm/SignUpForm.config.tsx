@@ -14,12 +14,12 @@ interface StepData {
         title?: string;
         description?: string;
     }
-}
+};
 
 type StepsData = {
     [K in number]: StepData
-}
-// Component (body of the step), icon, progressTitle and progressDescription for progressbar, title of step, description of step
+};
+
 export const stepsData: StepsData = {
     1: {
         component: Step.Personal,

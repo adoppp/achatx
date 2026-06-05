@@ -5,7 +5,7 @@ import { emailRegex } from "@/constants/regex";
 import { useAuthErrorHelper } from "../authError.helper";
 import { useModalContext } from "@/components/Modal/ModalProvider";
 import { signInAuth } from "@/services/auth.service";
-import type { ErrorState, Field, FormState } from "./SignInForm.types";
+import type { ErrorState, Field, FormState } from "@/sections/auth/SignInForm/SignInForm.types";
 
 const initialFormState: FormState = {
     email: '',

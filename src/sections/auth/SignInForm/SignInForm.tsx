@@ -9,7 +9,7 @@ import { Button } from "@/ui/Button/Button";
 import { InputCheckbox } from "@/ui/InputCheckbox/InputCheckbox";
 import logoPath from '@/assets/img/logo_white.png';
 import { NavLink } from "react-router";
-import { useSignInForm } from "./SignInForm.hooks";
+import { useSignInForm } from "@/sections/auth/SignInForm/SignInForm.hooks";
 
 const cn = classNames.bind(styles);
 

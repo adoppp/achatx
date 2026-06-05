@@ -5,18 +5,20 @@ import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { Input } from '@/ui/Input/Input';
 import { Button } from '@/ui/Button/Button';
-import type { BaseStepFormProps } from '@/sections/auth/SignUpForm/Step/Step.types';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 
 const cn = classNames.bind(styles);
 
-export const Personal: FC<BaseStepFormProps> = ({
-    formState,
-    errorState,
-    canGoNext,
-    onChange,
-}) => {
-    const { step, maxStep, _next } = useSignUpFormContext();
+export const Personal: FC = () => {
+    const { 
+            formState,
+            errorState, 
+            step, 
+            maxStep, 
+            _next, 
+            canGoNext,
+            handleOnChange 
+        } = useSignUpFormContext();
 
     return (
         <>
@@ -25,7 +27,7 @@ export const Personal: FC<BaseStepFormProps> = ({
                     <Input
                         label="Username"
                         value={formState.username}
-                        onChange={onChange('username')}
+                        onChange={handleOnChange('username')}
                         error={errorState.username}
                     />
 
@@ -33,7 +35,7 @@ export const Personal: FC<BaseStepFormProps> = ({
                         label="Email"
                         type="email"
                         value={formState.email}
-                        onChange={onChange('email')}
+                        onChange={handleOnChange('email')}
                         error={errorState.email}
                     />
                 </form>
