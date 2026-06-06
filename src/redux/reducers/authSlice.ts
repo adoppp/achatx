@@ -1,8 +1,8 @@
-import type { User } from '@/types/global.types';
+import type { SerializedUser } from '@/types/global.types';
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
 interface AuthState {
-    user: User | null;
+    user: SerializedUser | null;
     status: 'loading' | 'guest' | 'authenticated';
 }
 
@@ -23,7 +23,7 @@ const authSlice = createSlice({
             state.user = null;
             state.status = 'loading';
         },
-        setUser(state, action: PayloadAction<User>) {
+        setUser(state, action: PayloadAction<SerializedUser>) {
             state.user = action.payload;
             state.status = 'authenticated';
         },

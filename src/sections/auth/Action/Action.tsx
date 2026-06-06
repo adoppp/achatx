@@ -2,12 +2,12 @@ import { useEffect, type FC } from "react";
 import { useSearchParams } from "react-router";
 import { ResetPasswordAction } from "./ResetPasswordAction/ResetPasswordAction";
 import { VerifyEmailAction } from "./VerifyEmailAction/VerifyEmailAction";
-import classNames from "classnames/bind";
-import styles from '@/sections/auth/Action/Action.module.scss';
+// import classNames from "classnames/bind";
+// import styles from '@/sections/auth/Action/Action.module.scss';
 import { ActionWrapper } from "./ActionWrapper/ActionWrapper";
 import { useModalContext } from "@/components/Modal/ModalProvider";
 
-const cn = classNames.bind(styles);
+// const cn = classNames.bind(styles);
 
 export const Action: FC = () => {
     const { openModal, closeModal } = useModalContext();
