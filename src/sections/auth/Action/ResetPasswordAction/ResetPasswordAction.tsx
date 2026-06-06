@@ -9,7 +9,7 @@ import { InputPassword } from "@/ui/InputPassword/InputPassword";
 import type { IsPasswordValid } from "../../auth.types";
 import { Button } from "@/ui/Button/Button";
 import { PasswordValidationItem } from "../../PasswordValidationItem";
-import { useAuthErrorHelper } from "../../authError.helper";
+import { useAuthErrorHelper } from '@/sections/auth/authError.helper';
 
 const cn = classNames.bind(styles);
 
