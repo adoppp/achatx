@@ -6,13 +6,18 @@ import { AuthLayout } from '@/layouts/AuthLayout/AuthLayout';
 
 export const router = createBrowserRouter([
     {
-        path: 'app',
-        element: <AppLayout />,
-        children: appConfig,
-    },
-    {
-        path: 'auth',
-        element: <AuthLayout />,
-        children: authConfig,
-    },
+        path: '/AChatX',
+        children: [
+            {
+                path: 'app',
+                element: <AppLayout />,
+                children: appConfig,
+            },
+            {
+                path: 'auth',
+                element: <AuthLayout />,
+                children: authConfig,
+            },
+        ]
+    }
 ]);
