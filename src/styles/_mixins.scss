@@ -32,8 +32,8 @@
     transition: $transition-smooth;
 
     &:hover {
-       color: var(--accent-hover); 
-       transform: scale(1.01);
+        color: var(--accent-hover); 
+        transform: scale(1.01);
     }
 
     &:active {
