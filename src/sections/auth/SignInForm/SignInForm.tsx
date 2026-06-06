@@ -13,6 +13,8 @@ import { useSignInForm } from "@/sections/auth/SignInForm/SignInForm.hooks";
 
 const cn = classNames.bind(styles);
 
+const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
+
 export const SignInForm: FC = () => {
     const {
         email,
@@ -30,11 +32,9 @@ export const SignInForm: FC = () => {
             <div className={cn('signin__container')}>
                 <div className={cn('signin__header')}>
                     <div className={cn('signin__header-box')}>
-                        <img src={logoPath} alt='logo' className={cn('signin__header-logo')} />
+                        <img src={logoPath} alt="logo" className={cn('signin__header-logo')} />
                     </div>
-                    <h2 className={cn('signin__header-title')}>
-                        Log in into your account
-                    </h2>
+                    <h2 className={cn('signin__header-title')}>Log in into your account</h2>
                 </div>
                 <form onSubmit={handleSubmit}>
                     <div className={cn('signin__inputs-container')}>
@@ -44,7 +44,7 @@ export const SignInForm: FC = () => {
                             onChange={handleChange('email')}
                             error={errorState.email}
                         />
-                        <InputPassword 
+                        <InputPassword
                             label="Password"
                             value={password}
                             onChange={handleChange('password')}
@@ -52,21 +52,34 @@ export const SignInForm: FC = () => {
                         />
                     </div>
                     <div className={cn('signin__user-helpers')}>
-                        <InputCheckbox 
+                        <InputCheckbox
                             label="Remeber me"
                             isChecked={isRememberMe}
                             onChange={() => setIsRememberMe(!isRememberMe)}
                         />
-                        <NavLink to={'/auth/reset_password'} className={cn('signin__link')}>
+                        <NavLink
+                            to={`${FRONTEND_URL}/auth/reset_password`}
+                            className={cn('signin__link')}
+                        >
                             Forgot password?
                         </NavLink>
                     </div>
-                    <Button customClassName={cn('signin__button')} disabled={!!Object.values(errorState).some(e => e !== null)} isLoading={isLoading}>
+                    <Button
+                        customClassName={cn('signin__button')}
+                        disabled={!!Object.values(errorState).some((e) => e !== null)}
+                        isLoading={isLoading}
+                    >
                         Sign in
                     </Button>
                 </form>
                 <p className={cn('signin__register')}>
-                    Don't have an account? <NavLink to={'/auth/signup'} className={cn('signin__link')}>Register</NavLink>
+                    Don't have an account?{' '}
+                    <NavLink
+                        to={`${FRONTEND_URL}auth/signup`}
+                        className={cn('signin__link')}
+                    >
+                        Register
+                    </NavLink>
                 </p>
             </div>
         </div>
