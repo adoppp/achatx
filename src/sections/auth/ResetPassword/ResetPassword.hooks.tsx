@@ -7,8 +7,6 @@ import { useModalContext } from "@/components/Modal/ModalProvider";
 import { useAuthErrorHelper } from "@/sections/auth/authError.helper";
 import { IconCheckMark } from "@/assets/svg";
 
-const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
-
 export const useResetPassword = () => {
     const [email, setEmail] = useState<string>('');
     const [emailError, setEmailError] = useState<string | null>(null);
