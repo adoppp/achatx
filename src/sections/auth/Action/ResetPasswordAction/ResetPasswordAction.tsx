@@ -44,7 +44,7 @@ const initialErrorState: ErrorState = {
 };
 
 export const ResetPasswordAction: FC = () => {
-    const [isloading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(true);
     const [email, setEmail] = useState<string>('')
     const [formState, setFormState] = useState<FormState>(initialFormState);
     const [errorState, setErrorState] = useState<ErrorState>(initialErrorState);
@@ -141,27 +141,23 @@ export const ResetPasswordAction: FC = () => {
 
     return (
         <div className={cn('action__content')}>
-            <p className={cn('action__title')}>
-                Reset password for: {email}
-            </p>
-            <form>
-                <InputPassword 
+            <p className={cn('action__title')}>Reset password for: {email}</p>
+            <form onSubmit={handleSubmit}>
+                <InputPassword
                     label="New password"
                     value={formState.password}
                     onChange={handleChange('password')}
                     error={isPasswordValid ? null : 'Invalid password'}
                 />
-                <InputPassword 
+                <InputPassword
                     label="Confirm password"
                     value={formState.passwordConfirm}
                     onChange={handleChange('passwordConfirm')}
                     error={errorState.passwordConfirm}
                 />
                 {items}
-                <Button>
-                    Submit
-                </Button>
+                <Button type='submit' isLoading={isLoading} >Submit</Button>
             </form>
         </div>
-    )
+    );
 }

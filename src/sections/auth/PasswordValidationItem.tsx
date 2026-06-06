@@ -4,7 +4,7 @@ import classNames from "classnames/bind";
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
 import { IconCheckMark, IconClose } from "@/assets/svg";
-import type { IsPasswordValid } from "@/sections/auth/SignUpForm/SignUpForm.types";
+import type { IsPasswordValid } from '@/sections/auth/auth.types';
 
 interface PasswordValidationItemProps {
     isValid: boolean;

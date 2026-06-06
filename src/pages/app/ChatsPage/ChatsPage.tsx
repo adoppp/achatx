@@ -28,8 +28,8 @@ const ChatsPage: FC = () => {
             <Button
                 isLoading={isLoading}
                 onClick={handleOnClickTest}
-                leftIcon={IconArrowLeft}
-                rightIcon={IconArrowRight}
+                leftIcon={<IconArrowLeft />}
+                rightIcon={<IconArrowRight />}
             >
                 Click1
             </Button>
@@ -37,7 +37,7 @@ const ChatsPage: FC = () => {
                 isLoading={isLoading}
                 onClick={handleOnClickTest}
                 variant="secondary"
-                leftIcon={IconArrowLeft}
+                leftIcon={<IconArrowLeft />}
                 size="l"
             >
                 Click2
@@ -45,7 +45,7 @@ const ChatsPage: FC = () => {
             <Button
                 isLoading={isLoading}
                 onClick={handleOnClickTest}
-                rightIcon={IconArrowRight}
+                rightIcon={<IconArrowRight />}
                 size="s"
             >
                 Click3
@@ -64,8 +64,8 @@ const ChatsPage: FC = () => {
                 size="l"
                 label="Name"
                 placeholder="Ask a question"
-                rightIcon={IconArrowRight}
-                leftIcon={IconArrowLeft}
+                rightIcon={<IconArrowRight />}
+                leftIcon={<IconArrowLeft />}
             />
             <InputPassword value={text} onChange={setText} size="l" />
         </div>
