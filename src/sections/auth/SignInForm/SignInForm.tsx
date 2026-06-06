@@ -75,7 +75,7 @@ export const SignInForm: FC = () => {
                 <p className={cn('signin__register')}>
                     Don't have an account?{' '}
                     <NavLink
-                        to={`${FRONTEND_URL}auth/signup`}
+                        to={`${FRONTEND_URL}/auth/signup`}
                         className={cn('signin__link')}
                     >
                         Register
