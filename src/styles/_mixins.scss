@@ -12,17 +12,11 @@
     background: rgba(255, 255, 255, 0.415);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(2.7px);
-    -moz-backdrop-filter: blur(2.7px);
-    -o-backdrop-filter: blur(2.7px);
-    -ms-backdrop-filter: blur(2.7px);
     -webkit-backdrop-filter: blur(2.7px);
     
     :root[data-theme='dark'] & {
         background: rgba(55, 55, 55, 0.48);
         backdrop-filter: blur(7.5px);
-        -moz-backdrop-filter: blur(7.5px);
-        -o-backdrop-filter: blur(7.5px);
-        -ms-backdrop-filter: blur(7.5px);
         -webkit-backdrop-filter: blur(7.5px);
     }
 }

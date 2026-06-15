@@ -7,6 +7,9 @@ import path from 'path';
 export default defineConfig({
     base: '/AChatX/',
     plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
+    build: {
+        cssMinify: 'esbuild',
+    },
     resolve: {
         alias: {
             '@': path.resolve(__dirname, './src'),
