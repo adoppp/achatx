@@ -43,7 +43,8 @@
         border: none;
         outline: none;
         background: transparent;
-
+        
+        border-radius: $border-radius;
         padding: var(--py) var(--px);
 
         color: var(--text-primary);
