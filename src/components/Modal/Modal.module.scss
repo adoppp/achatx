@@ -5,6 +5,7 @@
 
 .modal {
     @include bgModal();
+    padding: 0 16px;
 
     &__close {
         margin-left: auto;

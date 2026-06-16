@@ -6,6 +6,7 @@ import { useAuthErrorHelper } from "../authError.helper";
 import { useModalContext } from "@/components/Modal/ModalProvider";
 import { signInAuth } from "@/services/auth.service";
 import type { ErrorState, Field, FormState } from "@/sections/auth/SignInForm/SignInForm.types";
+import { ROUTE_URLS } from "@/routing/path.config";
 
 const initialFormState: FormState = {
     email: '',
@@ -76,7 +77,7 @@ export const useSignInForm = () => {
                 
                 await signInAuth(formState.email, formState.password, isRememberMe)
 
-                navigate('app/chats')
+                navigate(ROUTE_URLS.auth.signIn())
             } catch (error) {
                 handleError(error)
             } finally {

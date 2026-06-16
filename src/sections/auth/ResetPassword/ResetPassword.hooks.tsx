@@ -6,6 +6,7 @@ import { emailRegex } from "@/constants/regex";
 import { useModalContext } from "@/components/Modal/ModalProvider";
 import { useAuthErrorHelper } from "@/sections/auth/authError.helper";
 import { IconCheckMark } from "@/assets/svg";
+import { ROUTE_URLS } from "@/routing/path.config";
 
 export const useResetPassword = () => {
     const [email, setEmail] = useState<string>('');
@@ -51,7 +52,7 @@ export const useResetPassword = () => {
                         button: {
                             label: 'Go back to sign in',
                             onClick: () => {
-                                navigate(`/AChatX/auth/signin`);
+                                navigate(ROUTE_URLS.auth.signIn(), { viewTransition: true });
                                 closeModal();
                             } 
                         }

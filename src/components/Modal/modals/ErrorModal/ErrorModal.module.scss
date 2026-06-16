@@ -47,6 +47,7 @@
 
     &__message {
         @include text();
+        text-align: center;
 
         color: var(--text-secondary);
     }

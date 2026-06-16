@@ -8,7 +8,6 @@ import { PasswordValidationItem } from './PasswordValidationItem';
 
 export const usePassword = () => {
     const formId = useId();
-
     const { 
         step, 
         maxStep, 

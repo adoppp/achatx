@@ -16,14 +16,12 @@ export const SignUpForm: FC = () => {
 
     return (
         <div className={cn('signup')}>
-            <div>
                 <Progress />
 
                 <Step>
                     <Step.Header />
                     <ActiveStepComponent />
                 </Step>
-            </div>
         </div>
     );
 };

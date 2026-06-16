@@ -7,6 +7,7 @@ import { Input } from '@/ui/Input/Input';
 import { Button } from '@/ui/Button/Button';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { useNavigate } from 'react-router';
+import { ROUTE_URLS } from '@/routing/path.config';
 
 const cn = classNames.bind(styles);
 
@@ -44,7 +45,7 @@ export const Personal: FC = () => {
             </div>
 
             <div className={cn('signup__button')}>
-                <Button variant='secondary' onClick={() => { navigate(`/auth/signin`, { viewTransition: true }) }}>
+                <Button variant='secondary' onClick={() => { navigate(ROUTE_URLS.auth.signIn(), { viewTransition: true }) }}>
                     Log in
                 </Button>
                 <Button onClick={_next} disabled={step === maxStep || !canGoNext()}>

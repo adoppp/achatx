@@ -4,9 +4,11 @@
 @use '@/styles/mixins' as *;
 
 .signup {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 420px;
+    min-width: 280px;
+    width: 100%;
+
+    margin: 0 auto;
 
     &__loader {
         display: flex;
@@ -21,9 +23,6 @@
         border-radius: $border-radius;
         border: 1px solid var(--accent-fog);
         margin: 0 auto;
-        width: 100%;
-        max-width: 420px;
-        min-width: 280px;
 
         transition: $transition-smooth;
 

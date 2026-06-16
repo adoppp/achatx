@@ -4,17 +4,15 @@
 @use '@/styles/mixins' as *;
 
 .signin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    max-width: 420px;
+    min-width: 280px;
+    width: 100%;
+
+    margin: 0 auto;
 
     &__container {
         @include glassBg();
-
-        min-width: 280px;
-        max-width: 420px;
-        width: 100%;
-
+        
         padding: 24px 16px;
         border-radius: $border-radius;    
     }
