@@ -44,7 +44,7 @@ export const Personal: FC = () => {
             </div>
 
             <div className={cn('signup__button')}>
-                <Button variant='secondary' onClick={() => { navigate(`/AChatX/auth/signin`) }}>
+                <Button variant='secondary' onClick={() => { navigate(`/auth/signin`, { viewTransition: true }) }}>
                     Log in
                 </Button>
                 <Button onClick={_next} disabled={step === maxStep || !canGoNext()}>

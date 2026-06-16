@@ -76,7 +76,7 @@ export const useSignInForm = () => {
                 
                 await signInAuth(formState.email, formState.password, isRememberMe)
 
-                navigate('/app/chats')
+                navigate('app/chats')
             } catch (error) {
                 handleError(error)
             } finally {
