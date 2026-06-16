@@ -1,1 +1,0 @@
-import{n as e,t}from"./jsx-runtime-Dt24AjeN.js";import{d as n}from"./index-Du6pT4Mb.js";var r=e(),i=t(),a=()=>{let e=(0,r.c)(2),{chatId:t}=n(),a;return e[0]===t?a=e[1]:(a=(0,i.jsxs)(`div`,{children:[`Chat id:`,(0,i.jsx)(`b`,{children:t})]}),e[0]=t,e[1]=a),a};export{a as default};
