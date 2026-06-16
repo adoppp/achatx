@@ -6,6 +6,7 @@ import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 import { Input } from '@/ui/Input/Input';
 import { Button } from '@/ui/Button/Button';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
+import { useNavigate } from 'react-router';
 
 const cn = classNames.bind(styles);
 
@@ -19,6 +20,7 @@ export const Personal: FC = () => {
             canGoNext,
             handleOnChange 
         } = useSignUpFormContext();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -41,7 +43,10 @@ export const Personal: FC = () => {
                 </form>
             </div>
 
-            <div className={cn('signup__button', `signup__button-${step}`)}>
+            <div className={cn('signup__button')}>
+                <Button variant='secondary' onClick={() => { navigate(`/AChatX/auth/signin`) }}>
+                    Log in
+                </Button>
                 <Button onClick={_next} disabled={step === maxStep || !canGoNext()}>
                     Next step
                 </Button>

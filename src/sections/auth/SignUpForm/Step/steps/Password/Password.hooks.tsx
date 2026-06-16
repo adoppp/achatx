@@ -4,7 +4,7 @@ import { signUpAuth, verifyByEmail } from '@/services/auth.service';
 import { useAuthErrorHelper } from '@/sections/auth/authError.helper';
 import { useModalContext } from '@/components/Modal/ModalProvider';
 import type { IsPasswordValid } from '@/sections/auth/auth.types';
-import { PasswordValidationItem } from '../../../../PasswordValidationItem';
+import { PasswordValidationItem } from './PasswordValidationItem';
 
 export const usePassword = () => {
     const formId = useId();

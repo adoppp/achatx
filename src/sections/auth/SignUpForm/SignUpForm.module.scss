@@ -81,12 +81,14 @@
         &--description {
             @include text();
 
+            text-align: center;
+
             color: var(--text-secondary);
         }
     }
 
     &__progress {
-        margin-bottom: 40px;
+        margin-bottom: 24px;
 
         &--list {
             display: flex;
@@ -94,113 +96,20 @@
             align-items: center;
             gap: 8px;
 
-            @media screen and (max-width: 540px) {
-                & {
-                    justify-content: center;
-                }
-            }
         }
 
         &--item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            width: 100%;
+            height: 4px;
 
-            &::before {
-                content: '';
+            border-radius: $border-radius;
 
-                display: block;
+            background-color: var(--accent-fog);
 
-                height: 2px;
-                width: 32px;
-
-                background: var(--accent-active);
-
-                border-radius: $border-radius;
-
-                box-shadow: 0px 0px 10px 2px var(--accent-active);
-
-                transition: $transition-smooth;
-            }
-
-            &:first-child::before {
-                display: none;
-            }
-
-            &.step__active::before,
-            &.step__done::before {
+            &.step__active,
+            &.step__done {
                 background: var(--accent-hover);
                 box-shadow: 0px 0px 16px 2px var(--accent-hover);
-            }
-
-            @media screen and (max-width: 540px) {
-                &.step__done {
-                    display: none;
-                }
-
-                &.step__active {
-                    display: flex;
-                }
-
-                & {
-                    display: none;
-                }
-
-                &::before {
-                    display: none
-                }
-            }
-        }
-
-        &--box {
-            @include ui();
-
-            position: relative;
-
-            background: var(--accent-fog);
-
-            padding: 8px 14px;
-            border: 1px solid var(--accent-hover);
-            border-radius: 50%;
-            box-shadow: 0px 0px 16px 4px var(--accent-hover);
-
-            transition: $transition-smooth;
-
-            & svg {
-                position: absolute;
-                top: 47%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-
-                stroke: var(--bg-primary);
-                width: 16px;
-                height: 16px;
-
-                transition: $transition-smooth;
-
-                opacity: 0;
-
-                .step__done & {
-                    opacity: 1;
-                }
-            }
-
-            .step__done & {
-                min-width: 36.9px;
-                min-height: 35.2px;
-            }
-
-            .step__done &,
-            .step__active & {
-                background: linear-gradient(
-                    -45deg,
-                    var(--accent-base) 10%,
-                    var(--accent-active) 50%,
-                    var(--accent-base) 90%
-                );
-
-                border: 1px solid transparent;
-                box-shadow: 0px 0px 12px 2px var(--accent-active);
             }
         }
 
@@ -218,11 +127,6 @@
             }
         }
 
-        &--title {
-            @include text();
-
-            color: var(--text-primary);
-        }
     }
 
     &__button {
@@ -231,10 +135,6 @@
         gap: 12px;
 
         margin-top: 36px;
-
-        &-1 {
-            justify-content: right;
-        }
 
         &-3 {
             & button {

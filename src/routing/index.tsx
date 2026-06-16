@@ -6,7 +6,7 @@ import { AuthLayout } from '@/layouts/AuthLayout/AuthLayout';
 
 export const router = createBrowserRouter([
     {
-        path: '/AChatX',
+        path: '/achatx',
         children: [
             {
                 path: 'app',

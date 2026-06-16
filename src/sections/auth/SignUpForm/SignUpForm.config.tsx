@@ -6,9 +6,6 @@ import type { StepType } from "@/sections/auth/SignUpForm/SignUpForm.types";
 
 interface StepData {
     component: FC<any>;
-    progress: {
-        progressTitle: string;
-    };
     header?: {
         icon?: FC<any>;
         title?: string;
@@ -23,9 +20,6 @@ type StepsData = {
 export const stepsData: StepsData = {
     1: {
         component: Step.Personal,
-        progress: {
-            progressTitle: 'Personal info',
-        },
         header: {
             icon: IconUser,
             title: 'Type your name and email',
@@ -34,9 +28,6 @@ export const stepsData: StepsData = {
     },
     2: {
         component: Step.Password,
-        progress: {
-            progressTitle: 'Password',
-        },
         header: {
             icon: IconLockAnimated,
             title: 'Create a password',
@@ -45,9 +36,6 @@ export const stepsData: StepsData = {
     },
     3: {
         component: Step.Verify,
-        progress: {
-            progressTitle: 'Verify',
-        },
         header: {
             icon: IconAnimatedEmail,
             title: 'Verify your email',

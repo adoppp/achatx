@@ -5,7 +5,7 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-    base: '/AChatX/',
+    base: '/achatx/',
     plugins: [react(), babel({ presets: [reactCompilerPreset()] })],
     build: {
         cssMinify: 'esbuild',

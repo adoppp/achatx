@@ -4,6 +4,50 @@ import { SignUpFormProvider } from '@/sections/auth/SignUpForm/SignUpFormProvide
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router';
 
+const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
+
+export const PATHS = {
+    auth: {
+        signIn: 'signin',
+        signUp: 'signup',
+        resetPassword: 'reset_password',
+    },
+    app: {
+        chats: 'chats',
+        chat: 'chat/:chatId',
+        settings: 'settings',
+        profile: 'profile'
+    },
+} as const;
+
+export const ROUTE_URLS = {
+    auth: {
+        signIn: () => `/auth/${PATHS.auth.signIn}`,
+        signUp: () => `/auth/${PATHS.auth.signUp}`,
+        resetPassword: () => `/auth/${PATHS.auth.resetPassword}`,
+    },
+    app: {
+        chats: () => `/app/${PATHS.app.chats}`,
+        chat: (id: number) => `/app/${PATHS.app.chat}/${id}`,
+        settings: () => `/app/${PATHS.app.settings}`,
+        profile: () => `/app/${PATHS.app.settings}/${PATHS.app.profile}`
+    }
+} as const;
+
+export const ABSOLUTE_URLS = {
+    auth: {
+        signIn: () => `${FRONTEND_URL}${ROUTE_URLS.auth.signIn()}`,
+        signUp: () => `${FRONTEND_URL}${ROUTE_URLS.auth.signUp()}`,
+        resetPassword: () => `${FRONTEND_URL}${ROUTE_URLS.auth.resetPassword()}`,
+    },
+    app: {
+        chats: () => `${FRONTEND_URL}${ROUTE_URLS.app.chats}`,
+        chat: (id: number) => `${FRONTEND_URL}${ROUTE_URLS.app.chat(id)}`,
+        settings: () => `${FRONTEND_URL}${ROUTE_URLS.app.settings()}`,
+        profile: () => `${FRONTEND_URL}${ROUTE_URLS.app.profile()}`
+    }
+} as const;
+
 // Layouts
 const MainLayout = lazy(() => import('@/layouts/MainLayout/MainLayout'));
 const SettingsLayout = lazy(() => import('@/layouts/SettingsLayout/SettingsLayout'));
@@ -22,17 +66,17 @@ export const appConfig: RouteObject[] = [
         element: <MainLayout />,
         children: [
             {
-                path: 'chats',
+                path: PATHS.app.chats,
                 element: <ChatsPage />,
             },
             {
-                path: 'chat/:chatId',
+                path: PATHS.app.chat,
                 element: <ChatPage />,
             },
         ],
     },
     {
-        path: 'settings',
+        path: PATHS.app.settings,
         element: <SettingsLayout />,
         children: [
             {
@@ -45,11 +89,11 @@ export const appConfig: RouteObject[] = [
 
 export const authConfig: RouteObject[] = [
     {
-        path: 'signin',
+        path: PATHS.auth.signIn,
         element: <SignInPage />,
     },
     {
-        path: 'signup',
+        path: PATHS.auth.signUp,
         element: (
             <SignUpFormProvider>
                 <SignUpPage />
@@ -57,7 +101,7 @@ export const authConfig: RouteObject[] = [
         ),
     },
     {
-        path: 'reset_password',
+        path: PATHS.auth.resetPassword,
         element: <ResetPasswordPage />
     },
     {
