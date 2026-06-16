@@ -14,8 +14,6 @@ import { ABSOLUTE_URLS } from "@/routing/path.config";
 
 const cn = classNames.bind(styles);
 
-const FRONTEND_URL = import.meta.env.VITE_FRONTEND_URL;
-
 export const SignInForm: FC = () => {
     const {
         email,
