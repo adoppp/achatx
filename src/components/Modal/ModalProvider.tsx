@@ -5,11 +5,14 @@ import type {
     ModalContextType,
     ModalActionProps,
 } from '@/components/Modal/Modal.types';
+import { useAppDispatch } from '@/redux/redux.hooks';
+import { resetError } from '@/redux/reducers/errorSlice';
 
 const ModalContext = createContext<ModalContextType | null>(null);
 
 export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const [modal, setModal] = useState<ModalState>({ type: null });
+    const dispatch = useAppDispatch();
 
     const openModal = (propsModal: ModalActionProps): void => {
         setModal(propsModal);
@@ -18,7 +21,8 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const closeModal = (): void => {
         setModal({ type: null });
-        document.body.style = ''
+        document.body.style = '';
+        dispatch(resetError());
     };
 
     return (

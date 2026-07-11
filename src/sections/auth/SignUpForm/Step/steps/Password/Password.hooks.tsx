@@ -1,30 +1,28 @@
-import { useId, type FormEvent, type ReactNode } from 'react';
+import { errorHelper } from '@/hooks/errorHelper';
+import type { IsPasswordValid } from '@/sections/auth/auth.types';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
-import { useAuthErrorHelper } from '@/sections/auth/authError.helper';
-import { useModalContext } from '@/components/Modal/ModalProvider';
-import type { IsPasswordValid } from '@/sections/auth/auth.types';
+import { useId, type FormEvent, type ReactNode } from 'react';
 import { PasswordValidationItem } from './PasswordValidationItem';
+import { useAppDispatch } from '@/redux/redux.hooks';
 
 export const usePassword = () => {
     const formId = useId();
-    const { 
-        step, 
-        maxStep, 
-        formState, 
-        errorState, 
-        setIsLoading, 
-        handleOnChange, 
-        canGoNext, 
-        _prev, 
-        _next 
+    const {
+        step,
+        maxStep,
+        formState,
+        errorState,
+        setIsLoading,
+        handleOnChange,
+        canGoNext,
+        _prev,
+        _next,
     } = useSignUpFormContext();
-    const { openModal, closeModal } = useModalContext();
-    const handleError = useAuthErrorHelper({ openModal, closeModal });
-
     const passwdErrors = errorState.password;
     const isPasswordValid = Object.values(passwdErrors).every(Boolean);
-    
+    const dispatch = useAppDispatch();
+
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
@@ -45,13 +43,13 @@ export const usePassword = () => {
 
                 _next();
             } catch (error: unknown) {
-                handleError(error, 'Authentication Error')
+                errorHelper(dispatch, error, 'Authentication Error');
             } finally {
                 setIsLoading(false);
             }
         }
     };
-    
+
     const items: ReactNode = Object.entries(passwdErrors).map(([key, isValid]) => {
         const typedKey = key as keyof IsPasswordValid;
 
@@ -71,5 +69,5 @@ export const usePassword = () => {
         canGoNext,
         handleOnChange,
         handleSubmit,
-    }
-}
+    };
+};

@@ -58,5 +58,5 @@ export const firebaseErrorMap: Record<string, string> = {
     'auth/id-token-revoked': 'Session revoked',
 
     // Default
-    default: 'Unexpected authentication error',
+    default: 'Unexpected error',
 };

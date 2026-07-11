@@ -1,12 +1,12 @@
-import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router";
+import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router';
 
-import { emailRegex } from "@/constants/regex";
-import { useAuthErrorHelper } from "../authError.helper";
-import { useModalContext } from "@/components/Modal/ModalProvider";
-import { signInAuth } from "@/services/auth.service";
-import type { ErrorState, Field, FormState } from "@/sections/auth/SignInForm/SignInForm.types";
-import { ROUTE_URLS } from "@/routing/path.config";
+import { emailRegex } from '@/constants/regex';
+import { errorHelper } from '@/hooks/errorHelper';
+import { ROUTE_URLS } from '@/routing/path.config';
+import type { ErrorState, Field, FormState } from '@/sections/auth/SignInForm/SignInForm.types';
+import { signInAuth } from '@/services/auth.service';
+import { useAppDispatch } from '@/redux/redux.hooks';
 
 const initialFormState: FormState = {
     email: '',
@@ -24,25 +24,24 @@ export const useSignInForm = () => {
     const [isRememberMe, setIsRememberMe] = useState<boolean>(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate();
-    const { openModal, closeModal } = useModalContext();
-    const handleError = useAuthErrorHelper({ openModal, closeModal });
+    const dispatch = useAppDispatch();
 
     const handleChange = (field: Field) => (value: string) => {
-        setFormState(prev => {
-            const newState = {...prev, [field]: value};
+        setFormState((prev) => {
+            const newState = { ...prev, [field]: value };
 
             queueMicrotask(() => {
                 validation(field, newState);
             });
 
             return newState;
-        })
+        });
     };
 
     const validation = (field: Field, state: FormState) => {
         const error = validateField(field, state);
 
-        setErrorState(prev => ({ ...prev, [field]: error }));
+        setErrorState((prev) => ({ ...prev, [field]: error }));
     };
 
     const validateField = (field: Field, state: FormState) => {
@@ -56,9 +55,9 @@ export const useSignInForm = () => {
             case 'email':
                 if (!value.toLowerCase().match(emailRegex)) return 'Invalid email';
                 return null;
-            
+
             case 'password':
-                if (value.length < 12) return 'Minimal 12 symbols'
+                if (value.length < 12) return 'Minimal 12 symbols';
                 return null;
 
             default:
@@ -69,22 +68,22 @@ export const useSignInForm = () => {
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const isErrors = !!Object.values(errorState).every(e => e === null || '')
+        const isErrors = !!Object.values(errorState).every((e) => e === null || '');
 
         if (isErrors) {
             try {
-                setIsLoading(true)
-                
-                await signInAuth(formState.email, formState.password, isRememberMe)
+                setIsLoading(true);
 
-                navigate(ROUTE_URLS.auth.signIn())
+                await signInAuth(formState.email, formState.password, isRememberMe);
+
+                navigate(ROUTE_URLS.app.chats());
             } catch (error) {
-                handleError(error)
+                errorHelper(dispatch, error, 'Authentication Error');
             } finally {
-                setIsLoading(false)
+                setIsLoading(false);
             }
         }
-    }
+    };
 
     return {
         email: formState.email,
@@ -94,6 +93,6 @@ export const useSignInForm = () => {
         isLoading,
         setIsRememberMe,
         handleChange,
-        handleSubmit
-    }
-}
+        handleSubmit,
+    };
+};

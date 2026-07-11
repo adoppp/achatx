@@ -1,12 +1,13 @@
-import { useState, type FormEvent } from "react";
-import { useNavigate } from "react-router";
+import { useState, type FormEvent } from 'react';
+import { useNavigate } from 'react-router';
 
-import { resetPassword } from "@/services/auth.service";
-import { emailRegex } from "@/constants/regex";
-import { useModalContext } from "@/components/Modal/ModalProvider";
-import { useAuthErrorHelper } from "@/sections/auth/authError.helper";
-import { IconCheckMark } from "@/assets/svg";
-import { ROUTE_URLS } from "@/routing/path.config";
+import { IconCheckMark } from '@/assets/svg';
+import { useModalContext } from '@/components/Modal/ModalProvider';
+import { emailRegex } from '@/constants/regex';
+import { errorHelper } from '@/hooks/errorHelper';
+import { ROUTE_URLS } from '@/routing/path.config';
+import { resetPassword } from '@/services/auth.service';
+import { useAppDispatch } from '@/redux/redux.hooks';
 
 export const useResetPassword = () => {
     const [email, setEmail] = useState<string>('');
@@ -14,7 +15,7 @@ export const useResetPassword = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const navigate = useNavigate();
     const { openModal, closeModal } = useModalContext();
-    const handleError = useAuthErrorHelper({ openModal, closeModal });
+    const dispatch = useAppDispatch();
 
     const handleChange = (value: string) => {
         setEmail(() => {
@@ -54,23 +55,23 @@ export const useResetPassword = () => {
                             onClick: () => {
                                 navigate(ROUTE_URLS.auth.signIn(), { viewTransition: true });
                                 closeModal();
-                            } 
-                        }
-                    }
-                })
+                            },
+                        },
+                    },
+                });
             } catch (error: unknown) {
-                handleError(error);
+                errorHelper(dispatch, error, 'Authentication Error');
             } finally {
                 setIsLoading(false);
             }
         }
-    }
+    };
 
     return {
         email,
         emailError,
         isLoading,
         handleChange,
-        handleSubmit
-    }
-}
+        handleSubmit,
+    };
+};

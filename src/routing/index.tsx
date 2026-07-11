@@ -8,12 +8,16 @@ export const router = createBrowserRouter(
     [
         {
             element: <AppLayout />,
-            children: appConfig,
-        },
-        {
-            path: 'auth',
-            element: <AuthLayout />,
-            children: authConfig,
+            children: [
+                {
+                    children: appConfig,
+                },
+                {
+                    path: 'auth',
+                    element: <AuthLayout />,
+                    children: authConfig,
+                },
+            ],
         },
     ],
     {
