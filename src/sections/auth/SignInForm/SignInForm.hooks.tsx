@@ -2,11 +2,11 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 
 import { emailRegex } from '@/constants/regex';
-import { errorHelper } from '@/hooks/errorHelper';
+import { useAppDispatch } from '@/redux/redux.hooks';
 import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 import type { ErrorState, Field, FormState } from '@/sections/auth/SignInForm/SignInForm.types';
 import { signInAuth } from '@/services/auth.service';
-import { useAppDispatch } from '@/redux/redux.hooks';
+import { errorHelper } from '@/utils/errorHelper';
 
 const initialFormState: FormState = {
     email: '',

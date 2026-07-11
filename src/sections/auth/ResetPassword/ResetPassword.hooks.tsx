@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router';
 import { IconCheckMark } from '@/assets/svg';
 import { useModalContext } from '@/components/Modal/ModalProvider';
 import { emailRegex } from '@/constants/regex';
-import { errorHelper } from '@/hooks/errorHelper';
+import { useAppDispatch } from '@/redux/redux.hooks';
 import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 import { resetPassword } from '@/services/auth.service';
-import { useAppDispatch } from '@/redux/redux.hooks';
+import { errorHelper } from '@/utils/errorHelper';
 
 export const useResetPassword = () => {
     const [email, setEmail] = useState<string>('');

@@ -1,10 +1,10 @@
-import { errorHelper } from '@/hooks/errorHelper';
+import { useAppDispatch } from '@/redux/redux.hooks';
 import type { IsPasswordValid } from '@/sections/auth/auth.types';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { signUpAuth, verifyByEmail } from '@/services/auth.service';
+import { errorHelper } from '@/utils/errorHelper';
 import { useId, type FormEvent, type ReactNode } from 'react';
 import { PasswordValidationItem } from './PasswordValidationItem';
-import { useAppDispatch } from '@/redux/redux.hooks';
 
 export const usePassword = () => {
     const formId = useId();

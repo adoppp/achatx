@@ -5,7 +5,7 @@ import { setGuest, setLoading, setUser } from '@/redux/reducers/authSlice';
 import { resetError } from '@/redux/reducers/errorSlice';
 import { useAppDispatch } from '@/redux/redux.hooks';
 import { onAuthStateChanged } from 'firebase/auth';
-import { errorHelper } from './errorHelper';
+import { errorHelper } from '../utils/errorHelper';
 
 export const useAuthState = () => {
     const [hookUser, setHookUser] = useState(null);

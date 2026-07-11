@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
 import { auth } from '@/firebase';
-import { errorHelper } from '@/hooks/errorHelper';
+import { useAppDispatch } from '@/redux/redux.hooks';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { verifyByEmail } from '@/services/auth.service';
-import { useAppDispatch } from '@/redux/redux.hooks';
+import { errorHelper } from '@/utils/errorHelper';
 
 export const useVerify = () => {
     const [isLoadingResend, setIsLoadingResend] = useState<boolean>(false);
