@@ -1,23 +1,22 @@
 import { createBrowserRouter } from 'react-router';
 
 import { AppLayout } from '@/layouts/AppLayout/AppLayout';
-import { appConfig, authConfig } from '@/routing/routing.config';
 import { AuthLayout } from '@/layouts/AuthLayout/AuthLayout';
+import { appConfig, authConfig } from '@/routing/routing.config';
 
-export const router = createBrowserRouter([
+export const router = createBrowserRouter(
+    [
+        {
+            element: <AppLayout />,
+            children: appConfig,
+        },
+        {
+            path: 'auth',
+            element: <AuthLayout />,
+            children: authConfig,
+        },
+    ],
     {
-        path: '/achatx',
-        children: [
-            {
-                path: 'app',
-                element: <AppLayout />,
-                children: appConfig,
-            },
-            {
-                path: 'auth',
-                element: <AuthLayout />,
-                children: authConfig,
-            },
-        ]
-    }
-]);
+        basename: '/achatx',
+    },
+);
