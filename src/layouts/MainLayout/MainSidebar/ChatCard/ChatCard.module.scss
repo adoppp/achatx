@@ -1,0 +1,65 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+    
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 16px 8px;
+    
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__relative {
+        position: relative;
+    }
+
+    &__online {
+        position: absolute;
+        right: 0;
+        bottom: 20%;
+
+        transform: translateY(50%);
+
+        background-color: $success;
+
+        width: 12px;
+        height: 12px;
+
+        border-radius: 50%;
+
+    }
+    
+    &__hidden {
+        opacity: 0;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__name {
+        @include text();
+    }
+
+    &__message {
+        @include ui($size: sm);
+
+        color: var(--text-secondary);
+
+        max-width: 200px;
+    }
+
+    &__time {
+        @include meta();
+
+        color: var(--text-secondary);
+    }
+}

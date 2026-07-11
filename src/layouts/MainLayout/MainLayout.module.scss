@@ -1,0 +1,13 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.main {
+    &__container {
+        display: flex;
+        flex-direction: row;
+
+        height: 100dvh;
+    }
+}

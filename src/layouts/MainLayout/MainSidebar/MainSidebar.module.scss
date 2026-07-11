@@ -1,0 +1,58 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.main_siderbar {
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        padding: 24px 16px;
+        
+        &--title {
+            @include heading(h3);
+            color: var(--text-primary);
+        }
+        
+        & svg {
+            transition: $transition-smooth;
+        }
+        
+        &--settings {
+            width: 32px;
+            height: 32px;
+
+            stroke: var(--text-primary);
+            
+            &:hover {
+                stroke: var(--accent-hover);
+            }
+            
+            &:active {
+                stroke: var(--accent-active);
+            }
+        }
+        
+        &--add {
+            width: 28px;
+            height: 28px;
+            
+            fill: var(--text-primary);
+            
+            &:hover {
+                fill: var(--accent-hover);
+            }
+            
+            &:active {
+                fill: var(--accent-active);
+            }
+        }
+
+    }
+
+    &__content {
+
+    }
+}

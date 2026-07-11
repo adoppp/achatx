@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import { Outlet, useLocation } from 'react-router';
+import { Outlet, useMatches } from 'react-router';
 import classNames from 'classnames/bind';
 
 import styles from '@/layouts/AuthLayout/AuthLayout.module.scss';
@@ -7,14 +7,8 @@ import styles from '@/layouts/AuthLayout/AuthLayout.module.scss';
 const cn = classNames.bind(styles);
 
 export const AuthLayout: FC = () => {
-    const location = useLocation();
-    const path = location.pathname;
-    let title: string = 'Unexcepted route';
-
-    if (path.trim().includes('auth/signup')) title = 'Sign Up';
-    if (path.trim().includes('auth/signin')) title = 'Sign In';
-    if (path.trim().includes('auth/reset_password')) title = 'Reset password';
-    if (path.trim().includes('auth/action')) title = 'Support';
+    const matches = useMatches();
+    const title = (matches.at(-1)?.handle as { title?: string }).title ?? 'Unexpected route';
 
     return (
         <div className={cn('auth')}>

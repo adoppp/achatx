@@ -1,15 +1,19 @@
-import type { FC } from 'react';
-import classNames from 'classnames/bind';
+import { useEffect, type FC } from 'react';
 import { Outlet } from 'react-router';
 
-import styles from '@/layouts/AppLayout/AppLayout.module.scss';
-
-const cn = classNames.bind(styles);
-
 export const AppLayout: FC = () => {
+
+    useEffect(() => {
+        document.body.style.overflow = 'hidden'
+
+        return () => {
+            document.body.style.overflow = ''
+        }
+    }, []);
+
     return (
-        <div className={cn('app')}>
+        <>
             <Outlet />
-        </div>
+        </>
     );
 };

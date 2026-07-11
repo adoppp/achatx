@@ -20,6 +20,9 @@ const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/Rese
 export const appConfig: RouteObject[] = [
     {
         element: <MainLayout />,
+        handle: {
+            pageTitle: 'Messages'
+        },
         children: [
             {
                 path: PATHS.app.chats,
@@ -34,6 +37,9 @@ export const appConfig: RouteObject[] = [
     {
         path: PATHS.app.settings,
         element: <SettingsLayout />,
+        handle: {
+            pageTitle: 'Settings'
+        },
         children: [
             {
                 path: PATHS.app.profile,
@@ -47,6 +53,9 @@ export const authConfig: RouteObject[] = [
     {
         path: PATHS.auth.signIn,
         element: <SignInPage />,
+        handle: {
+            title: 'Sign in'
+        }
     },
     {
         path: PATHS.auth.signUp,
@@ -55,9 +64,15 @@ export const authConfig: RouteObject[] = [
                 <SignUpPage />
             </SignUpFormProvider>
         ),
+        handle: {
+            title: 'Sign up'
+        }
     },
     {
         path: PATHS.auth.resetPassword,
-        element: <ResetPasswordPage />
+        element: <ResetPasswordPage />,
+        handle: {
+            title: 'Reset password'
+        } 
     },
 ];
