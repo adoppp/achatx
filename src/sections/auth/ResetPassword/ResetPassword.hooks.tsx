@@ -5,7 +5,7 @@ import { IconCheckMark } from '@/assets/svg';
 import { useModalContext } from '@/components/Modal/ModalProvider';
 import { emailRegex } from '@/constants/regex';
 import { errorHelper } from '@/hooks/errorHelper';
-import { ROUTE_URLS } from '@/routing/path.config';
+import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 import { resetPassword } from '@/services/auth.service';
 import { useAppDispatch } from '@/redux/redux.hooks';
 
@@ -53,7 +53,7 @@ export const useResetPassword = () => {
                         button: {
                             label: 'Go back to sign in',
                             onClick: () => {
-                                navigate(ROUTE_URLS.auth.signIn(), { viewTransition: true });
+                                navigate(useNavigatePaths.auth.signIn(), { viewTransition: true });
                                 closeModal();
                             },
                         },

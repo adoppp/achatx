@@ -10,7 +10,7 @@ import { InputCheckbox } from "@/ui/InputCheckbox/InputCheckbox";
 import logoPath from '@/assets/img/logo_white.png';
 import { NavLink } from "react-router";
 import { useSignInForm } from "@/sections/auth/SignInForm/SignInForm.hooks";
-import { ABSOLUTE_URLS } from "@/routing/path.config";
+import { absoluteUrls } from '@/routing/navigationHelpers.config';
 
 const cn = classNames.bind(styles);
 
@@ -57,7 +57,7 @@ export const SignInForm: FC = () => {
                             onChange={() => setIsRememberMe(!isRememberMe)}
                         />
                         <NavLink
-                            to={ABSOLUTE_URLS.auth.resetPassword()}
+                            to={absoluteUrls.auth.resetPassword()}
                             viewTransition
                             className={cn('signin__link')}
                         >
@@ -75,7 +75,7 @@ export const SignInForm: FC = () => {
                 <p className={cn('signin__register')}>
                     Don't have an account?{' '}
                     <NavLink
-                        to={ABSOLUTE_URLS.auth.signUp()}
+                        to={absoluteUrls.auth.signUp()}
                         className={cn('signin__link')}
                     >
                         Register

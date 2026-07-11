@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 
 import { emailRegex } from '@/constants/regex';
 import { errorHelper } from '@/hooks/errorHelper';
-import { ROUTE_URLS } from '@/routing/path.config';
+import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 import type { ErrorState, Field, FormState } from '@/sections/auth/SignInForm/SignInForm.types';
 import { signInAuth } from '@/services/auth.service';
 import { useAppDispatch } from '@/redux/redux.hooks';
@@ -76,7 +76,7 @@ export const useSignInForm = () => {
 
                 await signInAuth(formState.email, formState.password, isRememberMe);
 
-                navigate(ROUTE_URLS.app.chats());
+                navigate(useNavigatePaths.app.chats());
             } catch (error) {
                 errorHelper(dispatch, error, 'Authentication Error');
             } finally {

@@ -6,7 +6,7 @@ import styles from '@/layouts/AuthLayout/AuthLayout.module.scss';
 
 const cn = classNames.bind(styles);
 
-export const AuthLayout: FC = () => {
+const AuthLayout: FC = () => {
     const matches = useMatches();
     const title = (matches.at(-1)?.handle as { title?: string }).title ?? 'Unexpected route';
 
@@ -24,3 +24,4 @@ export const AuthLayout: FC = () => {
         </div>
     );
 };
+export default AuthLayout;
