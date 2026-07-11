@@ -4,6 +4,7 @@ import { PATHS } from '@/routing/path.config';
 import { SignUpFormProvider } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { lazy } from 'react';
 import type { RouteObject } from 'react-router';
+import { PrivateRoute } from './routes/PrivateRoute';
 
 // Layouts
 const MainLayout = lazy(() => import('@/layouts/MainLayout/MainLayout'));
@@ -64,21 +65,26 @@ export const authConfig: RouteObject[] = [
     },
 ];
 
-export const globalConfig = [
+export const globalConfig: RouteObject[] = [
     {
-        element: <MainLayout />,
-        handle: {
-            pageTitle: 'Messages',
-        },
-        children: appConfig,
-    },
-    {
-        path: PATHS.settings.index,
-        element: <SettingsLayout />,
-        handle: {
-            pageTitle: 'Settings',
-        },
-        children: settingsConfig,
+        element: <PrivateRoute />,
+        children: [
+            {
+                element: <MainLayout />,
+                handle: {
+                    pageTitle: 'Messages',
+                },
+                children: appConfig,
+            },
+            {
+                path: PATHS.settings.index,
+                element: <SettingsLayout />,
+                handle: {
+                    pageTitle: 'Settings',
+                },
+                children: settingsConfig,
+            },
+        ],
     },
     {
         path: PATHS.auth.index,

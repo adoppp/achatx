@@ -7,8 +7,6 @@ export const useErrorHandler = () => {
     const error = useAppSelector((state) => state.error);
 
     useEffect(() => {
-        console.log(error);
-
         if (error.title && error.message) {
             console.log('OPEN MODAL');
             openModal({

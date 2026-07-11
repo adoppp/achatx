@@ -2,16 +2,14 @@ import { useEffect, useState } from 'react';
 
 import { auth } from '@/firebase';
 import { setGuest, setLoading, setUser } from '@/redux/reducers/authSlice';
-import { resetError } from '@/redux/reducers/errorSlice';
-import { useAppDispatch } from '@/redux/redux.hooks';
+import { useAppDispatch, useAppSelector } from '@/redux/redux.hooks';
 import { onAuthStateChanged } from 'firebase/auth';
 import { errorHelper } from '../utils/errorHelper';
+import { resetError } from '@/redux/reducers/errorSlice';
 
-export const useAuthState = () => {
-    const [hookUser, setHookUser] = useState(null);
-    const [hookLoading, setHookLoading] = useState(true);
-    const [hookError, setHookError] = useState(null);
+export const useAuthListener = () => {
     const dispatch = useAppDispatch();
+    const error = useAppSelector(state => state.error)
 
     useEffect(() => {
         dispatch(setLoading());
@@ -19,6 +17,11 @@ export const useAuthState = () => {
         const unsubscribe = onAuthStateChanged(
             auth,
             (currentUser) => {
+                // reset all errors when auth state changed, need mb to create a [key (auth, user, global, messages, chats, ...)]: { /current error state/}. than check woulod be => if (error['user'] && error['user'].title && error['user'].message) ...
+                if (error.title && error.message) {
+                    dispatch(resetError());
+                }
+
                 if (currentUser) {
                     dispatch(
                         setUser({
@@ -29,16 +32,16 @@ export const useAuthState = () => {
                             phone: currentUser.phoneNumber,
                         }),
                     );
-                    dispatch(resetError());
+                } else {
+                    dispatch(setGuest());
                 }
             },
             (err: unknown) => {
                 errorHelper(dispatch, err, 'Authentication Error');
                 dispatch(setGuest());
-                setHookLoading(false);
             },
         );
 
         return () => unsubscribe();
-    }, [dispatch, auth]);
+    }, [dispatch]);
 };

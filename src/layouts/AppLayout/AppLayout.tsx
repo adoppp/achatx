@@ -1,8 +1,10 @@
+import { type FC } from 'react';
+import { useAuthListener } from '@/hooks/useAuthListener';
 import { useErrorHandler } from '@/hooks/useErrorHandler';
-import { useEffect, type FC } from 'react';
 import { Outlet } from 'react-router';
 
 export const AppLayout: FC = () => {
+    useAuthListener();
     useErrorHandler();
 
     // useEffect(() => {
