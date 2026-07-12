@@ -6,53 +6,104 @@
 .main_siderbar {
     &__header {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
 
         padding: 24px 16px;
-        
-        &--title {
-            @include heading(h3);
-            color: var(--text-primary);
-        }
-        
+
         & svg {
             transition: $transition-smooth;
         }
-        
-        &--settings {
+    }
+
+    &__footer {
+        @include glassBg();
+
+        position: absolute;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        min-width: 50%;
+        max-width: 90%;
+        width: fit-content;
+        padding: 8px 20px;
+        border-radius: 50px;
+
+        &--list {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 24px;
+        }
+
+        &--icon-stroke {
             width: 32px;
             height: 32px;
 
-            stroke: var(--text-primary);
-            
-            &:hover {
-                stroke: var(--accent-hover);
-            }
-            
-            &:active {
-                stroke: var(--accent-active);
-            }
-        }
-        
-        &--add {
-            width: 28px;
-            height: 28px;
-            
-            fill: var(--text-primary);
-            
-            &:hover {
-                fill: var(--accent-hover);
-            }
-            
-            &:active {
-                fill: var(--accent-active);
-            }
+            stroke: var(--accent-fog);
+
+            transition: $transition-smooth;
         }
 
+        &--icon-fill {
+            width: 32px;
+            height: 32px;
+
+            fill: var(--accent-base);
+
+            transition: $transition-smooth;
+        }
+
+        &--navlink {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+
+            text-decoration: none;
+        }
+
+        &--navlink:hover &--navitem_title,
+        &--navitem-title--active {
+            color: var(--accent-hover);
+        }
+
+        &--navlink:active &--navitem_title {
+            color: var(--accent-active);
+        }
+
+        &--navlink:hover &--icon-fill {
+            fill: var(--accent-hover);
+            transform: scale(1.085);
+        }
+
+        &--navlink:active &--icon-fill {
+            fill: var(--accent-active);
+            transform: scale(0.955);
+        }
+
+        &--navlink:hover &--icon-stroke {
+            stroke: var(--accent-hover);
+            transform: scale(1.085);
+        }
+
+        &--navlink:active &--icon-stroke {
+            stroke: var(--accent-active);
+            transform: scale(0.955);
+        }
+
+        &--navitem_title {
+            @include ui($size: xs);
+
+            color: var(--accent-fog);
+
+            transition: $transition-smooth;
+
+            &--active {
+                color: var(--accent-base);
+            }
+        }
     }
 
     &__content {
-
     }
 }

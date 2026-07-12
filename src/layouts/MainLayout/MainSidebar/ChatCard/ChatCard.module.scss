@@ -4,12 +4,11 @@
 @use '@/styles/mixins' as *;
 
 .card {
-    
     display: flex;
     justify-content: space-between;
-    
+
     padding: 16px 8px;
-    
+
     &__right {
         display: flex;
         align-items: center;
@@ -33,9 +32,8 @@
         height: 12px;
 
         border-radius: 50%;
-
     }
-    
+
     &__hidden {
         opacity: 0;
     }
@@ -52,9 +50,12 @@
     &__message {
         @include ui($size: sm);
 
+        overflow: hidden;
         color: var(--text-secondary);
+        white-space: nowrap;
+        text-overflow: ellipsis;
 
-        max-width: 200px;
+        max-width: 180px;
     }
 
     &__time {

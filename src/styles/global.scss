@@ -26,6 +26,8 @@
     --accent-active: var(--accent-400);
 
     --accent-fog: rgb(from var(--accent-500) r g b / 0.2);
+
+    --glassBgColor: rgba(245, 245, 245, 0.415);
 }
 
 :root[data-theme='dark'] {
@@ -38,6 +40,8 @@
     --border-color: #2c3034;
 
     --accent-fog: rgb(from var(--accent-500) r g b / 0.35);
+
+    --glassBgColor: rgba(55, 55, 55, 0.48);
 }
 
 :root[data-accent='lavender'] {

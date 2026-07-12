@@ -14,7 +14,7 @@ export const useNavigatePaths = {
         chat: (id: number) => `/${PATHS.app.chat.slice(0, 4)}/${id}`,
     },
     settings: {
-        settings: () => `/${PATHS.settings.index}`,
+        index: () => `/${PATHS.settings.index}`,
         profile: () => `/${PATHS.settings.index}/${PATHS.settings.profile}`,
     },
 } as const;
@@ -29,7 +29,7 @@ export const absoluteUrls = {
     app: {
         chats: () => `${FRONTEND_URL}${useNavigatePaths.app.chats()}`,
         chat: (id: number) => `${FRONTEND_URL}${useNavigatePaths.app.chat(id)}`,
-        settings: () => `${FRONTEND_URL}${useNavigatePaths.settings.settings()}`,
+        settings: () => `${FRONTEND_URL}${useNavigatePaths.settings.index()}`,
         profile: () => `${FRONTEND_URL}${useNavigatePaths.settings.profile()}`,
     },
 } as const;

@@ -8,7 +8,6 @@ export const useErrorHandler = () => {
 
     useEffect(() => {
         if (error.title && error.message) {
-            console.log('OPEN MODAL');
             openModal({
                 type: 'error',
                 modalProps: {

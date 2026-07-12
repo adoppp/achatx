@@ -9,13 +9,13 @@
 }
 
 @mixin glassBg() {
-    background: rgba(255, 255, 255, 0.415);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    background: var(--glassBgColor);
+    box-shadow: 0 4px 30px var(--accent-fog);
+    border: 1px solid var(--accent-fog);
     backdrop-filter: blur(2.7px);
     -webkit-backdrop-filter: blur(2.7px);
     
     :root[data-theme='dark'] & {
-        background: rgba(55, 55, 55, 0.48);
         backdrop-filter: blur(7.5px);
         -webkit-backdrop-filter: blur(7.5px);
     }
