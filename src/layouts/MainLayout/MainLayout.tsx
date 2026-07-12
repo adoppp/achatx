@@ -3,15 +3,14 @@ import type { FC } from 'react';
 import { Outlet } from 'react-router';
 
 import styles from '@/layouts/MainLayout/MainLayout.module.scss';
-
-import { MainSidebar } from '@/layouts/MainLayout/MainSidebar/MainSidebar';
+import { Sidebar } from '@/components/Sidebar/Sidebar';
 
 const cn = classNames.bind(styles);
 
 const MainLayout: FC = () => {
     return (
         <div className={cn('main__container')}>
-            <MainSidebar />
+            <Sidebar />
             <Outlet />
         </div>
     );

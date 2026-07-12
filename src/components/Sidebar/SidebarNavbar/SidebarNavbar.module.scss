@@ -1,0 +1,137 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.sidebar_navbar {
+    @include glassBg();
+
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    min-width: 50%;
+    max-width: 90%;
+    width: fit-content;
+    padding: 8px 20px;
+    border-radius: 50px;
+
+    &--list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+    }
+
+    &--icon-stroke {
+        width: 28px;
+        height: 28px;
+
+        stroke: var(--accent-fog);
+
+        transition: $transition-smooth;
+    }
+
+    &--icon-fill {
+        width: 28px;
+        height: 28px;
+
+        fill: var(--accent-base);
+
+        transition: $transition-smooth;
+    }
+
+    &--icon-bounce {
+        animation: ios-pop 400ms cubic-bezier(0.22, 1, 0.36, 1);
+
+        @keyframes ios-pop {
+            0% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            20% {
+                transform: scale(1.15) rotate(-6deg);
+            }
+
+            50% {
+                transform: scale(1.22) rotate(5deg);
+            }
+
+            80% {
+                transform: scale(0.96) rotate(-2deg);
+            }
+
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+        }
+    }
+
+    &--navlink {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+
+        text-decoration: none;
+
+        animation: bounce 300ms ease;
+    }
+
+    &--navlink:hover &--navitem_title,
+    &--navitem-title--active {
+        color: var(--accent-hover);
+    }
+
+    &--navlink:active &--navitem_title {
+        color: var(--accent-active);
+    }
+
+    &--navlink:hover &--icon-fill {
+        fill: var(--accent-hover);
+        transform: scale(1.085);
+    }
+
+    &--navlink:active &--icon-fill {
+        fill: var(--accent-active);
+        transform: scale(0.955);
+    }
+
+    &--navlink:hover &--icon-stroke {
+        stroke: var(--accent-hover);
+        transform: scale(1.085);
+    }
+
+    &--navlink:active &--icon-stroke {
+        stroke: var(--accent-active);
+        transform: scale(0.955);
+    }
+
+    &--navitem_title {
+        @include ui($size: xs);
+
+        color: var(--accent-fog);
+
+        transition: $transition-smooth;
+
+        &--active {
+            color: var(--accent-base);
+        }
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1);
+    }
+    40% {
+        transform: scale(1.25);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

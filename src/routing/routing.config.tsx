@@ -8,7 +8,6 @@ import { PrivateRoute } from './routes/PrivateRoute';
 
 // Layouts
 const MainLayout = lazy(() => import('@/layouts/MainLayout/MainLayout'));
-const SettingsLayout = lazy(() => import('@/layouts/SettingsLayout/SettingsLayout'));
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout/AuthLayout'));
 
 // Pages
@@ -28,11 +27,8 @@ export const appConfig: RouteObject[] = [
         path: PATHS.app.chat,
         element: <ChatPage />,
     },
-];
-
-export const settingsConfig: RouteObject[] = [
     {
-        path: PATHS.settings.profile,
+        path: PATHS.app.profile,
         element: <ProfilePage />,
     },
 ];
@@ -71,18 +67,7 @@ export const globalConfig: RouteObject[] = [
         children: [
             {
                 element: <MainLayout />,
-                handle: {
-                    pageTitle: 'Messages',
-                },
                 children: appConfig,
-            },
-            {
-                path: PATHS.settings.index,
-                element: <SettingsLayout />,
-                handle: {
-                    pageTitle: 'Settings',
-                },
-                children: settingsConfig,
             },
         ],
     },

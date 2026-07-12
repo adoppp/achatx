@@ -100,3 +100,39 @@ body {
     font-family: 'Inter', sans-serif;
     background-color: var(--bg-primary);
 }
+
+/* Chrome / Safari / Edge */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(from var(--accent-base) r g b / 0.16);
+
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(from var(--accent-base) r g b / 0.28);
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background: rgb(from var(--accent-base) r g b / 0.42);
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+    background: transparent;
+}
+
+::-webkit-scrollbar-button {
+    display: none;
+}
+

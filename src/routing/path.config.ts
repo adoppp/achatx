@@ -9,9 +9,6 @@ export const PATHS = {
     app: {
         chats: 'chats',
         chat: 'chat/:chatId',
-    },
-    settings: {
-        index: 'settings',
         profile: 'profile'
-    }
+    },
 } as const;

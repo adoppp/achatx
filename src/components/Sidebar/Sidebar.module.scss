@@ -7,11 +7,12 @@
     position: relative;
     
     width: 320px;
-
+    
     flex-shrink: 0;
     border-right: 1px solid var(--border-color);
-
+    
     &__container {
+        max-height: 100dvh;
         overflow-y: auto;
     }
 }

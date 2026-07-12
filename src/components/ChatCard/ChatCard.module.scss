@@ -50,12 +50,13 @@
     &__message {
         @include ui($size: sm);
 
-        overflow: hidden;
         color: var(--text-secondary);
-        white-space: nowrap;
-        text-overflow: ellipsis;
 
         max-width: 180px;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     &__time {
