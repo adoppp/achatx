@@ -48,7 +48,7 @@ export const Input: FC<InputProps> = ({
                 </label>
             )}
 
-            <div className={cn('input__container')}>
+            <div className={cn('input__container', customClass?.inputContainer)}>
                 {leftIcon && (
                     <button type="button" className={cn('icon__left')} onClick={onClickLeft}>
                         {leftIcon}

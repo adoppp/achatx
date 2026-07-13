@@ -12,8 +12,8 @@
     background: var(--glassBgColor);
     box-shadow: 0 4px 30px var(--accent-fog);
     border: 1px solid var(--accent-fog);
-    backdrop-filter: blur(2.7px);
-    -webkit-backdrop-filter: blur(2.7px);
+        backdrop-filter: blur(7.5px);
+        -webkit-backdrop-filter: blur(7.5px);
     
     :root[data-theme='dark'] & {
         backdrop-filter: blur(7.5px);

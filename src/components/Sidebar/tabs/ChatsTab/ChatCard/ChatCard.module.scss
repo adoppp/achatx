@@ -1,0 +1,144 @@
+@use '@/styles/typography' as *;
+@use '@/styles/colors' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+    padding: 2px 4px;
+
+    &__link {
+        text-decoration: none;
+
+        display: flex;
+        justify-content: space-between;
+
+        padding: 8px 12px;
+        border: 1px solid transparent;
+        border-radius: $border-radius;
+
+        transition: $transition-smooth;
+
+        &--active {
+            @include glassBg();
+
+            background: linear-gradient(
+                180deg,
+                rgb(from var(--accent-base) r g b / 0.12) 0%,
+                rgb(from var(--accent-base) r g b / 0.06) 100%
+            );
+
+            border-color: rgb(from var(--accent-base) r g b / 0.15);
+
+            box-shadow:
+                inset 0 1px 0 rgba(231, 231, 231, 0.315),
+                0 4px 16px rgb(from var(--accent-base) r g b / 0.15);
+
+            &:hover {
+                transform: translateY(-1px);
+            }
+
+            &:active {
+                transform: scale(0.98);
+
+                padding: 10px 12px;
+
+                box-shadow:
+                    inset 0 2px 8px rgb(0 0 0 / 0.08),
+                    0 2px 10px rgb(from var(--accent-base) r g b / 0.08);
+            }
+        }
+
+    }
+
+    &:hover &__link {
+        @include glassBg();
+    }
+
+    &:active &__link {
+        transform: scale(0.985);
+
+        background: linear-gradient(
+            180deg,
+            rgb(from var(--accent-base) r g b / 0.16) 0%,
+            rgb(from var(--accent-base) r g b / 0.1) 100%
+        );
+
+        border-color: rgb(from var(--accent-base) r g b / 0.22);
+
+        box-shadow:
+            inset 0 2px 6px rgb(0 0 0 / 0.06),
+            0 2px 8px rgb(from var(--accent-base) r g b / 0.1);
+    }
+
+    &__right {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__avatar--relative {
+        position: relative;
+    }
+
+    &__online {
+        position: absolute;
+        right: 0;
+        bottom: 20%;
+
+        transform: translateY(50%);
+
+        background-color: $success;
+
+        width: 12px;
+        height: 12px;
+
+        border-radius: 50%;
+    }
+
+    &__main-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__name {
+        @include text();
+
+        color: var(--text-primary);
+
+        transition: $transition-smooth;
+    }
+
+    &__link--active &__name {
+        color: var(--accent-base);
+    }
+
+    &__message {
+        @include ui($size: sm);
+
+        color: var(--text-secondary);
+
+        max-width: 160px;
+
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+
+        transition: $transition-smooth;
+    }
+
+    &__link--active &__message {
+        color: var(--text-primary);
+    }
+
+    &__time {
+        @include meta();
+
+        color: var(--text-secondary);
+
+        transition: $transition-smooth;
+    }
+
+    &__link--active &__time {
+        color: var(--accent-base);
+    }
+}

@@ -22,6 +22,7 @@ export interface InputProps {
     autoComplete?: InputHTMLAttributes<HTMLInputElement>['autoComplete'];
     customClass?: {
         container?: string;
+        inputContainer?: string;
         label?: string;
         input?: string;
         error?: string;

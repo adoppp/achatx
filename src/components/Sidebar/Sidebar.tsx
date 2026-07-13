@@ -3,25 +3,21 @@ import { useState, type FC } from 'react';
 
 import styles from '@/components/Sidebar/Sidebar.module.scss';
 
-import { ChatCard } from '../ChatCard/ChatCard';
+import { tabs } from './Sidebar.config';
 import type { SidebarTab } from './Sidebar.types';
 import { SidebarNavbar } from './SidebarNavbar/SidebarNavbar';
-import { testDataChats } from './temp.data';
-import { ChatsTab } from './tabs/ChatsTab/ChatsTab';
-import { SettingsTab } from './tabs/SettingsTab/SettingsTab';
 
 const cn = classNames.bind(styles);
 
 const SidebarRoot: FC = () => {
     const [activeTab, setActiveTab] = useState<SidebarTab>('chats');
-
-    const items = testDataChats.map((item) => <ChatCard key={item.id} {...item} />);
+    const Tab: FC = tabs[activeTab];
 
     return (
         <aside className={cn('sidebar')}>
             <div className={cn('sidebar__container')}>
-                <ul>{items}</ul>
-                <SidebarNavbar />
+                <Tab />
+                <SidebarNavbar handleSetNewTab={(value: SidebarTab) => setActiveTab(value)} />
             </div>
         </aside>
     );
@@ -29,6 +25,4 @@ const SidebarRoot: FC = () => {
 
 export const Sidebar = Object.assign(SidebarRoot, {
     SidebarNavbar,
-    ChatsTab,
-    SettingsTab
 });

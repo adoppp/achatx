@@ -25,9 +25,9 @@
     --accent-hover: var(--accent-600);
     --accent-active: var(--accent-400);
 
-    --accent-fog: rgb(from var(--accent-500) r g b / 0.2);
+    --accent-fog: rgb(from var(--accent-500) r g b / 0.3);
 
-    --glassBgColor: rgba(245, 245, 245, 0.415);
+    --glassBgColor: rgba(243, 243, 243, 0.596);
 }
 
 :root[data-theme='dark'] {

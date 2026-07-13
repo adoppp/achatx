@@ -1,6 +1,7 @@
-import { Sidebar } from './Sidebar';
+import { ChatsTab } from './tabs/ChatsTab/ChatsTab';
+import { SettingsTab } from './tabs/SettingsTab/SettingsTab';
 
 export const tabs = {
-    chats: <Sidebar.ChatsTab />,
-    settings: <Sidebar.SettingsTab />,
+    chats: ChatsTab,
+    settings: SettingsTab,
 };
