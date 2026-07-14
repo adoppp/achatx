@@ -8,16 +8,50 @@
     padding-inline: 16px;
 }
 
-@mixin glassBg() {
-    background: var(--glassBgColor);
-    box-shadow: 0 4px 30px var(--accent-fog);
-    border: 1px solid var(--accent-fog);
-        backdrop-filter: blur(7.5px);
-        -webkit-backdrop-filter: blur(7.5px);
-    
-    :root[data-theme='dark'] & {
-        backdrop-filter: blur(7.5px);
-        -webkit-backdrop-filter: blur(7.5px);
+@mixin glassBg($blur: 10px) {
+    background: linear-gradient(145deg, var(--glass-bg-strong), var(--glass-bg));
+
+    backdrop-filter: blur($blur) saturate(180%);
+
+    -webkit-backdrop-filter: blur($blur) saturate(180%);
+
+    border: 1px solid var(--glass-border);
+
+    box-shadow:
+        inset 0 1px 0 var(--glass-highlight),
+        0 8px 24px var(--glass-shadow),
+        0 0 20px rgb(from var(--accent-base) r g b / 0.05);
+}
+
+@mixin telegramGlassFade($fade-depth: 28px, $blur: 8px) {
+    isolation: isolate;
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        bottom: -$fade-depth;
+        left: 0;
+
+        background: linear-gradient(
+            180deg,
+            rgb(from var(--bg-secondary) r g b / 0.88) 0%,
+            rgb(from var(--bg-secondary) r g b / 0.68) 58%,
+            rgb(from var(--bg-secondary) r g b / 0) 100%
+        );
+        backdrop-filter: blur($blur) saturate(160%);
+        -webkit-backdrop-filter: blur($blur) saturate(160%);
+        mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+        -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 58%, transparent 100%);
+
+        pointer-events: none;
+    }
+
+    & > * {
+        position: relative;
+        z-index: 1;
     }
 }
 
@@ -32,7 +66,7 @@
     transition: $transition-smooth;
 
     &:hover {
-        color: var(--accent-hover); 
+        color: var(--accent-hover);
         transform: scale(1.01);
     }
 
@@ -48,7 +82,7 @@
     opacity: 0;
 
     background-color: var(--bg-fog);
-    backdrop-filter: blur(3px);
+    backdrop-filter: blur(10px) saturate(130%);
 
     width: 100dvw;
     height: 100dvh;
@@ -66,18 +100,5 @@
     }
     to {
         opacity: 1;
-    }
-}
-
-@mixin bgModalClose {
-    animation: close 0.2s ease-in-out forwards;
-}
-
-@keyframes close {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
     }
 }

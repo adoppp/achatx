@@ -1,6 +1,7 @@
 @use '@/styles/typography' as *;
 @use '@/styles/colors' as *;
 @use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
 
 .input {
     --py: 6px;
@@ -18,20 +19,30 @@
         display: flex;
         align-items: center;
 
-        border: 1px solid var(--accent-fog);
+        background: linear-gradient(145deg, var(--input-bg), rgb(from var(--accent-base) r g b / 0.12));
+        border: 1px solid var(--input-border);
+        box-shadow:
+            inset 0 1px 0 var(--glass-highlight),
+            0 4px 14px rgb(from var(--accent-base) r g b / 0.07);
         border-radius: $border-radius;
-        background: transparent;
+
 
         transition: $transition-smooth;
 
         &:hover {
-            border-color: var(--accent-hover);
-            box-shadow: 0 0 12px 8px var(--accent-fog);
+            border-color: rgb(from var(--accent-base) r g b / 0.7);
+            box-shadow:
+                inset 0 1px 0 var(--glass-highlight),
+                0 5px 18px var(--glass-glow);
         }
 
         &:focus-within {
-            border-color: var(--accent-active);
-            box-shadow: 0 0 8px 2px var(--accent-active);
+            background: linear-gradient(145deg, var(--glass-bg-strong), rgb(from var(--accent-base) r g b / 0.13));
+            border-color: var(--accent-base);
+            box-shadow:
+                inset 0 1px 0 var(--glass-highlight),
+                0 0 0 2px rgb(from var(--accent-base) r g b / 0.2),
+                0 8px 24px var(--glass-glow);
 
             & + .input__error {
                 opacity: 1;
@@ -106,15 +117,42 @@
     }
 }
 
+.input--glass {
+    & .input__container {
+        @include glassBg();
+        background: transparent;
+
+
+        transition:
+            background-color $transition-smooth,
+            border-color $transition-smooth,
+            box-shadow $transition-smooth,
+            backdrop-filter $transition-smooth,
+            -webkit-backdrop-filter $transition-smooth;
+
+        &:hover {
+            background: var(--glass-bg-strong);
+            border-color: var(--accent-hover);
+            box-shadow: 0 6px 22px var(--glass-glow);
+        }
+
+        &:focus-within {
+            background: var(--glass-bg-strong);
+            border-color: var(--accent-active);
+            box-shadow: 0 0 0 2px rgb(from var(--accent-base) r g b / 0.22), 0 8px 24px var(--glass-glow);
+        }
+    }
+}
+
 .input--error .input__container {
     border-color: $error;
 
     &:hover {
-        box-shadow: 0 0 8px 4px $error;
+        box-shadow: none;
     }
 
     &:focus-within {
-        box-shadow: 0 0 8px 2px $error;
+        box-shadow: 0 0 0 3px rgb(from $error r g b / 0.18);
     }
 }
 

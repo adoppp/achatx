@@ -19,7 +19,7 @@
     color: var(--text-primary);
 
     &:hover:not(:disabled) {
-        transform: translateY(-1px);
+        filter: brightness(0.97);
 
         & .content svg {
             transform: scale(1.1);
@@ -27,7 +27,8 @@
     }
 
     &:active:not(:disabled) {
-        transform: translateY(1px);
+        transform: scale(0.97);
+        filter: brightness(0.9);
 
         & .content svg {
             transform: scale(0.9);
@@ -67,24 +68,22 @@
 }
 
 .primary {
-    position: relative;
-
-    background-color: var(--accent-base);
+    background: var(--accent-base);
     color: #fff;
-
-    overflow: hidden;
-
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.24),
+        0 6px 18px rgb(from var(--accent-base) r g b / 0.32);
 
     &:hover:not(:disabled) {
-        background-color: var(--accent-hover);
-
-        box-shadow: 0 2px 6px 8px var(--accent-fog);
+        background: var(--accent-hover);
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.24),
+            0 8px 24px rgb(from var(--accent-base) r g b / 0.44);
     }
 
     &:active:not(:disabled) {
-        background-color: var(--accent-active);
-        box-shadow: 0 1px 6px 8px var(--accent-fog);
+        background: var(--accent-700);
+        box-shadow: inset 0 2px 5px rgb(0 0 0 / 0.2);
     }
 
     &:disabled {
@@ -101,50 +100,18 @@
         stroke: #fff;
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-
-        background: linear-gradient(
-            0deg,
-            transparent 20%,
-            rgba(255, 255, 255, 0.5) 50%,
-            transparent 80%
-        );
-        background-size: 100% 200%;
-        background-position: 0 0;
-
-        filter: blur(8px);
-        opacity: 0.9;
-
-        pointer-events: none;
-        transition: $transition-smooth;
-    }
-
-    &:hover:not(:disabled)::after {
-        opacity: 0.6;
-
-        background-position: 0 100%;
-    }
-
-    &:active:not(:disabled)::after {
-        opacity: 0.4;
-
-        background-position: 0 50%;
-    }
 }
 
 .secondary {
-    @include glassBg();
-
-    border: 1px solid var(--accent-fog);
-    box-shadow: 0 1px 2px 0 var(--accent-fog);
+    background: linear-gradient(145deg, var(--button-secondary-bg), rgb(from var(--accent-base) r g b / 0.18));
+    border: 1px solid rgb(from var(--accent-base) r g b / 0.5);
+    color: var(--accent-base);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 5px 16px rgb(from var(--accent-base) r g b / 0.12);
 
     &:hover:not(:disabled) {
-        border-color: var(--accent-hover);
-
-        box-shadow: 0 2px 12px 8px var(--accent-fog);
+        background: linear-gradient(145deg, var(--button-secondary-bg), rgb(from var(--accent-base) r g b / 0.3));
+        border-color: var(--accent-base);
+        box-shadow: inset 0 1px 0 var(--glass-highlight), 0 7px 22px var(--glass-glow);
 
         & .content svg {
             color: var(--accent-hover);
@@ -153,11 +120,8 @@
     }
 
     &:active:not(:disabled) {
-        border-color: var(--accent-active);
-
-        box-shadow:
-            0 2px 4px var(--accent-fog),
-            inset 0 0 6px 3px var(--accent-fog);
+        background: rgb(from var(--accent-base) r g b / 0.34);
+        box-shadow: inset 0 1px 4px rgb(from var(--accent-base) r g b / 0.16), 0 3px 12px var(--glass-glow);
 
         & .content svg {
             color: var(--accent-active);
@@ -181,25 +145,58 @@
     }
 }
 
-.error {
-    position: relative;
+.tertiary {
+    background: var(--button-tertiary-bg);
+    border: 1px solid var(--button-tertiary-border);
+    color: var(--text-primary);
+    box-shadow: inset 0 1px 0 var(--glass-highlight), 0 3px 12px rgb(from var(--accent-base) r g b / 0.06);
 
+    &:hover:not(:disabled) {
+        background: rgb(from var(--accent-base) r g b / 0.14);
+        border-color: rgb(from var(--accent-base) r g b / 0.58);
+        box-shadow: 0 5px 16px rgb(from var(--accent-base) r g b / 0.16);
+
+        & .content svg {
+            color: var(--accent-hover);
+            stroke: var(--accent-hover);
+        }
+    }
+
+    &:active:not(:disabled) {
+        background: rgb(from var(--accent-base) r g b / 0.21);
+        box-shadow: inset 0 1px 3px rgb(from var(--accent-base) r g b / 0.12);
+
+        & .content svg {
+            color: var(--accent-active);
+            stroke: var(--accent-active);
+        }
+    }
+
+    & .loader::after {
+        border: 2px solid var(--accent-fog);
+        border-top-color: var(--accent-base);
+    }
+
+    & .content svg {
+        color: var(--accent-fog);
+        stroke: var(--accent-fog);
+    }
+}
+
+.error {
     background-color: $error;
     color: #fff;
-
-    overflow: hidden;
-
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 6px 18px $error-fog;
 
     &:hover:not(:disabled) {
         background-color: $error-hover;
 
-        box-shadow: 0 2px 12px 4px $error-fog;
+        box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.2), 0 8px 24px $error-fog;
     }
 
     &:active:not(:disabled) {
         background-color: $error-active;
-        box-shadow: 0 1px 8px 2px $error-fog;
+        box-shadow: none;
     }
 
     &:disabled {
@@ -215,38 +212,6 @@
         color: #fff;
     }
 
-    &::after {
-        content: '';
-        position: absolute;
-        inset: 0;
-
-        background: linear-gradient(
-            0deg,
-            transparent 20%,
-            rgba(255, 255, 255, 0.5) 50%,
-            transparent 80%
-        );
-        background-size: 100% 200%;
-        background-position: 0 0;
-
-        filter: blur(8px);
-        opacity: 0.9;
-
-        pointer-events: none;
-        transition: $transition-smooth;
-    }
-
-    &:hover:not(:disabled)::after {
-        opacity: 0.6;
-
-        background-position: 0 100%;
-    }
-
-    &:active:not(:disabled)::after {
-        opacity: 0.4;
-
-        background-position: 0 50%;
-    }
 }
 
 .content {

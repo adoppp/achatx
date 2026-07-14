@@ -14,6 +14,7 @@ export const Input: FC<InputProps> = ({
     id,
 
     size = 'm',
+    variant = 'default',
     type = 'text',
 
     error,
@@ -35,6 +36,7 @@ export const Input: FC<InputProps> = ({
             className={cn(
                 'input',
                 `input--${size}`,
+                `input--${variant}`,
                 hasError && 'input--error',
                 customClass?.container,
             )}

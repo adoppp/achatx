@@ -1,0 +1,38 @@
+@use '@/styles/mixins' as *;
+@use '@/styles/variables' as *;
+
+@mixin authPanel() {
+    width: min(calc(100% - 32px), 420px);
+    margin-inline: auto;
+}
+
+@mixin authCard() {
+    @include glassBg(2px);
+
+    background: transparent;
+    padding: clamp(24px, 5vw, 32px) clamp(20px, 4vw, 28px);
+    border-radius: $border-radius;
+}
+
+@mixin authIntro() {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    color: var(--text-primary);
+    margin-bottom: clamp(24px, 4vw, 28px);
+}
+
+@mixin authFormStack($gap: 12px) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+@mixin authIcon() {
+    background: linear-gradient(145deg, var(--accent-400), var(--accent-base));
+    border-radius: $border-radius;
+    color: #fff;
+    box-shadow: 0 6px 18px rgb(from var(--accent-base) r g b / 0.3);
+}

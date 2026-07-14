@@ -22,10 +22,13 @@ export const ChatsTab: FC = () => {
                     value={searchValue}
                     onChange={setSearchValue}
                     placeholder="Search"
+                    variant="glass"
                     rightIcon={<IoSearchOutline className={cn('chats__tab--search-icon')} />}
-                    customClass={{ inputContainer: cn('chats__tab--search-input') }}
+                    customClass={{
+                        container: cn('chats__tab--search-input'),
+                    }}
                 />
-                <Button variant="secondary" customClassName={cn('chats__tab--search-button')}>
+                <Button variant="tertiary" customClassName={cn('chats__tab--search-button')}>
                     <IoAdd className={cn('chats__tab--search-button_icon')} />
                 </Button>
             </div>

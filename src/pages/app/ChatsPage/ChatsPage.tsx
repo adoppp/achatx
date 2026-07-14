@@ -43,6 +43,7 @@ const ChatsPage: FC = () => {
                 Click2
             </Button>
             <Button
+                variant='tertiary'
                 isLoading={isLoading}
                 onClick={handleOnClickTest}
                 rightIcon={<IconArrowRight />}
@@ -53,16 +54,15 @@ const ChatsPage: FC = () => {
             <Input
                 value={text}
                 onChange={setText}
+                variant='glass'
                 size="s"
-                label="Name"
                 placeholder="John doe"
-                error="Error smth went wrong. Please try again"
             />
             <Input
                 value={text}
                 onChange={setText}
+                variant='glass'
                 size="l"
-                label="Name"
                 placeholder="Ask a question"
                 rightIcon={<IconArrowRight />}
                 leftIcon={<IconArrowLeft />}

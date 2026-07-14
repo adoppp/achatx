@@ -2,35 +2,25 @@
 @use '@/styles/colors' as *;
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
+@use '@/sections/auth/authMixins' as *;
 
 .signin {
-    max-width: 420px;
-    min-width: 280px;
-    width: 100%;
-
-    margin: 0 auto;
+    @include authPanel();
 
     &__container {
-        @include glassBg();
-        
-        padding: 24px 16px;
-        border-radius: $border-radius;    
+        @include authCard();
+
     }
 
     &__header {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 24px;
+        @include authIntro();
 
         &-box {
-            background-color: var(--accent-base);
-            border-radius: $border-radius;
+            @include authIcon();
             
             width: fit-content;
 
-            padding: 4px 8px;
+            padding: 8px 12px;
         }
 
         &-logo {
@@ -46,15 +36,15 @@
     }
 
     &__inputs-container {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        @include authFormStack();
     }
 
     &__user-helpers {
         display: flex;
         justify-content: space-between;
         align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
         margin-top: 16px;
     }
 
@@ -65,7 +55,7 @@
     &__button {
         width: 100%;
 
-        margin-top: 40px;
+        margin-top: clamp(24px, 5vw, 32px);
     }
 
     &__register {

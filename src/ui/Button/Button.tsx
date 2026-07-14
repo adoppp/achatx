@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import styles from '@/ui/Button/Button.module.scss';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-    variant?: 'primary' | 'secondary' | 'error';
+    variant?: 'primary' | 'secondary' | 'tertiary' | 'error';
     size?: 's' | 'm' | 'l';
     customClassName?: string;
 

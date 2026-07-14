@@ -9,6 +9,7 @@ export interface InputProps {
     onChange: (value: string) => void;
 
     size?: 's' | 'm' | 'l';
+    variant?: 'default' | 'glass';
     type?: InputHTMLAttributes<HTMLInputElement>['type'];
 
     error?: string | null;

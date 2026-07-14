@@ -4,12 +4,14 @@
 @use '@/styles/mixins' as *;
 
 .auth {
-    height: 100dvh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 
     &__header {
-        @include glassBg();
+        @include glassBg(18px);
 
-        border-bottom: 1px solid var(--accent-fog);
+        border-bottom: 1px solid var(--border-color);
         width: 100%;
 
         &--container {
@@ -21,7 +23,7 @@
             justify-content: center;
             align-items: center;
 
-            padding-block: 24px;
+            padding-block: max(14px, env(safe-area-inset-top)) 14px;
         }
 
         &--title {
@@ -33,8 +35,13 @@
 
     &__section-container {
         @include container();
+
+        display: flex;
+        flex: 1;
+        align-items: center;
+        width: 100%;
         position: relative;
-        padding-block: 32px;
+        padding-block: clamp(32px, 8vh, 72px);
     }
 
     &__section-bg {
@@ -47,6 +54,6 @@
         background-image: url('../../assets//img//bg_light.png');
         background-repeat: no-repeat;
         background-size: cover;
-        opacity: 0.1;
+        opacity: 0.045;
     }
 }

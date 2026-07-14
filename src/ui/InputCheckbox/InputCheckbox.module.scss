@@ -31,25 +31,27 @@
     }
 
     &__checkmark {
-        @include glassBg();
-
         position: absolute;
         top: 0;
         left: 0;
         height: 24px;
         width: 24px;
-        border: 1px solid var(--accent-fog);
-        border-radius: 8px;
+        background: linear-gradient(145deg, var(--input-bg), rgb(from var(--accent-base) r g b / 0.08));
+        border: 1px solid var(--glass-border);
+        border-radius: $border-radius;
 
         transition: $transition-smooth;
 
         .checkbox__container:hover input ~ & {
-            background-color: var(--accent-fog);
+            border-color: var(--accent-base);
+            box-shadow: 0 3px 12px var(--glass-glow);
         }
 
 
         .checkbox__container input:checked ~ & {
             background-color: var(--accent-base);
+            border-color: var(--accent-base);
+            box-shadow: 0 3px 14px rgb(from var(--accent-base) r g b / 0.42);
         }
 
         &:after {

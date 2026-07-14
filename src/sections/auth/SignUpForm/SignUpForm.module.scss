@@ -2,13 +2,10 @@
 @use '@/styles/colors' as *;
 @use '@/styles/variables' as *;
 @use '@/styles/mixins' as *;
+@use '@/sections/auth/authMixins' as *;
 
 .signup {
-    max-width: 420px;
-    min-width: 280px;
-    width: 100%;
-
-    margin: 0 auto;
+    @include authPanel();
 
     &__loader {
         display: flex;
@@ -17,44 +14,28 @@
     }
 
     &__container {
-        @include glassBg();
-        
-        padding: 24px 16px;
-        border-radius: $border-radius;
-        border: 1px solid var(--accent-fog);
-        margin: 0 auto;
+        @include authCard();
 
         transition: $transition-smooth;
-
-        // transform: translateX(10px);
+        
         opacity: 0;
 
         animation: stepOpen 0.3s ease-in-out forwards;
     }
 
     &__form {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
+        @include authFormStack();
     }
 
     &__description {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-
-        color: var(--text-primary);
-
-        margin-bottom: 24px;
+        @include authIntro();
 
         &--icon {
-            background-color: var(--accent-base);
+            @include authIcon();
 
             width: fit-content;
 
             padding: 8px 12px;
-            border-radius: $border-radius;
 
             & svg {
                 width: 32px;
@@ -87,7 +68,7 @@
     }
 
     &__progress {
-        margin-bottom: 24px;
+        margin-bottom: clamp(24px, 4vw, 28px);
 
         &--list {
             display: flex;
@@ -108,7 +89,7 @@
             &.step__active,
             &.step__done {
                 background: var(--accent-hover);
-                box-shadow: 0px 0px 16px 2px var(--accent-hover);
+                box-shadow: 0 0 12px 2px rgb(from var(--accent-base) r g b / 0.38);
             }
         }
 
@@ -133,7 +114,7 @@
         justify-content: space-between;
         gap: 12px;
 
-        margin-top: 36px;
+        margin-top: clamp(24px, 5vw, 32px);
 
         &-3 {
             & button {
@@ -260,11 +241,9 @@
 
 @keyframes stepOpen {
     from {
-        // transform: translateX(10px);
         opacity: 0;
     }
     to {
-        // transform: translateX(0);
         opacity: 1;
     }
 }
