@@ -1,4 +1,3 @@
-// endpoints for router config and url functions
 export const PATHS = {
     auth: {
         index: 'auth',
@@ -6,9 +5,23 @@ export const PATHS = {
         signUp: 'signup',
         resetPassword: 'reset_password',
     },
+
     app: {
         chats: 'chats',
         chat: 'chat/:chatId',
-        profile: 'profile'
+
+        settings: {
+            index: 'settings',
+
+            profile: 'profile',
+            privacy: 'privacy',
+            notifications: 'notifications',
+
+            theme: 'theme',
+            language: 'language',
+
+            help: 'help',
+            about: 'about',
+        },
     },
 } as const;

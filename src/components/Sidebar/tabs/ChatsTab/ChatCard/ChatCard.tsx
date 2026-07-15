@@ -14,6 +14,7 @@ export const ChatCard: FC<any> = ({ id, name, lastMessage, timeStamp, online }) 
             <NavLink
                 to={useNavigatePaths.app.chat(id)}
                 className={({ isActive }) => cn('card__link', isActive && 'card__link--active')}
+                viewTransition
             >
                 <div className={cn('card__right')}>
                     <div className={cn('card__avatar--relative')}>

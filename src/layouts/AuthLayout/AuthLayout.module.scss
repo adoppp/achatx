@@ -9,7 +9,18 @@
     flex-direction: column;
 
     &__header {
-        @include glassBg(18px);
+        border-top: none !important;
+        border-left: none !important;
+        border-right: none !important;
+
+        @include glassBg(3.7px);
+
+        html[data-theme='dark'] & {
+            @include glassBg(6px);
+        }
+
+
+        background: transparent;
 
         border-bottom: 1px solid var(--border-color);
         width: 100%;
@@ -54,6 +65,6 @@
         background-image: url('../../assets//img//bg_light.png');
         background-repeat: no-repeat;
         background-size: cover;
-        opacity: 0.045;
+        opacity: 0.15;
     }
 }

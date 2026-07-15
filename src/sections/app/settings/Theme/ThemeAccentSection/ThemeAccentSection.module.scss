@@ -1,0 +1,33 @@
+@use '@/styles/typography' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.section {
+    display: grid;
+    gap: 18px;
+}
+
+.card {
+    @include glassBg(12px);
+    border-radius: 28px;
+    padding: 24px;
+    display: grid;
+    gap: 18px;
+}
+
+.title {
+    @include heading($level: h4);
+    color: var(--text-primary);
+}
+
+.select {
+    width: 100%;
+}
+
+.accent-dot {
+    display: inline-flex;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.36);
+}

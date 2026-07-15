@@ -9,10 +9,21 @@ export const useNavigatePaths = {
         signUp: () => `/${PATHS.auth.index}/${PATHS.auth.signUp}`,
         resetPassword: () => `/${PATHS.auth.index}/${PATHS.auth.resetPassword}`,
     },
+
     app: {
         chats: () => `/${PATHS.app.chats}`,
         chat: (id: number) => `/${PATHS.app.chat.slice(0, 4)}/${id}`,
-        profile: () => `/${PATHS.app.profile}`,
+
+        settings: {
+            index: () => `/${PATHS.app.settings.index}`,
+            profile: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.profile}`,
+            privacy: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.privacy}`,
+            notifications: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.notifications}`,
+            theme: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.theme}`,
+            language: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.language}`,
+            help: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.help}`,
+            about: () => `/${PATHS.app.settings.index}/${PATHS.app.settings.about}`,
+        },
     },
 } as const;
 
@@ -23,9 +34,20 @@ export const absoluteUrls = {
         signUp: () => `${FRONTEND_URL}${useNavigatePaths.auth.signUp()}`,
         resetPassword: () => `${FRONTEND_URL}${useNavigatePaths.auth.resetPassword()}`,
     },
+
     app: {
         chats: () => `${FRONTEND_URL}${useNavigatePaths.app.chats()}`,
         chat: (id: number) => `${FRONTEND_URL}${useNavigatePaths.app.chat(id)}`,
-        profile: () => `${FRONTEND_URL}${useNavigatePaths.app.profile()}`,
+
+        settings: {
+            index: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.index()}`,
+            profile: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.profile()}`,
+            privacy: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.privacy()}`,
+            notifications: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.notifications()}`,
+            theme: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.theme()}`,
+            language: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.language()}`,
+            help: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.help()}`,
+            about: () => `${FRONTEND_URL}${useNavigatePaths.app.settings.about()}`,
+        },
     },
 } as const;

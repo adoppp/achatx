@@ -9,14 +9,29 @@ import { PrivateRoute } from './routes/PrivateRoute';
 // Layouts
 const MainLayout = lazy(() => import('@/layouts/MainLayout/MainLayout'));
 const AuthLayout = lazy(() => import('@/layouts/AuthLayout/AuthLayout'));
+const SettingsLayout = lazy(() => import('@/layouts/SettingsLayout/SettingsLayout'));
 
 // Pages
-const ChatPage = lazy(() => import('@/pages/app/ChatPage/ChatPage'));
-const ChatsPage = lazy(() => import('@/pages/app/ChatsPage/ChatsPage'));
+
+// auth
 const SignInPage = lazy(() => import('@/pages/auth/SignInPage/SignInPage'));
 const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage/SignUpPage'));
-const ProfilePage = lazy(() => import('@/pages/app/settings/ProfilePage/ProfilePage'));
 const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'));
+
+// app
+const ChatPage = lazy(() => import('@/pages/app/ChatPage/ChatPage'));
+const ChatsPage = lazy(() => import('@/pages/app/ChatsPage/ChatsPage'));
+
+// settings
+const ProfilePage = lazy(() => import('@/pages/app/settings/ProfilePage/ProfilePage'));
+const PrivacyPage = lazy(() => import('@/pages/app/settings/PrivacyPage/PrivacyPage'));
+const NotificationsPage = lazy(
+    () => import('@/pages/app/settings/NotificationsPage/NotificationsPage'),
+);
+const ThemePage = lazy(() => import('@/pages/app/settings/ThemePage/ThemePage'));
+const LanguagePage = lazy(() => import('@/pages/app/settings/LanguagePage/LanguagePage'));
+const HelpPage = lazy(() => import('@/pages/app/settings/HelpPage/HelpPage'));
+const AboutPage = lazy(() => import('@/pages/app/settings/AboutPage/AboutPage'));
 
 export const appConfig: RouteObject[] = [
     {
@@ -28,8 +43,38 @@ export const appConfig: RouteObject[] = [
         element: <ChatPage />,
     },
     {
-        path: PATHS.app.profile,
-        element: <ProfilePage />,
+        path: PATHS.app.settings.index,
+        element: <SettingsLayout />,
+        children: [
+            {
+                path: PATHS.app.settings.profile,
+                element: <ProfilePage />,
+            },
+            {
+                path: PATHS.app.settings.privacy,
+                element: <PrivacyPage />,
+            },
+            {
+                path: PATHS.app.settings.notifications,
+                element: <NotificationsPage />,
+            },
+            {
+                path: PATHS.app.settings.theme,
+                element: <ThemePage />,
+            },
+            {
+                path: PATHS.app.settings.language,
+                element: <LanguagePage />,
+            },
+            {
+                path: PATHS.app.settings.help,
+                element: <HelpPage />,
+            },
+            {
+                path: PATHS.app.settings.about,
+                element: <AboutPage />,
+            },
+        ],
     },
 ];
 

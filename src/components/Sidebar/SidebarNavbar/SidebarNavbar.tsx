@@ -34,46 +34,47 @@ export const SidebarNavbar: FC<SidebarNavbarProps> = ({ handleSetNewTab }) => {
                             to={item.href}
                             className={cn('sidebar_navbar--navlink')}
                             onClick={() => handleClick(item.title)}
+                            viewTransition
                         >
-                            {({ isActive }) => (
-                                <>
-                                    {isActive ||
-                                    (location.pathname.includes('/chat/') &&
-                                        item.title === 'chats') ? (
-                                        <item.filledIcon
-                                            className={cn(
-                                                'sidebar_navbar--icon-fill',
-                                                animated === item.title &&
-                                                    (item.selfAnimation
-                                                        ? `sidebar_navbar--icon-${item.title}`
-                                                        : 'sidebar_navbar--icon-bounce'),
-                                            )}
-                                        />
-                                    ) : (
-                                        <item.outlinedIcon
-                                            className={cn(
-                                                'sidebar_navbar--icon-stroke',
-                                                animated === item.title &&
-                                                    (item.selfAnimation
-                                                        ? `sidebar_navbar--icon-${item.title}`
-                                                        : 'sidebar_navbar--icon-bounce'),
-                                            )}
-                                        />
-                                    )}
+                            {({ isActive }) => {
+                                const active = isActive || item.match?.(location.pathname);
 
-                                    <p
-                                        className={cn(
-                                            'sidebar_navbar--navitem_title',
-                                            isActive ||
-                                                (location.pathname.includes('/chat/') &&
-                                                    item.title === 'chats' &&
-                                                    'sidebar_navbar--navitem_title--active'),
+                                return (
+                                    <>
+                                        {isActive || active ? (
+                                            <item.filledIcon
+                                                className={cn(
+                                                    'sidebar_navbar--icon-fill',
+                                                    animated === item.title &&
+                                                        (item.selfAnimation
+                                                            ? `sidebar_navbar--icon-${item.title}`
+                                                            : 'sidebar_navbar--icon-bounce'),
+                                                )}
+                                            />
+                                        ) : (
+                                            <item.outlinedIcon
+                                                className={cn(
+                                                    'sidebar_navbar--icon-stroke',
+                                                    animated === item.title &&
+                                                        (item.selfAnimation
+                                                            ? `sidebar_navbar--icon-${item.title}`
+                                                            : 'sidebar_navbar--icon-bounce'),
+                                                )}
+                                            />
                                         )}
-                                    >
-                                        {item.title}
-                                    </p>
-                                </>
-                            )}
+
+                                        <p
+                                            className={cn(
+                                                'sidebar_navbar--navitem_title',
+                                                (isActive || active) &&
+                                                    'sidebar_navbar--navitem_title--active',
+                                            )}
+                                        >
+                                            {item.title}
+                                        </p>
+                                    </>
+                                );
+                            }}
                         </NavLink>
                     </li>
                 ))}

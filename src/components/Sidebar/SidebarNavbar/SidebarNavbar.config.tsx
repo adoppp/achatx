@@ -14,8 +14,9 @@ interface NavbarConfigItem {
     outlinedIcon: IconType;
     filledIcon: IconType;
     href: string;
-    selfAnimation?: boolean
-};
+    selfAnimation?: boolean;
+    match: (pathname: string) => boolean;
+}
 
 export const navbarConfig: NavbarConfigItem[] = [
     {
@@ -23,12 +24,14 @@ export const navbarConfig: NavbarConfigItem[] = [
         outlinedIcon: IoChatbubblesOutline,
         filledIcon: IoChatbubbles,
         href: useNavigatePaths.app.chats(),
+        match: (pathname: string) => pathname === '/chats' || pathname.startsWith('/chat/'),
     },
     {
         title: 'settings',
         outlinedIcon: IoSettingsOutline,
         filledIcon: IoSettings,
-        href: useNavigatePaths.app.profile(),
+        href: useNavigatePaths.app.settings.profile(),
         selfAnimation: true,
+        match: (pathname: string) => pathname.startsWith('/settings'),
     },
 ];

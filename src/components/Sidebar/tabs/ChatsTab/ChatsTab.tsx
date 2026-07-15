@@ -16,7 +16,7 @@ export const ChatsTab: FC = () => {
     const items = testDataChats.map((item) => <ChatCard key={item.id} {...item} />);
 
     return (
-        <>
+        <div className={cn('chats__tab')}>
             <div className={cn('chats__tab--search-container')}>
                 <Input
                     value={searchValue}
@@ -33,6 +33,6 @@ export const ChatsTab: FC = () => {
                 </Button>
             </div>
             <ul className={cn('chats__tab--list')}>{items}</ul>
-        </>
+        </div>
     );
 };

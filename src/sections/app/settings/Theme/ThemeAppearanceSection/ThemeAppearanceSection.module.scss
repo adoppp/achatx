@@ -1,0 +1,76 @@
+@use '@/styles/typography' as *;
+@use '@/styles/variables' as *;
+@use '@/styles/mixins' as *;
+
+.section {
+    display: grid;
+    gap: 18px;
+}
+
+.card {
+    @include glassBg(12px);
+    border-radius: 28px;
+    padding: 24px;
+    display: grid;
+    gap: 12px;
+}
+
+.title {
+    @include heading($level: h4);
+    color: var(--text-primary);
+}
+
+.switch-wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.description {
+    @include ui();
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.field {
+    display: grid;
+    gap: 10px;
+}
+
+.field-label {
+    @include text();
+    color: var(--text-secondary);
+}
+
+.segmented {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+}
+
+.segment {
+    @include text();
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border-radius: 14px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease;
+    text-align: center;
+}
+
+.segment:hover {
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.segment--active {
+    background: rgba(from var(--accent-base) r g b / 0.18);
+    border-color: rgba(from var(--accent-base) r g b / 0.28);
+    color: var(--text-primary);
+}

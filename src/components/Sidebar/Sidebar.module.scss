@@ -4,14 +4,16 @@
 @use '@/styles/mixins' as *;
 
 .sidebar {
+    @include glassBg(24px);
+
     position: relative;
     
     width: 360px;
     
     flex-shrink: 0;
+    border: none;
     border-right: 1px solid var(--border-color);
-    background: var(--bg-secondary);
-    
+
     &__container {
         height: 100dvh;
         max-height: 100dvh;

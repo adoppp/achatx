@@ -92,13 +92,32 @@
     align-items: center;
 
     animation: open 0.2s ease-in-out 0.1s forwards;
+
+    @keyframes open {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
 }
 
-@keyframes open {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
+@mixin fadeIn() {
+    animation: iosFadeIn 280ms cubic-bezier(0.22, 1, 0.36, 1) both;
+
+    @keyframes iosFadeIn {
+        0% {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+
+        60% {
+            opacity: 1;
+        }
+
+        100% {
+            transform: translateY(0);
+        }
     }
 }
