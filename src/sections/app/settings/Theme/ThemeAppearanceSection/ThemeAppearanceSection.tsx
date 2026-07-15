@@ -79,8 +79,7 @@ export const ThemeAppearanceSection: FC<ThemeAppearanceSectionProps> = ({
                 </div>
 
                 <p className={cn('description')}>
-                    Light and dark are separate from Background Style. Accent tinted uses the
-                    current accent only in dark mode surfaces.
+                    Accent tinted applies your selected accent to app backgrounds and surfaces.
                 </p>
             </div>
         </section>
