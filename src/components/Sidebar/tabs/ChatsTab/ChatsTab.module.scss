@@ -13,7 +13,7 @@
             left: 0;
             z-index: 100;
 
-            @include telegramGlassFade($fade-depth: 24px, $blur: 4px);
+            @include telegramGlassFade($fade-depth: 28px, $blur: 4px);
 
             display: flex;
             justify-content: space-between;

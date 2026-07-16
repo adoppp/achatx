@@ -8,7 +8,7 @@
     padding-inline: 16px;
 }
 
-@mixin glassBg($blur: 10px) {
+@mixin glassBg($blur: 16px) {
     background: linear-gradient(145deg, var(--glass-bg-strong), var(--glass-bg));
 
     backdrop-filter: blur($blur) saturate(180%);

@@ -1,73 +1,25 @@
-import { useState, type FC } from 'react';
-// import classNames from 'classnames/bind';
+import classNames from 'classnames/bind';
+import { type FC } from 'react';
+import { FaComments } from 'react-icons/fa';
 
-import { Button } from '@/ui/Button/Button';
+import styles from '@/pages/app/ChatsPage/ChatsPage.module.scss';
 
-// import styles from '@/pages/app/ChatsPage/ChatsPage.module.scss';
-import { IconArrowLeft, IconArrowRight } from '@/assets/svg';
-import { Input } from '@/ui/Input/Input';
-import { InputPassword } from '@/ui/InputPassword/InputPassword';
-
-// const cn = classNames.bind(styles);
+const cn = classNames.bind(styles);
 
 const ChatsPage: FC = () => {
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [text, setText] = useState<string>('');
-
-    const handleOnClickTest = () => {
-        setIsLoading(true);
-
-        setTimeout(() => {
-            setIsLoading(false);
-        }, 5000);
-    };
-
     return (
-        <div>
-            Select a chat
-            <Button
-                isLoading={isLoading}
-                onClick={handleOnClickTest}
-                leftIcon={<IconArrowLeft />}
-                rightIcon={<IconArrowRight />}
-            >
-                Click1
-            </Button>
-            <Button
-                isLoading={isLoading}
-                onClick={handleOnClickTest}
-                variant="secondary"
-                leftIcon={<IconArrowLeft />}
-                size="l"
-            >
-                Click2
-            </Button>
-            <Button
-                variant='tertiary'
-                isLoading={isLoading}
-                onClick={handleOnClickTest}
-                rightIcon={<IconArrowRight />}
-                size="s"
-            >
-                Click3
-            </Button>
-            <Input
-                value={text}
-                onChange={setText}
-                variant='glass'
-                size="s"
-                placeholder="John doe"
-            />
-            <Input
-                value={text}
-                onChange={setText}
-                variant='glass'
-                size="l"
-                placeholder="Ask a question"
-                rightIcon={<IconArrowRight />}
-                leftIcon={<IconArrowLeft />}
-            />
-            <InputPassword value={text} onChange={setText} size="l" />
+        <div className={cn('chats')}>
+            <div className={cn('content')}>
+                <div className={cn('iconWrap')} aria-hidden="true">
+                    <FaComments className={cn('icon')} />
+                </div>
+                <h2 className={cn('title')}>Не доверяйте - проверяйте.</h2>
+                <p className={cn('text')}>
+                    Этот мессенджер создан с одной целью - чтобы ваши данные оставались только
+                    вашими. Сквозное шифрование, открытая архитектура безопасности и полный контроль
+                    над приватностью.
+                </p>
+            </div>
         </div>
     );
 };

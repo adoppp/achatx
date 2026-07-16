@@ -3,6 +3,7 @@ import type { FC } from 'react';
 
 import type { SurfaceMode, ThemeMode } from '@/hooks/useTheme';
 import styles from './ThemeAppearanceSection.module.scss';
+import { Button } from '@/ui/Button/Button';
 
 const cn = classNames.bind(styles);
 
@@ -38,18 +39,16 @@ export const ThemeAppearanceSection: FC<ThemeAppearanceSectionProps> = ({
                     <div className={cn('field-label')}>Theme</div>
                     <div className={cn('segmented')} role="radiogroup" aria-label="Theme selection">
                         {THEME_OPTIONS.map((option) => (
-                            <button
+                            <Button
                                 key={option.value}
                                 type="button"
                                 role="radio"
+                                variant={theme === option.value ? 'secondary' : 'tertiary'}
                                 aria-checked={theme === option.value}
-                                className={cn('segment', {
-                                    'segment--active': theme === option.value,
-                                })}
                                 onClick={() => onThemeChange(option.value)}
                             >
                                 {option.label}
-                            </button>
+                            </Button>
                         ))}
                     </div>
                 </div>
@@ -62,18 +61,16 @@ export const ThemeAppearanceSection: FC<ThemeAppearanceSectionProps> = ({
                         aria-label="Surface style selection"
                     >
                         {SURFACE_OPTIONS.map((option) => (
-                            <button
+                            <Button
                                 key={option.value}
+                                variant={surface === option.value ? 'secondary' : 'tertiary'}
                                 type="button"
                                 role="radio"
                                 aria-checked={surface === option.value}
-                                className={cn('segment', {
-                                    'segment--active': surface === option.value,
-                                })}
                                 onClick={() => onSurfaceChange(option.value)}
                             >
                                 {option.label}
-                            </button>
+                            </Button>
                         ))}
                     </div>
                 </div>
