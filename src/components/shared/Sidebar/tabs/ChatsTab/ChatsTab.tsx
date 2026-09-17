@@ -16,6 +16,8 @@ export const ChatsTab: FC = () => {
     const chatsState = useAppSelector(state => state.chats);
     const chats = chatsState.items;
 
+    console.log(chats)
+
 //     const filteredChats = Object.entries(chats).filter(([_, chat]) =>
 //     chat.name.toLowerCase().includes(searchValue.toLowerCase())
 // );

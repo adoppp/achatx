@@ -4,12 +4,11 @@ import { setError } from "@/redux/reducers/errorSlice";
 import { useAppDispatch, 
     // useAppSelector 
 } from "@/redux/redux.hooks"
-import { getChatsByUser } from "@/services/auth.service";
+import { getChatsByUser } from "@/services/chats.service";
 import { useEffect } from "react";
 
 export const useChatsListener = () => {
     const dispatch = useAppDispatch();
-    // const error = useAppSelector(state => state.error);
 
     useEffect(() => {
         dispatch(setChatsLoading('loading'));
