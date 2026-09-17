@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react';
 import { useNavigate } from 'react-router';
 
 import { IconCheckMark } from '@/assets/svg';
-import { useModalContext } from '@/components/Modal/ModalProvider';
+import { useModalContext } from '@/components/shared/Modal/ModalProvider';
 import { emailRegex } from '@/constants/regex';
 import { useAppDispatch } from '@/redux/redux.hooks';
 import { useNavigatePaths } from '@/routing/navigationHelpers.config';

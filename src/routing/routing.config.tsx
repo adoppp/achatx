@@ -2,36 +2,26 @@
 
 import { PATHS } from '@/routing/path.config';
 import { SignUpFormProvider } from '@/sections/auth/SignUpForm/SignUpFormProvider';
-import { lazy } from 'react';
 import type { RouteObject } from 'react-router';
-import { PrivateRoute } from './routes/PrivateRoute';
-
-// Layouts
-const MainLayout = lazy(() => import('@/layouts/MainLayout/MainLayout'));
-const AuthLayout = lazy(() => import('@/layouts/AuthLayout/AuthLayout'));
-const SettingsLayout = lazy(() => import('@/layouts/SettingsLayout/SettingsLayout'));
-
-// Pages
-
-// auth
-const SignInPage = lazy(() => import('@/pages/auth/SignInPage/SignInPage'));
-const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage/SignUpPage'));
-const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'));
-
-// app
-const ChatPage = lazy(() => import('@/pages/app/ChatPage/ChatPage'));
-const ChatsPage = lazy(() => import('@/pages/app/ChatsPage/ChatsPage'));
-
-// settings
-const ProfilePage = lazy(() => import('@/pages/app/settings/ProfilePage/ProfilePage'));
-const PrivacyPage = lazy(() => import('@/pages/app/settings/PrivacyPage/PrivacyPage'));
-const NotificationsPage = lazy(
-    () => import('@/pages/app/settings/NotificationsPage/NotificationsPage'),
-);
-const ThemePage = lazy(() => import('@/pages/app/settings/ThemePage/ThemePage'));
-const LanguagePage = lazy(() => import('@/pages/app/settings/LanguagePage/LanguagePage'));
-const HelpPage = lazy(() => import('@/pages/app/settings/HelpPage/HelpPage'));
-const AboutPage = lazy(() => import('@/pages/app/settings/AboutPage/AboutPage'));
+import { PrivateRoute } from '@/routing/routes/PrivateRoute';
+import {
+    AboutPage,
+    AppLayout,
+    AuthLayout,
+    ChatPage,
+    ChatsPage,
+    HelpPage,
+    LanguagePage,
+    MainLayout,
+    NotificationsPage,
+    PrivacyPage,
+    ProfilePage,
+    ResetPasswordPage,
+    SettingsLayout,
+    SignInPage,
+    SignUpPage,
+    ThemePage,
+} from '@/routing/pages.import';
 
 export const appConfig: RouteObject[] = [
     {
@@ -107,18 +97,24 @@ export const authConfig: RouteObject[] = [
 ];
 
 export const globalConfig: RouteObject[] = [
-    {
-        element: <PrivateRoute />,
-        children: [
-            {
-                element: <MainLayout />,
-                children: appConfig,
-            },
-        ],
-    },
-    {
-        path: PATHS.auth.index,
-        element: <AuthLayout />,
-        children: authConfig,
-    },
+
+        {
+            element: <AppLayout />,
+            children: [
+                {
+                    element: <PrivateRoute />,
+                    children: [
+                        {
+                            element: <MainLayout />,
+                            children: appConfig,
+                        },
+                    ],
+                },
+                {
+                    path: PATHS.auth.index,
+                    element: <AuthLayout />,
+                    children: authConfig,
+                },
+            ],
+        }
 ];

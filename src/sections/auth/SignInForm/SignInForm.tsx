@@ -3,14 +3,14 @@ import classNames from "classnames/bind";
 
 import styles from '@/sections/auth/SignInForm/SignInForm.module.scss';
 
-import { Input } from "@/ui/Input/Input";
-import { InputPassword } from "@/ui/InputPassword/InputPassword";
-import { Button } from "@/ui/Button/Button";
-import { InputCheckbox } from "@/ui/InputCheckbox/InputCheckbox";
+import { Input } from "@/components/ui/Input/Input";
+import { InputPassword } from "@/components/ui/InputPassword/InputPassword";
+import { Button } from "@/components/ui/Button/Button";
+import { InputCheckbox } from "@/components/ui/InputCheckbox/InputCheckbox";
 import logoPath from '@/assets/img/logo_white.png';
 import { NavLink } from "react-router";
 import { useSignInForm } from "@/sections/auth/SignInForm/SignInForm.hooks";
-import { absoluteUrls } from '@/routing/navigationHelpers.config';
+import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 
 const cn = classNames.bind(styles);
 
@@ -57,7 +57,7 @@ export const SignInForm: FC = () => {
                             onChange={() => setIsRememberMe(!isRememberMe)}
                         />
                         <NavLink
-                            to={absoluteUrls.auth.resetPassword()}
+                            to={useNavigatePaths.auth.resetPassword()}
                             viewTransition
                             className={cn('signin__link')}
                         >
@@ -75,7 +75,7 @@ export const SignInForm: FC = () => {
                 <p className={cn('signin__register')}>
                     Don't have an account?{' '}
                     <NavLink
-                        to={absoluteUrls.auth.signUp()}
+                        to={useNavigatePaths.auth.signUp()}
                         className={cn('signin__link')}
                     >
                         Register

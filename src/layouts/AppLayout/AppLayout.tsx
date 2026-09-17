@@ -3,7 +3,7 @@ import { useAuthListener } from '@/hooks/useAuthListener';
 import { useErrorHandler } from '@/hooks/useErrorHandler';
 import { Outlet } from 'react-router';
 
-export const AppLayout: FC = () => {
+const AppLayout: FC = () => {
     useAuthListener();
     useErrorHandler();
 
@@ -21,3 +21,5 @@ export const AppLayout: FC = () => {
         </>
     );
 };
+
+export default AppLayout;

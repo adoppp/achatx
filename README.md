@@ -1,7 +1,5 @@
 - refactor ui
 - refactor error handling
-- refactor routing
-- refactor hooks
 
 
 # React + TypeScript + Vite

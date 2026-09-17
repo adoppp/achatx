@@ -4,8 +4,8 @@ import { useNavigate } from "react-router";
 
 import styles from '@/sections/auth/ResetPassword/ResetPassword.module.scss';
 
-import { Button } from "@/ui/Button/Button";
-import { Input } from "@/ui/Input/Input";
+import { Button } from "@/components/ui/Button/Button";
+import { Input } from "@/components/ui/Input/Input";
 import { IconAnimatedEmail, IconArrowLeft } from "@/assets/svg";
 import { useResetPassword } from "@/sections/auth/ResetPassword/ResetPassword.hooks";
 
