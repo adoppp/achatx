@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import { Button } from '@/ui/Button/Button';
-import { InputPassword } from '@/ui/InputPassword/InputPassword';
+import { Button } from '@/components/ui/Button/Button';
+import { InputPassword } from '@/components/ui/InputPassword/InputPassword';
 import { usePassword } from '@/sections/auth/SignUpForm/Step/steps/Password/Password.hooks';
 
 const cn = classNames.bind(styles);

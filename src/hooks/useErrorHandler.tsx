@@ -1,4 +1,4 @@
-import { useModalContext } from '@/components/Modal/ModalProvider';
+import { useModalContext } from '@/components/shared/Modal/ModalProvider';
 import { useAppSelector } from '@/redux/redux.hooks';
 import { useEffect } from 'react';
 

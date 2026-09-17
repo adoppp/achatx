@@ -2,8 +2,8 @@ import classNames from 'classnames/bind';
 import type { FC } from 'react';
 
 import type { AccentPalette } from '@/hooks/useTheme';
-import { Select } from '@/ui/Select/Select';
-import styles from './ThemeAccentSection.module.scss';
+import { Select } from '@/components/ui/Select/Select';
+import styles from '@/sections/app/settings/Theme/ThemeAccentSection/ThemeAccentSection.module.scss';
 
 const cn = classNames.bind(styles);
 

@@ -1,0 +1,18 @@
+import { useState, type FC } from 'react';
+
+import { Input } from '@/components/ui/Input/Input';
+import type { InputProps } from '@/components/ui/Input/Input.types';
+import { IconClosedEye, IconEye } from '@/assets/svg';
+
+export const InputPassword: FC<InputProps> = ({ ...props }) => {
+    const [visible, setVisible] = useState(false);
+
+    return (
+        <Input
+            type={visible ? 'text' : 'password'}
+            rightIcon={visible ? <IconClosedEye /> : <IconEye />}
+            onClickRight={() => setVisible(!visible)}
+            {...props}
+        />
+    );
+};

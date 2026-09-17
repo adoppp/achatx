@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import { Loader } from '@/components/Loader/Loader';
+import { Loader } from '@/components/shared/Loader/Loader';
 import { Personal } from '@/sections/auth/SignUpForm/Step/steps/Personal/Personal';
 import { Password } from '@/sections/auth/SignUpForm/Step/steps/Password/Password';
 import { Verify } from '@/sections/auth/SignUpForm/Step/steps/Verify/Verify';

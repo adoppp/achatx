@@ -3,8 +3,8 @@ import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import { Input } from '@/ui/Input/Input';
-import { Button } from '@/ui/Button/Button';
+import { Input } from '@/components/ui/Input/Input';
+import { Button } from '@/components/ui/Button/Button';
 import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import { useNavigate } from 'react-router';
 import { useNavigatePaths } from '@/routing/navigationHelpers.config';

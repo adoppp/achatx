@@ -8,9 +8,9 @@ import '@/styles/reset.scss';
 
 import { store } from '@/redux/store';
 import { router } from '@/routing';
-import { ModalWrapper } from './components/Modal/Modal.wrapper';
-import { ModalProvider } from './components/Modal/ModalProvider';
-import { ThemeProvider } from './hooks/useTheme';
+import { ModalWrapper } from '@/components/shared/Modal/Modal.wrapper';
+import { ModalProvider } from '@/components/shared/Modal/ModalProvider';
+import { ThemeProvider } from '@/hooks/useTheme';
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>

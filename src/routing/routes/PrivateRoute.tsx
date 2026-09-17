@@ -1,7 +1,7 @@
 import { useAppSelector } from '@/redux/redux.hooks';
 import { Navigate, Outlet } from 'react-router';
 import { useNavigatePaths } from '../navigationHelpers.config';
-import { Loader } from '@/components/Loader/Loader';
+import { Loader } from '@/components/shared/Loader/Loader';
 
 export const PrivateRoute = () => {
     const user = useAppSelector((state) => state.auth);

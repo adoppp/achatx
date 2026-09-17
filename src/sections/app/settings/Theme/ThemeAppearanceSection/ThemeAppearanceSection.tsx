@@ -3,7 +3,7 @@ import type { FC } from 'react';
 
 import type { SurfaceMode, ThemeMode } from '@/hooks/useTheme';
 import styles from './ThemeAppearanceSection.module.scss';
-import { Button } from '@/ui/Button/Button';
+import { Button } from '@/components/ui/Button/Button';
 
 const cn = classNames.bind(styles);
 

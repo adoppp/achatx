@@ -1,6 +1,7 @@
-- Package.json: node, npm (pnpm) versions.
-- abort controller
-- check: new features
+- refactor ui
+- refactor error handling
+- refactor routing
+- refactor hooks
 
 
 # React + TypeScript + Vite

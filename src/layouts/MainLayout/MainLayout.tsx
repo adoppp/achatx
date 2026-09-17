@@ -3,7 +3,7 @@ import type { FC } from 'react';
 import { Outlet } from 'react-router';
 
 import styles from '@/layouts/MainLayout/MainLayout.module.scss';
-import { Sidebar } from '@/components/Sidebar/Sidebar';
+import { Sidebar } from '@/components/shared/Sidebar/Sidebar';
 
 const cn = classNames.bind(styles);
 
