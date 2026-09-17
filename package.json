@@ -30,7 +30,7 @@
         "sass": "1.99.0"
     },
     "devDependencies": {
-        "@babel/core": "7.29.0",
+        "@babel/core": "^7.29.7",
         "@eslint/js": "9.39.4",
         "@rolldown/plugin-babel": "0.2.3",
         "@types/babel__core": "7.20.5",
@@ -48,7 +48,7 @@
         "globals": "17.5.0",
         "typescript": "6.0.2",
         "typescript-eslint": "8.58.2",
-        "vite": "8.0.9",
+        "vite": "^8.3.0",
         "vite-tsconfig-paths": "6.1.1"
     }
 }
