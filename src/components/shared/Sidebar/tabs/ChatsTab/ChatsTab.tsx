@@ -8,11 +8,13 @@ import { Button } from '@/components/ui/Button/Button';
 import { Input } from '@/components/ui/Input/Input';
 import { useChatsListener } from '@/hooks/useChatsListener';
 import { useAppSelector } from '@/redux/redux.hooks';
+import { useModalContext } from '@/components/shared/Modal/ModalProvider';
 
 const cn = classNames.bind(styles);
 
 export const ChatsTab: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
+    const { openModal } = useModalContext();
     const chatsState = useAppSelector(state => state.chats);
     const chats = chatsState.items;
 
@@ -21,6 +23,17 @@ export const ChatsTab: FC = () => {
 //     const filteredChats = Object.entries(chats).filter(([_, chat]) =>
 //     chat.name.toLowerCase().includes(searchValue.toLowerCase())
 // );
+
+    const handleClick = () => {
+        openModal({
+            type: 'custom',
+            modalProps: {
+                title: 'Add chat',
+                message: 'refactor',
+                customContent: <Button />
+            }
+        })
+    }
 
     const items = Object.entries(chats).map(([cid, chat]) => {
         return <ChatCard key={cid} {...chat} />;
@@ -41,7 +54,7 @@ export const ChatsTab: FC = () => {
                         container: cn('chats__tab--search-input'),
                     }}
                 />
-                <Button variant="tertiary" customClassName={cn('chats__tab--search-button')}>
+                <Button variant="tertiary" customClassName={cn('chats__tab--search-button')} onClick={handleClick}>
                     <IoAdd className={cn('chats__tab--search-button_icon')} />
                 </Button>
             </div>

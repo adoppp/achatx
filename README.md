@@ -1,5 +1,6 @@
 - refactor ui
 - refactor error handling
+- refactor modal
 
 
 # React + TypeScript + Vite

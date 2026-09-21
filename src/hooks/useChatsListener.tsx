@@ -1,31 +1,40 @@
-import { auth } from "@/firebase";
-import { setChats, setChatsLoading } from "@/redux/reducers/chatsSlice";
-import { setError } from "@/redux/reducers/errorSlice";
-import { useAppDispatch, 
-    // useAppSelector 
-} from "@/redux/redux.hooks"
-import { getChatsByUser } from "@/services/chats.service";
-import { useEffect } from "react";
+import { auth } from '@/firebase';
+import { setChats, setChatsLoading } from '@/redux/reducers/chatsSlice';
+import { setError } from '@/redux/reducers/errorSlice';
+import {
+    useAppDispatch,
+    // useAppSelector
+} from '@/redux/redux.hooks';
+import { subscribeToUserChats } from '@/services/chats.service';
+import { useEffect } from 'react';
 
 export const useChatsListener = () => {
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        dispatch(setChatsLoading('loading'));
+        const user = auth.currentUser;
         
-        const unsubscribe = getChatsByUser((chats) => {
-            try {
+        if (!user) return;
+        
+        dispatch(setChatsLoading('loading'));
+
+        const unsubscribe = subscribeToUserChats(
+            user.uid,
+            (chats) => {
                 dispatch(setChats(chats));
                 dispatch(setChatsLoading('success'));
-            } catch (error) {
+            },
+            () => {
                 dispatch(setChatsLoading('error'));
-                dispatch(setError({
-                    title: 'Chats error',
-                    message: 'Can not to load chats'
-                }));
-            }
-        });
+                dispatch(
+                    setError({
+                        title: 'Chats error',
+                        message: 'Can not load chats',
+                    }),
+                );
+            },
+        );
 
-        return () => unsubscribe();
-    }, [dispatch, auth])
-}
+        return unsubscribe;
+    }, [dispatch]);
+};

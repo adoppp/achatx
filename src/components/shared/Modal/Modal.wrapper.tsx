@@ -14,6 +14,7 @@ const cn = classNames.bind(styles);
 export const ModalWrapper: FC = () => {
     const { modal, closeModal } = useModalContext();
     const modalType = modal.type;
+    const CustomContent = modal.modalProps?.customContent;
 
     if (modalType === null) return;
 
@@ -26,6 +27,7 @@ export const ModalWrapper: FC = () => {
                     </button>
                     {modalType === 'error' && <ErrorModal />}
                     {modalType === 'success' && <SuccessModal />}
+                    {modalType === 'custom' && CustomContent}
                 </div>
             </div>
         </ModalRoot>
