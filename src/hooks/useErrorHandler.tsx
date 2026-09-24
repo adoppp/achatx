@@ -19,5 +19,5 @@ export const useErrorHandler = () => {
         } else {
             closeModal();
         }
-    }, [error]);
+    }, [closeModal, error, openModal]);
 };

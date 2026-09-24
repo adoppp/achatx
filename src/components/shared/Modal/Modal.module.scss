@@ -52,6 +52,8 @@
 
         padding: 20px 16px;
         border-radius: $border-radius;
-        box-shadow: 0 14px 42px rgb(0 0 0 / 0.22), 0 0 30px var(--glass-glow);
+        box-shadow:
+            0 14px 42px rgb(0 0 0 / 0.22),
+            0 0 30px var(--glass-glow);
     }
 }

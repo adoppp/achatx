@@ -4,7 +4,7 @@
 @use '@/styles/mixins' as *;
 
 .success {
-      &__icon {
+    &__icon {
         background-color: $success-fog;
 
         width: fit-content;

@@ -1,20 +1,20 @@
-import type { FC } from 'react';
+import type { ComponentType } from 'react';
 
 import { IconAnimatedEmail, IconLockAnimated, IconUser } from '@/assets/svg';
 import { Step } from '@/sections/auth/SignUpForm/Step/Step';
-import type { StepType } from "@/sections/auth/SignUpForm/SignUpForm.types";
+import type { StepType } from '@/sections/auth/SignUpForm/SignUpForm.types';
 
 interface StepData {
-    component: FC<any>;
+    component: ComponentType;
     header?: {
-        icon?: FC<any>;
+        icon?: ComponentType<{ isClosed?: boolean }>;
         title?: string;
         description?: string;
-    }
-};
+    };
+}
 
 type StepsData = {
-    [K in number]: StepData
+    [K in number]: StepData;
 };
 
 export const stepsData: StepsData = {
@@ -41,7 +41,7 @@ export const stepsData: StepsData = {
             title: 'Verify your email',
             description: 'We have send verification link to your email',
         },
-    }
+    },
 } as const;
 
 // to find max step

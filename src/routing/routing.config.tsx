@@ -1,5 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
-
 import { PATHS } from '@/routing/path.config';
 import { SignUpFormProvider } from '@/sections/auth/SignUpForm/SignUpFormProvider';
 import type { RouteObject } from 'react-router';
@@ -97,24 +95,23 @@ export const authConfig: RouteObject[] = [
 ];
 
 export const globalConfig: RouteObject[] = [
-
-        {
-            element: <AppLayout />,
-            children: [
-                {
-                    element: <PrivateRoute />,
-                    children: [
-                        {
-                            element: <MainLayout />,
-                            children: appConfig,
-                        },
-                    ],
-                },
-                {
-                    path: PATHS.auth.index,
-                    element: <AuthLayout />,
-                    children: authConfig,
-                },
-            ],
-        }
+    {
+        element: <AppLayout />,
+        children: [
+            {
+                element: <PrivateRoute />,
+                children: [
+                    {
+                        element: <MainLayout />,
+                        children: appConfig,
+                    },
+                ],
+            },
+            {
+                path: PATHS.auth.index,
+                element: <AuthLayout />,
+                children: authConfig,
+            },
+        ],
+    },
 ];

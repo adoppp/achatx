@@ -1,5 +1,6 @@
+/* eslint-disable react-refresh/only-export-components */
 import classNames from 'classnames/bind';
-import { useEffect, useState, type FC } from 'react';
+import { useState, type FC } from 'react';
 
 import styles from '@/components/shared/Sidebar/Sidebar.module.scss';
 
@@ -14,11 +15,11 @@ const SidebarRoot: FC = () => {
     const location = useLocation();
     const [activeTab, setActiveTab] = useState<SidebarTab>(() => {
         if (location.pathname.startsWith('/settings')) {
-            return 'settings'
+            return 'settings';
         } else if (location.pathname.startsWith('/chat')) {
-            return 'chats'
+            return 'chats';
         } else {
-            return 'chats'
+            return 'chats';
         }
     });
     const Tab: FC = tabs[activeTab];
@@ -33,6 +34,7 @@ const SidebarRoot: FC = () => {
     );
 };
 
+// Sidebar exposes its navbar as a compound component API.
 export const Sidebar = Object.assign(SidebarRoot, {
     SidebarNavbar,
 });

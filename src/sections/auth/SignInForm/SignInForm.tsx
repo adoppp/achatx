@@ -1,15 +1,15 @@
-import { type FC } from "react";
-import classNames from "classnames/bind";
+import { type FC } from 'react';
+import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignInForm/SignInForm.module.scss';
 
-import { Input } from "@/components/ui/Input/Input";
-import { InputPassword } from "@/components/ui/InputPassword/InputPassword";
-import { Button } from "@/components/ui/Button/Button";
-import { InputCheckbox } from "@/components/ui/InputCheckbox/InputCheckbox";
+import { Input } from '@/components/ui/Input/Input';
+import { InputPassword } from '@/components/ui/InputPassword/InputPassword';
+import { Button } from '@/components/ui/Button/Button';
+import { InputCheckbox } from '@/components/ui/InputCheckbox/InputCheckbox';
 import logoPath from '@/assets/img/logo_white.png';
-import { NavLink } from "react-router";
-import { useSignInForm } from "@/sections/auth/SignInForm/SignInForm.hooks";
+import { NavLink } from 'react-router';
+import { useSignInForm } from '@/sections/auth/SignInForm/SignInForm.hooks';
 import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 
 const cn = classNames.bind(styles);
@@ -23,7 +23,7 @@ export const SignInForm: FC = () => {
         setIsRememberMe,
         isLoading,
         handleChange,
-        handleSubmit
+        handleSubmit,
     } = useSignInForm();
 
     return (
@@ -74,10 +74,7 @@ export const SignInForm: FC = () => {
                 </form>
                 <p className={cn('signin__register')}>
                     Don't have an account?{' '}
-                    <NavLink
-                        to={useNavigatePaths.auth.signUp()}
-                        className={cn('signin__link')}
-                    >
+                    <NavLink to={useNavigatePaths.auth.signUp()} className={cn('signin__link')}>
                         Register
                     </NavLink>
                 </p>

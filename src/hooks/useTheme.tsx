@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import {
     createContext,
     useContext,
@@ -24,6 +25,7 @@ export interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
+// This key is shared with the settings UI.
 export const STORAGE_THEME_KEY = 'achatx_theme';
 const STORAGE_ACCENT_KEY = 'achatx_accent';
 const STORAGE_SURFACE_KEY = 'achatx_surface';

@@ -11,8 +11,8 @@ const cn = classNames.bind(styles);
 
 export const Progress: FC = () => {
     const { step } = useSignUpFormContext();
-    
-    const items = Object.entries(stepsData).map(([ id ]) => {
+
+    const items = Object.entries(stepsData).map(([id]) => {
         const numericId = Number(id) as StepType;
 
         const isActive = step === numericId;
@@ -26,8 +26,7 @@ export const Progress: FC = () => {
                     isActive && 'step__active',
                     isDone && 'step__done',
                 )}
-            >
-            </li>
+            ></li>
         );
     });
 

@@ -13,9 +13,9 @@ export const useChatsListener = () => {
 
     useEffect(() => {
         const user = auth.currentUser;
-        
+
         if (!user) return;
-        
+
         dispatch(setChatsLoading('loading'));
 
         const unsubscribe = subscribeToUserChats(

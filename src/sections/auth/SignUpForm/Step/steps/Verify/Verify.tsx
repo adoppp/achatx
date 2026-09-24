@@ -10,14 +10,7 @@ import { useVerify } from '@/sections/auth/SignUpForm/Step/steps/Verify/Verify.h
 const cn = classNames.bind(styles);
 
 export const Verify: FC = () => {
-    const {
-        step,
-        timeLeft,
-        disabled,
-        isResended,
-        isLoadingResend,
-        resendEmail
-    } = useVerify();
+    const { step, timeLeft, disabled, isResended, isLoadingResend, resendEmail } = useVerify();
 
     return (
         <>

@@ -12,15 +12,8 @@ import { useNavigatePaths } from '@/routing/navigationHelpers.config';
 const cn = classNames.bind(styles);
 
 export const Personal: FC = () => {
-    const { 
-            formState,
-            errorState, 
-            step, 
-            maxStep, 
-            _next, 
-            canGoNext,
-            handleOnChange 
-        } = useSignUpFormContext();
+    const { formState, errorState, step, maxStep, _next, canGoNext, handleOnChange } =
+        useSignUpFormContext();
     const navigate = useNavigate();
 
     return (

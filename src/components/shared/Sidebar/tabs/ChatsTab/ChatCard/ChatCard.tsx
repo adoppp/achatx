@@ -8,7 +8,21 @@ import { NavLink } from 'react-router';
 
 const cn = classNames.bind(styles);
 
-export const ChatCard: FC<any> = ({ id, name, lastMessage, timeStamp, online }) => {
+interface ChatCardProps {
+    id: string;
+    name: string;
+    lastMessage: string;
+    timeStamp: string;
+    online?: boolean;
+}
+
+export const ChatCard: FC<ChatCardProps> = ({
+    id,
+    name,
+    lastMessage,
+    timeStamp,
+    online = false,
+}) => {
     return (
         <li className={cn('card')}>
             <NavLink
@@ -19,7 +33,7 @@ export const ChatCard: FC<any> = ({ id, name, lastMessage, timeStamp, online }) 
                 <div className={cn('card__right')}>
                     <div className={cn('card__avatar--relative')}>
                         <Avatar name={name} size="48px" round />
-                        <span className={cn(online && 'card__online')}></span>
+                        <span className={cn(online && 'card__online')} />
                     </div>
                     <div className={cn('card__main-content')}>
                         <span className={cn('card__name')}>{name}</span>

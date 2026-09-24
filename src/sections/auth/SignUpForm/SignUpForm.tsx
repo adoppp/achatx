@@ -10,18 +10,16 @@ import { useSignUpFormContext } from '@/sections/auth/SignUpForm/SignUpFormProvi
 const cn = classNames.bind(styles);
 
 export const SignUpForm: FC = () => {
-    const {
-        ActiveStepComponent,
-    } = useSignUpFormContext();
+    const { ActiveStepComponent } = useSignUpFormContext();
 
     return (
         <div className={cn('signup')}>
-                <Progress />
+            <Progress />
 
-                <Step>
-                    <Step.Header />
-                    <ActiveStepComponent />
-                </Step>
+            <Step>
+                <Step.Header />
+                <ActiveStepComponent />
+            </Step>
         </div>
     );
 };

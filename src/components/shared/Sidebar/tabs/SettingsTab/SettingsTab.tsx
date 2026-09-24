@@ -15,7 +15,7 @@ const cn = classNames.bind(styles);
 
 export const SettingsTab: FC = () => {
     const [search, setSearch] = useState<string>('');
-    const { theme, accent, surface } = useTheme();
+    useTheme();
 
     const renderSection = useMemo(() => {
         const query = search.trim().toLowerCase();
@@ -47,7 +47,7 @@ export const SettingsTab: FC = () => {
                 <SettingsSection key={section.title} title={section.title} items={filteredItems} />
             );
         });
-    }, [search, theme, accent, surface]);
+    }, [search]);
 
     return (
         <div className={cn('settings__tab')}>

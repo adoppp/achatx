@@ -17,7 +17,7 @@ interface StepProps {
 
 const cn = classNames.bind(styles);
 
-export const StepWrapper: FC<StepProps> = ({ children }) => {    
+export const StepWrapper: FC<StepProps> = ({ children }) => {
     const { isLoading } = useSignUpFormContext();
 
     return (
@@ -27,9 +27,7 @@ export const StepWrapper: FC<StepProps> = ({ children }) => {
                     <Loader />
                 </div>
             ) : (
-                <>
-                    {children}
-                </>
+                <>{children}</>
             )}
         </div>
     );

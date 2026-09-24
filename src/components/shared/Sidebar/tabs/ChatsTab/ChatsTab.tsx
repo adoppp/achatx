@@ -15,14 +15,14 @@ const cn = classNames.bind(styles);
 export const ChatsTab: FC = () => {
     const [searchValue, setSearchValue] = useState<string>('');
     const { openModal } = useModalContext();
-    const chatsState = useAppSelector(state => state.chats);
+    const chatsState = useAppSelector((state) => state.chats);
     const chats = chatsState.items;
 
-    console.log(chats)
+    console.log(chats);
 
-//     const filteredChats = Object.entries(chats).filter(([_, chat]) =>
-//     chat.name.toLowerCase().includes(searchValue.toLowerCase())
-// );
+    //     const filteredChats = Object.entries(chats).filter(([_, chat]) =>
+    //     chat.name.toLowerCase().includes(searchValue.toLowerCase())
+    // );
 
     const handleClick = () => {
         openModal({
@@ -30,16 +30,24 @@ export const ChatsTab: FC = () => {
             modalProps: {
                 title: 'Add chat',
                 message: 'refactor',
-                customContent: <Button />
-            }
-        })
-    }
+                customContent: <Button />,
+            },
+        });
+    };
 
     const items = Object.entries(chats).map(([cid, chat]) => {
-        return <ChatCard key={cid} {...chat} />;
+        return (
+            <ChatCard
+                key={cid}
+                id={chat.id}
+                name={chat.members.join(', ')}
+                lastMessage={chat.lastMessage?.text ?? ''}
+                timeStamp={new Date(chat.lastActivity).toLocaleTimeString()}
+            />
+        );
     });
 
-    useChatsListener()
+    useChatsListener();
 
     return (
         <div className={cn('chats__tab')}>
@@ -54,24 +62,22 @@ export const ChatsTab: FC = () => {
                         container: cn('chats__tab--search-input'),
                     }}
                 />
-                <Button variant="tertiary" customClassName={cn('chats__tab--search-button')} onClick={handleClick}>
+                <Button
+                    variant="tertiary"
+                    customClassName={cn('chats__tab--search-button')}
+                    onClick={handleClick}
+                >
                     <IoAdd className={cn('chats__tab--search-button_icon')} />
                 </Button>
             </div>
-            {
-                items.length > 0 ? (
-                    <ul className={cn('chats__tab--list')}>{items}</ul>
-                ) : (
-                    <div className={cn('chats__tab--null-container')}>
-                        <p className={cn('chats__tab--null-description')}>
-                            You have no chats
-                        </p>
-                        <Button size='l'>
-                            Communicate!
-                        </Button>
-                    </div>
-                )
-            }
+            {items.length > 0 ? (
+                <ul className={cn('chats__tab--list')}>{items}</ul>
+            ) : (
+                <div className={cn('chats__tab--null-container')}>
+                    <p className={cn('chats__tab--null-description')}>You have no chats</p>
+                    <Button size="l">Communicate!</Button>
+                </div>
+            )}
         </div>
     );
 };

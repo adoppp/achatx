@@ -1,8 +1,8 @@
-import { ResetPassword } from "@/sections/auth/ResetPassword/ResetPassword"
-import type { FC } from "react"
+import { ResetPassword } from '@/sections/auth/ResetPassword/ResetPassword';
+import type { FC } from 'react';
 
 const ResetPasswordPage: FC = () => {
-    return <ResetPassword />
-}
+    return <ResetPassword />;
+};
 
 export default ResetPasswordPage;

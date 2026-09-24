@@ -1,7 +1,7 @@
 export interface FormState {
-    email: string,
-    password: string
-};
+    email: string;
+    password: string;
+}
 
 export type Field = keyof FormState;
 

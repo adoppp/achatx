@@ -1,15 +1,15 @@
-import type { FC } from "react";
-import classNames from "classnames/bind";
+import type { FC } from 'react';
+import classNames from 'classnames/bind';
 
 import styles from '@/sections/auth/SignUpForm/SignUpForm.module.scss';
 
-import { IconCheckMark, IconClose } from "@/assets/svg";
+import { IconCheckMark, IconClose } from '@/assets/svg';
 import type { IsPasswordValid } from '@/sections/auth/auth.types';
 
 interface PasswordValidationItemProps {
     isValid: boolean;
-    typedKey: keyof IsPasswordValid
-};
+    typedKey: keyof IsPasswordValid;
+}
 
 const cn = classNames.bind(styles);
 
@@ -27,9 +27,7 @@ export const PasswordValidationItem: FC<PasswordValidationItemProps> = ({ isVali
             <span className={cn('password__item--icon')}>
                 {isValid ? <IconCheckMark /> : <IconClose />}
             </span>
-            <span className={cn('password__item--rule')}>
-                {passwordErrorMessages[typedKey]}
-            </span>
+            <span className={cn('password__item--rule')}>{passwordErrorMessages[typedKey]}</span>
         </li>
     );
 };

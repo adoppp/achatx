@@ -14,18 +14,24 @@ export const Header: FC = () => {
 
     return (
         <>
-            {
-                stepsData[step].header && (
+            {stepsData[step].header && (
                 <div className={cn('signup__description')}>
-                    <div className={cn('signup__description--icon', `signup__description--icon-${step}`)}>
-                        <StepIconHandler step={step} isActive={isPasswordValid} />    
+                    <div
+                        className={cn(
+                            'signup__description--icon',
+                            `signup__description--icon-${step}`,
+                        )}
+                    >
+                        <StepIconHandler step={step} isActive={isPasswordValid} />
                     </div>
-                    <h2 className={cn('signup__description--title')}>{stepsData[step].header.title}</h2>
+                    <h2 className={cn('signup__description--title')}>
+                        {stepsData[step].header.title}
+                    </h2>
                     <p className={cn('signup__description--description')}>
                         {stepsData[step].header.description}
                     </p>
-                </div>)
-            }
+                </div>
+            )}
         </>
     );
 };

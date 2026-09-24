@@ -9,7 +9,7 @@ import { resetError } from '@/redux/reducers/errorSlice';
 
 export const useAuthListener = () => {
     const dispatch = useAppDispatch();
-    const error = useAppSelector(state => state.error)
+    const error = useAppSelector((state) => state.error);
 
     useEffect(() => {
         dispatch(setLoading());
@@ -43,5 +43,5 @@ export const useAuthListener = () => {
         );
 
         return () => unsubscribe();
-    }, [dispatch]);
+    }, [dispatch, error.message, error.title]);
 };

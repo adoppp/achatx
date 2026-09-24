@@ -16,7 +16,7 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
 
     const openModal = (propsModal: ModalActionProps): void => {
         setModal(propsModal);
-        document.body.style = 'overflow: hidden;'
+        document.body.style = 'overflow: hidden;';
     };
 
     const closeModal = (): void => {
@@ -38,6 +38,8 @@ export const ModalProvider: FC<{ children: ReactNode }> = ({ children }) => {
     );
 };
 
+// The provider and hook intentionally share the context in this module.
+// eslint-disable-next-line react-refresh/only-export-components
 export const useModalContext = (): ModalContextType => {
     const context = useContext(ModalContext);
     if (!context) {

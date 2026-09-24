@@ -110,7 +110,7 @@
         transition: background $transition-smooth;
         color: var(--text-primary);
     }
-    
+
     &__option:hover,
     &__option--selected {
         background: var(--accent-fog);

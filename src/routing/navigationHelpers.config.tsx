@@ -10,7 +10,7 @@ export const useNavigatePaths = {
 
     app: {
         chats: () => `/${PATHS.app.chats}`,
-        chat: (id: number) => `/${PATHS.app.chat.slice(0, 4)}/${id}`,
+        chat: (id: string) => `/${PATHS.app.chat.slice(0, 4)}/${id}`,
 
         settings: {
             index: () => `/${PATHS.app.settings.index}`,

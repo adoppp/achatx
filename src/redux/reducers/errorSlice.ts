@@ -7,7 +7,7 @@ interface ErrorState {
 
 const initialState: ErrorState = {
     title: null,
-    message: null
+    message: null,
 };
 
 const errorSlice = createSlice({

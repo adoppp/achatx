@@ -44,17 +44,21 @@ export const signUpAuth = async ({
 };
 
 // login user
-export const signInAuth = async (email: string, password: string, rememberMe: boolean = false): Promise<void> => {
+export const signInAuth = async (
+    email: string,
+    password: string,
+    rememberMe: boolean = false,
+): Promise<void> => {
     await setPersistence(auth, rememberMe ? browserLocalPersistence : browserSessionPersistence);
 
     await signInWithEmailAndPassword(auth, email, password);
-}
+};
 
 // verify user email
 export const verifyByEmail = async (user: User): Promise<void> => {
     await sendEmailVerification(user, {
         url: `${FRONTEND_URL}/auth/signin`,
-        handleCodeInApp: true
+        handleCodeInApp: true,
     });
 };
 
@@ -64,7 +68,7 @@ export const resetPassword = async (email: string) => {
         url: `${FRONTEND_URL}/auth/signin`,
         // handleCodeInApp: true,
     });
-}
+};
 
 // firebase restricted
 // export const confirmReset = async (code: string, newPassword: string) => {

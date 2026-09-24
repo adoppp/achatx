@@ -11,7 +11,9 @@ export const SettingsLayout = lazy(() => import('@/layouts/SettingsLayout/Settin
 // auth
 export const SignInPage = lazy(() => import('@/pages/auth/SignInPage/SignInPage'));
 export const SignUpPage = lazy(() => import('@/pages/auth/SignUpPage/SignUpPage'));
-export const ResetPasswordPage = lazy(() => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'));
+export const ResetPasswordPage = lazy(
+    () => import('@/pages/auth/ResetPasswordPage/ResetPasswordPage'),
+);
 
 // app
 export const ChatPage = lazy(() => import('@/pages/app/ChatPage/ChatPage'));

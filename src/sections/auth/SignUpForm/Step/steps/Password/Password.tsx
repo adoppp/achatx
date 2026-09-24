@@ -10,18 +10,18 @@ import { usePassword } from '@/sections/auth/SignUpForm/Step/steps/Password/Pass
 const cn = classNames.bind(styles);
 
 export const Password: FC = () => {
-    const { 
-        step, 
-        maxStep, 
-        formState, 
-        errorState, 
-        formId, 
-        isPasswordValid, 
-        items, 
-        _prev, 
-        canGoNext, 
-        handleOnChange, 
-        handleSubmit 
+    const {
+        step,
+        maxStep,
+        formState,
+        errorState,
+        formId,
+        isPasswordValid,
+        items,
+        _prev,
+        canGoNext,
+        handleOnChange,
+        handleSubmit,
     } = usePassword();
 
     return (
@@ -55,4 +55,3 @@ export const Password: FC = () => {
         </>
     );
 };
-

@@ -9,7 +9,6 @@
 
     &__container {
         @include authCard();
-
     }
 
     &__header {
@@ -17,7 +16,7 @@
 
         &-box {
             @include authIcon();
-            
+
             width: fit-content;
 
             padding: 8px 12px;

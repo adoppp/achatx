@@ -10,7 +10,7 @@ export const store = configureStore({
         auth: authReducer,
         chats: chatsReducer,
         messages: messagesReducer,
-        error: errorReducer
+        error: errorReducer,
     },
 });
 

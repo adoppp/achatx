@@ -1,5 +1,5 @@
-import type { stepsData } from "@/sections/auth/SignUpForm/SignUpForm.config";
-import type { IsPasswordValid } from "@/sections/auth/auth.types";
+import type { stepsData } from '@/sections/auth/SignUpForm/SignUpForm.config';
+import type { IsPasswordValid } from '@/sections/auth/auth.types';
 
 export type StepType = keyof typeof stepsData;
 
