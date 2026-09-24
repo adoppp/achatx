@@ -8,7 +8,7 @@ import {
     doc,
     Timestamp,
 } from 'firebase/firestore';
-import { auth, collections, firestore, type Chat } from './service.config';
+import { collections, firestore, type Chat } from './service.config';
 import type { CreateChat } from '@/services/chats.service.types';
 
 export const subscribeToUserChats = (
